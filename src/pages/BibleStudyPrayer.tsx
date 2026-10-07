@@ -24,6 +24,8 @@ const gatherings = ([
   { title: "Fasting Prayer", event: "Fasting Prayer", text: "Set aside focused time each month for worship, fasting, prayer, and seeking God together.", icon: MoonStar }
 ] satisfies Gathering[]).map((item) => ({ ...item, details: events.find((event) => event.title === item.event) }));
 
+const bibleStudy = gatherings[0].details;
+
 const related: RelatedLink[] = [
   { title: "Sunday School · B.L.A.S.T.", meta: "Children · Sundays", href: "/grow/sunday-school", icon: Sparkles },
   { title: "Kids Circle", meta: "Children · During worship", href: "/grow/kids-circle", icon: UsersRound },
@@ -45,7 +47,7 @@ export default function BibleStudyPrayer() {
       <div className="study-hero-visual">
         <img src={siteImages.bibleStudy.src} alt={siteImages.bibleStudy.alt} width="1200" height="900" style={{ objectPosition: siteImages.bibleStudy.objectPosition }} />
         <aside className="study-hero-card" aria-label="Next Bible study gathering">
-          <span>Weekly gathering</span><strong>Wednesday · 7:30 PM</strong>
+          <span>Weekly gathering</span><strong>{bibleStudy?.frequency} · {bibleStudy?.time}</strong>
           <ul><li><CalendarDays size={16}/> Bible study & prayer</li><li><UsersRound size={16}/> Adults and families welcome</li></ul>
           <Link to="/contact">Get gathering details <ArrowRight size={14}/></Link>
         </aside>

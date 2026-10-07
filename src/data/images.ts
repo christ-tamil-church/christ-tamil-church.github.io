@@ -134,7 +134,7 @@ export const siteImages = {
     creditName: "Meredith Spencer",
     creditUrl: `https://unsplash.com/@meredithspencer22?${utm}`,
     unsplashUrl: "https://unsplash.com/photos/f67b561e656f",
-    usage: "Women's Conference event",
+    usage: "Women's Fellowship event",
     objectPosition: "center center"
   },
   churchPicnic: {

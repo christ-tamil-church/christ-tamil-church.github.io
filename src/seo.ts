@@ -46,7 +46,7 @@ export const pageMeta = {
   "/grow/bible-study-prayer": {
     label: "Bible Study & Prayer",
     title: "Tamil Bible Study & Prayer in Chicago – Christ Tamil Church",
-    description: `Wednesday Bible study, weeknight prayer, and monthly fasting prayer with a Tamil church family in ${place}. No Bible background needed.`
+    description: `Friday Bible study, weeknight prayer, and monthly fasting prayer with a Tamil church family in ${place}. No Bible background needed.`
   },
   "/grow/sunday-school": {
     label: "Sunday School",

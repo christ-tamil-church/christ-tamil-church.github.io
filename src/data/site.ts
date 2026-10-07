@@ -70,7 +70,7 @@ export const churchEvents = [
     description:
       "Bible-based learning for children to grow in faith through age-appropriate lessons and activities.",
     date: "Every Sunday",
-    location: "Children's Ministry Area",
+    location: "Christ Tamil Church",
     image: siteImages.sundaySchool.src
   },
   {
@@ -81,17 +81,17 @@ export const churchEvents = [
     description:
       "Join us during the week for prayer, encouragement, and spiritual strengthening as a church family.",
     date: "Monday to Thursday",
-    location: "Christ Tamil Church",
+    location: "UberConference (online)",
     image: siteImages.prayer.src
   },
   {
     title: "Bible Study & Prayer",
-    frequency: "Wednesday",
+    frequency: "Friday",
     time: "7:30 PM",
-    category: "Midweek Bible Study",
+    category: "Weekly Bible Study",
     description:
-      "Grow deeper in God's Word through midweek Bible study and prayer.",
-    date: "Wednesday",
+      "Grow deeper in God's Word through weekly Bible study and prayer on Friday evenings.",
+    date: "Friday",
     location: "Christ Tamil Church",
     image: siteImages.bibleStudy.src
   },
@@ -117,12 +117,12 @@ export const churchEvents = [
     image: siteImages.mensFellowship.src
   },
   {
-    title: "Women's Conference",
-    frequency: "Annual / Periodic Gathering",
+    title: "Women's Fellowship",
+    frequency: "Periodic Gathering",
     category: "Women's Ministry",
     description:
       "A gathering for women to worship, learn, pray, and encourage one another in faith.",
-    date: "Annual / Periodic Gathering",
+    date: "Periodic Gathering",
     location: "Christ Tamil Church",
     image: siteImages.womensFellowship.src
   },
@@ -167,13 +167,12 @@ export const churchEvents = [
   },
   {
     title: "Fellowship Hour",
-    frequency: "After Sunday Worship",
-    time: "After Service",
-    category: "Fellowship Hall",
+    frequency: "After Service",
+    category: "Fellowship",
     description:
       "Stay after worship to connect, encourage one another, and share life together.",
-    date: "After Sunday Worship",
-    location: "Fellowship Hall",
+    date: "After Service",
+    location: "Christ Tamil Church",
     image: siteImages.fellowshipMeal.src
   }
 ] as const satisfies readonly ChurchEvent[];
