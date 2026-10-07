@@ -110,7 +110,7 @@
   isolation: isolate;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 6px;
 }
 
 /* One soft ambient shadow under the whole collage, so the gaps between photos
@@ -128,7 +128,7 @@
 .ctc-serve-collage-column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   min-height: 0;
 }
 
@@ -488,7 +488,7 @@
 
   .ctc-serve-collage,
   .ctc-serve-collage-column {
-    gap: 6px;
+    gap: 4px;
   }
 
   .ctc-serve-hero-visual figcaption {
