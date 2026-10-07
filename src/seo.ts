@@ -18,9 +18,12 @@ export type PageMeta = {
 const sunday = `Sunday ${churchInfo.worship.time}`;
 const place = `${churchInfo.address.city}, ${churchInfo.address.state}`;
 
-// Keyword targets per route are documented in seo/content-pillars.md.
-// Keep titles under ~60 characters and descriptions under ~160.
-export const pageMeta: Record<string, PageMeta> = {
+// The list of pages. Every key here must have a page in src/App.tsx (and vice
+// versa; TypeScript enforces both), and each one is prerendered and listed in
+// sitemap.xml. Keyword targets per route are documented in
+// seo/content-pillars.md. Keep titles under ~60 characters and descriptions
+// under ~160.
+export const pageMeta = {
   "/": {
     title: "Christ Tamil Church – Tamil Church in Chicago (Downers Grove)",
     description: `A Tamil and English Christian church family in ${place}, serving Chicago and the western suburbs since 2015. Join us ${sunday}.`
@@ -80,7 +83,11 @@ export const pageMeta: Record<string, PageMeta> = {
     title: "Contact & Directions – Christ Tamil Church, Downers Grove",
     description: `Call ${churchInfo.contact.phone}, email, or get directions to ${churchInfo.address.short}. Questions and prayer requests welcome.`
   }
-};
+} satisfies Record<string, PageMeta>;
+
+export type PagePath = keyof typeof pageMeta;
+
+const metaByPath: Record<string, PageMeta | undefined> = pageMeta;
 
 export const notFoundMeta: PageMeta = {
   title: `Page Not Found | ${siteName}`,
@@ -99,7 +106,7 @@ export function canonicalUrl(path: string) {
 }
 
 export function getPageMeta(pathname: string): PageMeta {
-  return pageMeta[normalizePath(pathname)] ?? notFoundMeta;
+  return metaByPath[normalizePath(pathname)] ?? notFoundMeta;
 }
 
 export function absoluteUrl(src: string) {
@@ -156,12 +163,12 @@ export function structuredData(pathname: string) {
     }
   ];
 
-  if (path !== "/" && pageMeta[path]) {
+  if (path !== "/" && metaByPath[path]) {
     const segments = path.split("/").filter(Boolean);
     const crumbs = [{ name: "Home", path: "/" }];
     segments.forEach((_, index) => {
       const crumbPath = `/${segments.slice(0, index + 1).join("/")}`;
-      const meta = pageMeta[crumbPath];
+      const meta = metaByPath[crumbPath];
       if (meta?.label) crumbs.push({ name: meta.label, path: crumbPath });
     });
     graph.push({

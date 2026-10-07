@@ -26,8 +26,9 @@ Open Graph tags, JSON-LD, and rendered body. It also writes `sitemap.xml`,
 `robots.txt`, a `noindex` `404.html`, and meta-refresh pages for
 `legacyRedirects`. The browser still mounts the app with `createRoot`.
 
-- Add a new route to both `src/App.tsx` and `pageMeta`, or it will not be
-  prerendered or listed in the sitemap.
+- To add a page, add its metadata to `pageMeta` in `src/seo.ts` and its
+  component to `pages` in `src/App.tsx`. TypeScript fails the build until both
+  exist, so every page is prerendered and listed in the sitemap.
 - Code that runs during render must not touch `window` or `document` (do it in
   effects), because pages are rendered in Node at build time.
 - The public domain is `siteUrl` in `src/seo.ts`; change it with
