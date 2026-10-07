@@ -29,6 +29,8 @@ function WeeklyVerse({ className = "" }: { className?: string }) {
 // whole homepage mid-way through the hero → Worship light sweep, which was
 // the one visible hitch in the sequence on phones.
 function StickySundayBar({ fabRef }: { fabRef: RefObject<HTMLDivElement> }) {
+  // No document.body while prerendering at build time.
+  if (typeof document === "undefined") return null;
   return createPortal(
     <div className="ctc-sunday-fab" ref={fabRef}>
       <div className="ctc-sunday-fab-time">

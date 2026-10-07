@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { siteImages } from "../data/images";
 import { churchInfo } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+import { canonicalUrl, getPageMeta } from "../seo";
 import { prefersReducedMotion } from "../utils/motion";
 
 type LayoutProps = {
@@ -53,44 +54,10 @@ const primaryNavItems: NavItem[] = [
   { label: "Contact", href: "/contact" }
 ];
 
-const pageMeta: Record<string, { title: string; description: string }> = {
-  "/": {
-    title: "Christ Tamil Church Chicago",
-    description: "A Tamil Christian church family worshiping Christ, growing together, and serving the Chicago area."
-  },
-  "/visit": {
-    title: "I'm New | Christ Tamil Church Chicago",
-    description: "Plan a visit and learn about the mission, beliefs, and leadership of Christ Tamil Church Chicago."
-  },
-  "/worship": {
-    title: "Worship | Christ Tamil Church Chicago",
-    description: "Learn what to expect during Sunday worship at Christ Tamil Church Chicago."
-  },
-  "/grow": {
-    title: "Grow | Christ Tamil Church Chicago",
-    description: "Explore Bible study, prayer, Sunday School, and Kids Circle ministries."
-  },
-  "/connect": {
-    title: "Connect | Christ Tamil Church Chicago",
-    description: "Find fellowship, prayer, family ministry, and ways to belong at Christ Tamil Church."
-  },
-  "/serve": {
-    title: "Serve | Christ Tamil Church Chicago",
-    description: "Learn about community outreach and opportunities to serve with Christ Tamil Church."
-  },
-  "/contact": {
-    title: "Contact | Christ Tamil Church Chicago",
-    description: "Contact Christ Tamil Church for directions, questions, or prayer."
-  },
-  "/events": {
-    title: "Events | Christ Tamil Church Chicago",
-    description: "Explore recurring gatherings and church events at Christ Tamil Church Chicago."
-  },
-  "/sermons": {
-    title: "Messages & Moments | Christ Tamil Church Chicago",
-    description: "Watch and search more than 10 years of worship, teaching, celebrations, and ministry videos from Christ Tamil Church Chicago."
-  }
-};
+function hashOf(href: string) {
+  const index = href.indexOf("#");
+  return index < 0 ? "" : href.slice(index);
+}
 
 export default function Layout({ children }: LayoutProps) {
   const [open, setOpen] = useState(false);
@@ -104,22 +71,18 @@ export default function Layout({ children }: LayoutProps) {
   }, [location.pathname]);
 
   useEffect(() => {
-    const exact = pageMeta[location.pathname];
-    const fallback = location.pathname.startsWith("/grow/")
-      ? pageMeta["/grow"]
-      : pageMeta["/"];
-    const meta = exact ?? fallback;
+    // The static head is baked per route at build time (scripts/prerender.mjs);
+    // this keeps it in sync during client-side navigation.
+    const meta = getPageMeta(location.pathname);
+    const url = canonicalUrl(location.pathname);
     document.title = meta.title;
-    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    description?.setAttribute("content", meta.description);
-
-    let canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement("link");
-      canonical.rel = "canonical";
-      document.head.appendChild(canonical);
-    }
-    canonical.href = `${window.location.origin}${location.pathname}`;
+    const setContent = (selector: string, value: string) =>
+      document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", value);
+    setContent('meta[name="description"]', meta.description);
+    setContent('meta[property="og:title"]', meta.title);
+    setContent('meta[property="og:description"]', meta.description);
+    setContent('meta[property="og:url"]', url);
+    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.setAttribute("href", url);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -276,7 +239,7 @@ export default function Layout({ children }: LayoutProps) {
                       to={child.href}
                       onClick={() => setOpen(false)}
                       className={({ isActive }) =>
-                        isActive && location.hash === new URL(child.href, window.location.origin).hash
+                        isActive && location.hash === hashOf(child.href)
                           ? "active"
                           : ""
                       }

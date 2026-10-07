@@ -33,7 +33,10 @@ type FollowTheLightProps = {
 };
 
 function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  const [matches, setMatches] = useState(
+    // false while prerendering at build time; the client re-reads it on mount.
+    () => typeof window !== "undefined" && window.matchMedia(query).matches
+  );
   useEffect(() => {
     const list = window.matchMedia(query);
     const onChange = () => setMatches(list.matches);

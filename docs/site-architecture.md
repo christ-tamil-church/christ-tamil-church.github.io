@@ -15,7 +15,24 @@ the redesign and design-system consolidation. Current design decisions live in
 - Scroll reveals use `src/hooks/useRevealOnScroll.ts`.
 
 There is no CMS, server API, form processor, test runner, or configured linter.
-The production base path and router basename are `/ctc/`.
+The production base path is `/`.
+
+## Prerendering and SEO
+
+`npm run build` also builds `src/entry-server.tsx` as an SSR bundle and runs
+`scripts/prerender.mjs`, which writes `dist/<route>/index.html` for every route
+in `src/seo.ts` (`pageMeta`) with that page's title, description, canonical URL,
+Open Graph tags, JSON-LD, and rendered body. It also writes `sitemap.xml`,
+`robots.txt`, a `noindex` `404.html`, and meta-refresh pages for
+`legacyRedirects`. The browser still mounts the app with `createRoot`.
+
+- Add a new route to both `src/App.tsx` and `pageMeta`, or it will not be
+  prerendered or listed in the sitemap.
+- Code that runs during render must not touch `window` or `document` (do it in
+  effects), because pages are rendered in Node at build time.
+- The public domain is `siteUrl` in `src/seo.ts`; change it with
+  `public/CNAME` when the site moves to christtamilchurch.com.
+- SEO strategy, keyword targets, and verified church facts live in `seo/`.
 
 ## Stylesheet architecture
 
