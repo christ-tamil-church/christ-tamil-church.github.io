@@ -1,0 +1,105 @@
+.ctc-collage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+/* One soft ambient shadow under the whole collage, so the gaps between photos
+   stay clean instead of collecting overlapping drop shadows. */
+.ctc-collage::before {
+  position: absolute;
+  inset: 8% 6% -3%;
+  z-index: -1;
+  background: rgba(16, 37, 27, .26);
+  border-radius: 36px;
+  filter: blur(42px);
+  content: "";
+}
+
+.ctc-collage-column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+
+.ctc-collage-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--clay-soft);
+  border-radius: 12px;
+}
+
+/* A thin warm inner edge gives each photo a printed finish. */
+.ctc-collage-tile::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 222, .16);
+  content: "";
+  pointer-events: none;
+}
+
+.ctc-collage-tile img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  animation: ctcCollageTileIn 1100ms calc(160ms + var(--tile-order, 0) * 110ms) var(--ease-out) both;
+  transition: scale 700ms var(--ease-out), filter 700ms var(--ease-out);
+}
+
+/* The last photo in each column absorbs the height difference, so both
+   columns end on the same line. */
+.ctc-collage-column .ctc-collage-tile:last-child {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ctc-collage-column .ctc-collage-tile:last-child img {
+  height: 100%;
+}
+
+.ctc-collage-column.is-even .ctc-collage-tile {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.ctc-collage-column.is-even .ctc-collage-tile img {
+  height: 100%;
+}
+
+.ctc-collage-column:first-child .ctc-collage-tile:first-child { border-top-left-radius: 24px; }
+.ctc-collage-column:first-child .ctc-collage-tile:last-child { border-bottom-left-radius: 24px; }
+.ctc-collage-column:last-child .ctc-collage-tile:first-child { border-top-right-radius: 24px; }
+.ctc-collage-column:last-child .ctc-collage-tile:last-child { border-bottom-right-radius: 24px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ctc-collage-tile:hover img {
+    scale: 1.025;
+    filter: brightness(1.06);
+  }
+}
+
+/* Each photo wipes up into its frame, like light filling the collage. */
+@keyframes ctcCollageTileIn {
+  from { clip-path: inset(100% 0 0 0); transform: scale(1.08); }
+  to { clip-path: inset(0); transform: none; }
+}
+
+@media (max-width: 620px) {
+  .ctc-collage,
+  .ctc-collage-column {
+    gap: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctc-collage-tile img {
+    animation: none;
+    transition: none;
+  }
+}

@@ -124,9 +124,9 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 390px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
   align-items: center;
-  gap: clamp(64px, 8vw, 118px);
+  gap: clamp(48px, 6vw, 96px);
   padding-block: 100px;
 }
 
@@ -193,17 +193,30 @@
   line-height: 1.72;
 }
 
+.connect-hero-visual {
+  display: grid;
+  gap: 14px;
+}
+
+/* Compact Sunday card under the collage: icon beside label, title, details. */
 .connect-sunday-card {
-  padding: 34px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 22px;
   background: rgba(255, 254, 250, .97);
   border: 1px solid var(--line);
   border-radius: 18px;
-  box-shadow: 0 28px 80px rgba(16, 37, 27, .16);
-  animation: connectFadeUp 760ms 140ms var(--ease-out) both;
+  box-shadow: var(--shadow-card);
+  animation: connectFadeUp 760ms 760ms var(--ease-out) both;
+}
+
+.connect-sunday-card .connect-icon {
+  flex: 0 0 auto;
 }
 
 .connect-card-label {
-  margin: 24px 0 7px;
+  margin: 2px 0 6px;
   color: var(--primary);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -217,7 +230,7 @@
   margin: 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: 1.35rem;
   font-weight: 400;
   line-height: 1.1;
 }
@@ -230,11 +243,10 @@
 }
 
 .connect-card-details {
-  display: grid;
-  gap: 13px;
-  margin: 24px 0 0;
-  padding: 22px 0 0;
-  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 10px 0 0;
 }
 
 .connect-card-details span {
@@ -275,7 +287,8 @@
 .connect-fellowship-photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 4.2;
+  height: auto;
+  aspect-ratio: 1070 / 716;
   object-fit: cover;
   object-position: center;
   border-radius: 18px;
@@ -353,7 +366,6 @@
   align-items: start;
   padding: 27px 12px;
   border-bottom: 1px solid var(--line);
-  transition: padding-left var(--motion-base) var(--ease-out);
 }
 
 .connect-tradition-list article::before {
@@ -366,12 +378,14 @@
   transition: transform var(--motion-base) var(--ease-out);
 }
 
+/* The row's contents slide, not its padding, so hovering never re-lays out the page. */
 .connect-tradition-list article > * {
   position: relative;
+  transition: transform var(--motion-base) var(--ease-out);
 }
 
-.connect-tradition-list article:hover {
-  padding-left: 24px;
+.connect-tradition-list article:hover > * {
+  transform: translateX(12px);
 }
 
 .connect-tradition-list article:hover::before {
@@ -496,8 +510,8 @@
 
 @media (max-width: 1120px) {
   .connect-hero-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(310px, 350px);
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
+    gap: clamp(28px, 4vw, 48px);
   }
 
   .connect-care-grid {
@@ -515,19 +529,13 @@
     min-height: auto;
   }
 
-  .connect-hero-grid,
   .connect-fellowship-grid,
   .connect-traditions-grid {
     grid-template-columns: 1fr;
   }
 
   .connect-hero-grid {
-    gap: 44px;
     padding-block: 82px;
-  }
-
-  .connect-sunday-card {
-    max-width: 560px;
   }
 
   .connect-fellowship-grid,
@@ -541,6 +549,14 @@
 
   .connect-traditions .connect-heading {
     position: static;
+  }
+}
+
+/* Narrow screens: stack the hero and let the collage use the full width. */
+@media (max-width: 760px) {
+  .connect-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
   }
 }
 
@@ -566,7 +582,7 @@
   }
 
   .connect-sunday-card {
-    padding: 24px;
+    padding: 16px 18px;
   }
 
   .connect-fellowship-photo {

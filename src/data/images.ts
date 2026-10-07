@@ -2,6 +2,12 @@ import ctcHeroBackground from "../assets/images/ctc-hero-background-green.webp";
 import ctcHeroBackgroundMobile from "../assets/images/ctc-hero-background-green-mobile.webp";
 import ctcHeroImage from "../assets/images/ctc-hero-image.jpg";
 import ctcLogo from "../assets/images/ctc-logo.png";
+import fellowshipCampfire from "../assets/images/fellowship-campfire.jpg";
+import fellowshipCarnival from "../assets/images/fellowship-carnival.jpg";
+import fellowshipChristmas from "../assets/images/fellowship-christmas.jpg";
+import fellowshipHarvest from "../assets/images/fellowship-harvest.jpg";
+import fellowshipTable from "../assets/images/fellowship-meal.jpg";
+import fellowshipPicnic from "../assets/images/fellowship-picnic.jpg";
 import ministryKids from "../assets/images/ministry-kids.jpg";
 import ministrySchool from "../assets/images/ministry-school.jpg";
 import outreachHall from "../assets/images/outreach-hall.jpg";
@@ -115,6 +121,66 @@ export const siteImages = {
     unsplashUrl: "",
     usage: "Community Outreach collage (autumn-film grade)",
     objectPosition: "center 30%"
+  },
+  fellowshipPicnic: {
+    id: "ctc-fellowship-picnic",
+    src: fellowshipPicnic,
+    alt: "Church families playing a water balloon toss in two lines under the trees at the summer picnic",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hero collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  fellowshipHarvest: {
+    id: "ctc-fellowship-harvest",
+    src: fellowshipHarvest,
+    alt: "Harvest Festival tables lined with homemade mango pickle, snacks, and fruit baskets",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hero collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  fellowshipCampfire: {
+    id: "ctc-fellowship-campfire",
+    src: fellowshipCampfire,
+    alt: "Families and children roasting marshmallows around a campfire at family camp",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hero collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  fellowshipCarnival: {
+    id: "ctc-fellowship-carnival",
+    src: fellowshipCarnival,
+    alt: "A balloon arch and Christ Tamil Church Carnival banner welcoming families to the summer carnival",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hero collage (autumn-film grade)",
+    objectPosition: "center 40%"
+  },
+  fellowshipChristmas: {
+    id: "ctc-fellowship-christmas",
+    src: fellowshipChristmas,
+    alt: "Children and families dancing with Santa beside a Christmas tree during carol rounds",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hero collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  fellowshipTable: {
+    id: "ctc-fellowship-table",
+    src: fellowshipTable,
+    alt: "The pastor greeting church members as they share a meal served on banana leaves",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship hour section (autumn-film grade)",
+    objectPosition: "center center"
   },
   logo: {
     id: "ctc-logo",

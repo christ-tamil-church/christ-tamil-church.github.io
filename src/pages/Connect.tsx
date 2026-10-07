@@ -11,6 +11,7 @@ import {
   Wheat
 } from "lucide-react";
 import PathwayMarker from "../components/PathwayMarker";
+import PhotoCollage, { type CollageTile } from "../components/PhotoCollage";
 import { siteImages } from "../data/images";
 import { churchInfo } from "../data/site";
 import { useRevealGroup } from "../hooks/useRevealGroup";
@@ -50,6 +51,18 @@ const connectTraditions = [
   }
 ];
 
+const heroCollage: CollageTile[][] = [
+  [
+    { image: siteImages.fellowshipPicnic, width: 1100, height: 846 },
+    { image: siteImages.fellowshipHarvest, width: 1100, height: 825 },
+    { image: siteImages.fellowshipCampfire, width: 1100, height: 660 }
+  ],
+  [
+    { image: siteImages.fellowshipCarnival, width: 800, height: 1000, ratio: "4 / 5" },
+    { image: siteImages.fellowshipChristmas, width: 1100, height: 825 }
+  ]
+];
+
 export default function Connect() {
   const pageRef = useRevealGroup<HTMLDivElement>(".connect-reveal");
 
@@ -66,16 +79,21 @@ export default function Connect() {
             </p>
           </div>
 
-          <aside className="connect-sunday-card" aria-label="Sunday fellowship details">
-            <span className="connect-icon" aria-hidden="true"><Coffee size={22} /></span>
-            <p className="connect-card-label">Every Sunday</p>
-            <h2>Fellowship after worship</h2>
-            <p>Stay after the service for a shared meal, warm conversation, and time to know the church family.</p>
-            <div className="connect-card-details">
-              <span><Clock size={17} aria-hidden="true" /> After {churchInfo.worship.time} worship</span>
-              <span><MapPin size={17} aria-hidden="true" /> Fellowship auditorium</span>
-            </div>
-          </aside>
+          <div className="connect-hero-visual">
+            <PhotoCollage columns={heroCollage} evenFirstColumn />
+
+            <aside className="connect-sunday-card" aria-label="Sunday fellowship details">
+              <span className="connect-icon" aria-hidden="true"><Coffee size={22} /></span>
+              <div>
+                <p className="connect-card-label">Every Sunday</p>
+                <h2>Fellowship after worship</h2>
+                <div className="connect-card-details">
+                  <span><Clock size={16} aria-hidden="true" /> After {churchInfo.worship.time} worship</span>
+                  <span><MapPin size={16} aria-hidden="true" /> Fellowship auditorium</span>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -83,10 +101,10 @@ export default function Connect() {
         <div className="connect-shell connect-fellowship-grid">
           <figure className="connect-fellowship-photo">
             <img
-              src={siteImages.events.src}
-              alt={siteImages.events.alt}
-              width="1200"
-              height="900"
+              src={siteImages.fellowshipTable.src}
+              alt={siteImages.fellowshipTable.alt}
+              width="1070"
+              height="716"
               loading="lazy"
             />
             <figcaption>Food, friendship, and time to be known.</figcaption>
