@@ -103,31 +103,107 @@
 .ctc-serve-hero-visual {
   position: relative;
   margin: 0;
-  animation: ctcServeImageIn 820ms 120ms var(--ease-out) both;
 }
 
-.ctc-serve-hero-visual > img {
+.ctc-serve-collage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* One soft ambient shadow under the whole collage, so the gaps between photos
+   stay clean instead of collecting five overlapping drop shadows. */
+.ctc-serve-collage::before {
+  position: absolute;
+  inset: 8% 6% -3%;
+  z-index: -1;
+  background: rgba(16, 37, 27, .26);
+  border-radius: 36px;
+  filter: blur(42px);
+  content: "";
+}
+
+.ctc-serve-collage-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.ctc-serve-tile {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--clay-soft);
+  border-radius: 12px;
+}
+
+/* A thin warm inner edge gives each photo a printed finish. */
+.ctc-serve-tile::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 222, .16);
+  content: "";
+  pointer-events: none;
+}
+
+.ctc-serve-tile img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  height: auto;
   object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 32px 86px rgba(16, 37, 27, .2);
+  animation: ctcServeTileIn 1100ms calc(160ms + var(--tile-order, 0) * 110ms) var(--ease-out) both;
+  transition: scale 700ms var(--ease-out), filter 700ms var(--ease-out);
+}
+
+/* The last photo in each column absorbs the small height difference, so both
+   columns end on the same line without cropping the photos above it. */
+.ctc-serve-collage-column .ctc-serve-tile:last-child {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ctc-serve-collage-column .ctc-serve-tile:last-child img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Left column: every tile takes an equal share of the column height. */
+.ctc-serve-collage-column.is-even .ctc-serve-tile {
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.ctc-serve-collage-column.is-even .ctc-serve-tile img {
+  height: 100%;
+}
+
+.ctc-serve-collage-column:first-child .ctc-serve-tile:first-child { border-top-left-radius: 24px; }
+.ctc-serve-collage-column:first-child .ctc-serve-tile:last-child { border-bottom-left-radius: 24px; }
+.ctc-serve-collage-column:last-child .ctc-serve-tile:first-child { border-top-right-radius: 24px; }
+.ctc-serve-collage-column:last-child .ctc-serve-tile:last-child { border-bottom-right-radius: 24px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .ctc-serve-tile:hover img {
+    scale: 1.025;
+    filter: brightness(1.06);
+  }
 }
 
 .ctc-serve-hero-visual figcaption {
-  position: absolute;
-  right: -22px;
-  bottom: 28px;
+  animation: ctcServeFadeUp 760ms 760ms var(--ease-out) both;
   display: flex;
   align-items: center;
   gap: 14px;
-  width: min(340px, calc(100% - 30px));
-  padding: 22px;
+  margin-top: 14px;
+  padding: 18px 22px;
   background: rgba(255, 254, 250, .97);
   border: 1px solid var(--line);
   border-radius: 18px;
-  box-shadow: 0 24px 64px rgba(16, 37, 27, .2);
+  box-shadow: var(--shadow-card);
 }
 
 .ctc-serve-hero-icon,
@@ -205,9 +281,11 @@
 }
 
 .ctc-serve-story-copy > .ctc-serve-partner {
-  margin-bottom: 34px;
-  padding-left: 18px;
-  border-left: 2px solid var(--gold);
+  margin-bottom: 18px;
+  padding: 16px 20px;
+  background: rgba(255, 254, 250, .45);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
   font-size: .98rem;
 }
 
@@ -227,8 +305,8 @@
   margin: 0;
   padding: 28px 30px;
   background: rgba(255, 254, 250, .72);
-  border-left: 3px solid var(--green-deep);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
 }
 
 .ctc-serve-story blockquote p {
@@ -279,12 +357,20 @@
   gap: clamp(18px, 3vw, 38px);
   padding: 34px 10px 34px 0;
   border-bottom: 1px solid var(--line);
-  transition: padding var(--motion-base) var(--ease-out), background var(--motion-base) var(--ease-out);
+  transition: background var(--motion-base) var(--ease-out);
+}
+
+/* The row's contents slide, not its padding, so hovering never re-lays out the page. */
+.ctc-serve-way > * {
+  transition: transform var(--motion-base) var(--ease-out);
 }
 
 .ctc-serve-way:hover {
-  padding-left: 12px;
   background: linear-gradient(90deg, rgba(237, 243, 234, .7), transparent 72%);
+}
+
+.ctc-serve-way:hover > * {
+  transform: translateX(12px);
 }
 
 .ctc-serve-way-number {
@@ -346,9 +432,10 @@
   to { opacity: 1; transform: none; }
 }
 
-@keyframes ctcServeImageIn {
-  from { opacity: 0; transform: translateY(24px) scale(.985); }
-  to { opacity: 1; transform: none; }
+/* Each photo wipes up into its frame, like light filling the collage. */
+@keyframes ctcServeTileIn {
+  from { clip-path: inset(100% 0 0 0); transform: scale(1.08); }
+  to { clip-path: inset(0); transform: none; }
 }
 
 @media (max-width: 1120px) {
@@ -365,8 +452,8 @@
     width: min(720px, 100%);
   }
 
-  .ctc-serve-hero-visual > img {
-    aspect-ratio: 16 / 10;
+  .ctc-serve-collage {
+    max-width: 640px;
   }
 }
 
@@ -397,17 +484,14 @@
     font-size: 1.24rem;
   }
 
-  .ctc-serve-hero-visual > img {
-    aspect-ratio: 4 / 5;
+  .ctc-serve-collage,
+  .ctc-serve-collage-column {
+    gap: 6px;
   }
 
   .ctc-serve-hero-visual figcaption {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: calc(100% - 24px);
-    margin: -42px auto 0;
-    padding: 18px;
+    margin-top: 10px;
+    padding: 16px 18px;
   }
 
   .ctc-serve-story-grid {
@@ -439,15 +523,22 @@
   .ctc-serve-page *,
   .ctc-serve-page *::before,
   .ctc-serve-page *::after {
-    scroll-behavior: auto !important;
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
+    scroll-behavior: auto;
+    animation-duration: .01ms;
+    animation-delay: 0ms;
+    animation-iteration-count: 1;
+    transition-duration: .01ms;
+  }
+
+  .ctc-serve-tile img,
+  .ctc-serve-hero-visual figcaption {
+    animation: none;
+    transition: none;
   }
 
   .ctc-serve-reveal,
   .ctc-serve-reveal [data-reveal-child] {
-    opacity: 1 !important;
-    transform: none !important;
+    opacity: 1;
+    transform: none;
   }
 }

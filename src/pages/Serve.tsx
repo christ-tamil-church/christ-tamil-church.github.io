@@ -4,8 +4,9 @@ import {
   Package,
   Utensils
 } from "lucide-react";
+import type { CSSProperties } from "react";
 import PathwayMarker from "../components/PathwayMarker";
-import { siteImages } from "../data/images";
+import { siteImages, type SiteImage } from "../data/images";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import "./Serve.css";
 import "./PageHeroTypography.css";
@@ -31,6 +32,29 @@ const outreachActivities = [
   }
 ];
 
+/* Two columns: the left tiles share the height equally; on the right, the last
+   tile stretches so both columns end on the same line. */
+type CollageTile = {
+  image: SiteImage;
+  width: number;
+  height: number;
+  ratio?: string;
+};
+
+const heroCollage: CollageTile[][] = [
+  [
+    { image: siteImages.outreachHero, width: 1000, height: 467 },
+    { image: siteImages.outreachHall, width: 720, height: 420 },
+    { image: siteImages.outreachSeniorHome, width: 960, height: 600 },
+    { image: siteImages.outreachMeal, width: 960, height: 600 }
+  ],
+  [
+    { image: siteImages.outreachPackingLine, width: 1024, height: 768, ratio: "4 / 3" },
+    { image: siteImages.outreachSealing, width: 1024, height: 768, ratio: "4 / 3" },
+    { image: siteImages.outreachPrayer, width: 1008, height: 900, ratio: "1008 / 900" }
+  ]
+];
+
 export default function Serve() {
   const storyRef = useRevealOnScroll<HTMLDivElement>();
   const waysRef = useRevealOnScroll<HTMLDivElement>({
@@ -54,14 +78,31 @@ export default function Serve() {
           </div>
 
           <figure className="ctc-serve-hero-visual">
-            <img
-              src={siteImages.events.src}
-              alt="Friends gathered together outdoors in warm evening light"
-              width="1200"
-              height="800"
-              fetchPriority="high"
-              style={{ objectPosition: siteImages.events.objectPosition }}
-            />
+            <div className="ctc-serve-collage">
+              {heroCollage.map((column, columnIndex) => (
+                <div
+                  className={`ctc-serve-collage-column${columnIndex === 0 ? " is-even" : ""}`}
+                  key={columnIndex}
+                >
+                  {column.map(({ image, width, height, ratio }, index) => (
+                    <span
+                      className="ctc-serve-tile"
+                      key={image.id}
+                      style={{ "--tile-order": index * 2 + columnIndex } as CSSProperties}
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        width={width}
+                        height={height}
+                        fetchPriority={columnIndex === 0 && index === 0 ? "high" : undefined}
+                        style={{ objectPosition: image.objectPosition, aspectRatio: ratio }}
+                      />
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
             <figcaption>
               <span className="ctc-serve-hero-icon" aria-hidden="true">
                 <CalendarDays size={20} />

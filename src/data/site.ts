@@ -129,13 +129,13 @@ export const churchEvents = [
   {
     title: "Outreach",
     frequency: "Seasonal / As Scheduled",
-    time: "First Saturday of every month 4:30 PM",
+    time: "Saturday before Communion Sunday, 4:30 PM",
     category: "Community Outreach",
     description:
       "Serving our community through love, care, prayer, and practical support.",
     date: "Seasonal / As Scheduled",
     location: "Chicago Area",
-    image: siteImages.events.src
+    image: siteImages.outreachHero.src
   },
   {
     title: "Vacation Bible School",

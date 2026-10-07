@@ -4,6 +4,13 @@ import ctcHeroImage from "../assets/images/ctc-hero-image.jpg";
 import ctcLogo from "../assets/images/ctc-logo.png";
 import ministryKids from "../assets/images/ministry-kids.jpg";
 import ministrySchool from "../assets/images/ministry-school.jpg";
+import outreachHall from "../assets/images/outreach-hall.jpg";
+import outreachHero from "../assets/images/outreach-hero-group.jpg";
+import outreachMeal from "../assets/images/outreach-meal.jpg";
+import outreachPackingLine from "../assets/images/outreach-packing-line.jpg";
+import outreachSeniorHome from "../assets/images/outreach-senior-home.jpg";
+import outreachSealing from "../assets/images/outreach-sealing.jpg";
+import outreachPrayer from "../assets/images/outreach-street-prayer.jpg";
 
 export type SiteImage = {
   id: string;
@@ -38,6 +45,76 @@ export const siteImages = {
     unsplashUrl: "",
     usage: "Children's ministry supporting image",
     objectPosition: "center center"
+  },
+  outreachHero: {
+    id: "ctc-outreach-hero",
+    src: outreachHero,
+    alt: "Christ Tamil Church volunteers at Feed My Starving Children holding signs for the countries their packed meals will reach, including Haiti, Kenya, Guatemala, and the Philippines",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach hero and Outreach event card (autumn-film grade)",
+    objectPosition: "center 45%"
+  },
+  outreachPackingLine: {
+    id: "ctc-outreach-packing-line",
+    src: outreachPackingLine,
+    alt: "Smiling volunteers in hairnets scooping rice and soy into meal bags at the packing line",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  outreachSealing: {
+    id: "ctc-outreach-sealing",
+    src: outreachSealing,
+    alt: "A volunteer sealing meal packets at the packing line",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  outreachHall: {
+    id: "ctc-outreach-hall",
+    src: outreachHall,
+    alt: "A full Feed My Starving Children packing hall, with rows of volunteers in hairnets filling meal bags",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  outreachMeal: {
+    id: "ctc-outreach-meal",
+    src: outreachMeal,
+    alt: "Church volunteers serving a hot meal to neighbors at a long buffet table",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  outreachSeniorHome: {
+    id: "ctc-outreach-senior-home",
+    src: outreachSeniorHome,
+    alt: "Church youth in Santa hats singing Christmas carols with guitar and keyboard for residents of a senior home",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center 60%"
+  },
+  outreachPrayer: {
+    id: "ctc-outreach-prayer",
+    src: outreachPrayer,
+    alt: "A church member praying with a neighbor on a downtown Chicago sidewalk during street outreach",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach collage (autumn-film grade)",
+    objectPosition: "center 30%"
   },
   logo: {
     id: "ctc-logo",
