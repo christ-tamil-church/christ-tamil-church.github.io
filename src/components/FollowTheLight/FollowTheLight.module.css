@@ -251,8 +251,7 @@
   opacity: 1;
 }
 
-.ribbon,
-.visitActions {
+.ribbon {
   opacity: 0;
   transform: translateY(24px);
   transition:
@@ -260,8 +259,7 @@
     transform 0.72s var(--ftl-glide) 0.34s;
 }
 
-.lit .ribbon,
-.lit .visitActions {
+.lit .ribbon {
   opacity: 1;
   transform: none;
 }
@@ -479,70 +477,6 @@
   border-radius: var(--radius-pill, 999px);
   outline: 3px solid rgba(107, 165, 44, 0.3);
   outline-offset: 4px;
-}
-
-/* Closing "Visit" chapter: address + the one bronze CTA for this view. */
-.visitActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 18px 32px;
-  margin-top: clamp(34px, 4.5vh, 52px);
-}
-
-.visitAddress {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  color: var(--ftl-ink);
-  font-family: "Fraunces", Georgia, serif;
-  font-size: clamp(19px, 1.6vw, 24px);
-  text-decoration: underline;
-  text-decoration-color: rgba(107, 165, 44, 0.45);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 6px;
-}
-
-.visitAddress svg {
-  flex: none;
-  color: var(--ftl-green-deep);
-}
-
-.visitAddress:hover {
-  text-decoration-color: var(--ftl-green-deep);
-}
-
-.visitCta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 0 26px;
-  border: 1px solid var(--clay-dark, #96702f);
-  border-radius: var(--radius-pill, 999px);
-  background: var(--clay-dark, #96702f);
-  color: #fff;
-  font-family: var(--font-body, "Space Grotesk", system-ui, sans-serif);
-  font-size: 0.94rem;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 16px 38px rgba(150, 112, 47, 0.32);
-  transition: background-color 160ms ease, border-color 160ms ease;
-}
-
-.visitCta:hover {
-  border-color: #7d5c26;
-  background: #7d5c26;
-}
-
-.visitCta svg {
-  transition: transform 0.18s var(--ftl-glide);
-}
-
-.visitCta:hover svg {
-  transform: translateX(3px);
 }
 
 /* ------------------------------------------------------------------------
@@ -787,7 +721,6 @@
 .flat .w,
 .flat .sub,
 .flat .ribbon,
-.flat .visitActions,
 .flat .ribbonList li {
   opacity: 1;
   transform: none;
@@ -886,16 +819,6 @@
     min-height: 44px;
   }
 
-  .visitActions {
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 26px;
-  }
-
-  .visitAddress {
-    font-size: 17px;
-  }
-
   /* Phone scenes use the full width; the scene's own Tamil marker names
      the chapter, so the rail steps aside rather than crowd the copy. */
   .rail {
@@ -947,7 +870,6 @@
   .w,
   .sub,
   .ribbon,
-  .visitActions,
   .ribbonList li,
   .pathwayCta svg,
   .rail,

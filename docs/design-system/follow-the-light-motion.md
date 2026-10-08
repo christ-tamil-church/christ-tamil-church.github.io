@@ -6,8 +6,7 @@ Shipping specification for the homepage-only scrollytelling sequence.
 
 - Component: `src/components/FollowTheLight/FollowTheLight.tsx`
 - Scoped styles: `src/components/FollowTheLight/FollowTheLight.module.css`
-- Content model: `src/data/ministryPathways.ts` (pathways), `src/data/site.ts`
-  (`churchInfo`, used by the closing Visit chapter)
+- Content model: `src/data/ministryPathways.ts` (pathways)
 - Integration point: `src/pages/Home.tsx`, which passes the hero in as the
   opening chapter. Homepage snapping and the floating header live in
   `src/pages/Home.css`.
@@ -24,13 +23,10 @@ the same light reveal:
 |---|---------|------------|--------|
 | 0 | Welcome (the hero) | வணக்கம் · Welcome | `opening` prop from `Home.tsx`, full-bleed |
 | 1–4 | Worship, Connect, Grow, Serve | the pathway's Tamil/English labels | `ministryPathways` |
-| 5 | Visit | வாரும் · Visit | built in the component from `churchInfo` |
 
 The site footer is **not** a chapter: it is shared by every page, link-dense,
 and taller than many screens. It follows the sequence as a normal scroll,
-with a `scroll-snap-align: end` stop. The Visit chapter carries the
-first-time-visitor essentials (time, address with directions, the one bronze
-"Plan your visit" CTA) so the story ends on "when and where".
+with a `scroll-snap-align: end` stop.
 
 ## Structure and progress
 
@@ -125,7 +121,7 @@ layering another timeout or lock onto it.
     a whole masked screen every frame was the costliest paint).
   - Marker rises 14px; its gold-to-green rule draws from `scaleX(0.15)`.
   - Headline words rise `0.55em` in a 110ms stagger; introduction fades at
-    280ms; ribbon / Visit actions rise at 340ms; ministry names stagger at
+    280ms; ribbon rises at 340ms; ministry names stagger at
     70ms from 420ms.
   - The hero has no element choreography of its own beyond its load
     animations; returning to it plays the scene-level resolve.
@@ -147,8 +143,8 @@ measures `.site-header` (ResizeObserver) into `--ftl-top-inset`, which the
 scene's top padding uses; `justify-content: safe center` keeps the marker and
 headline on screen if a chapter ever overflows. At `620px`, vertical rhythm
 and the headline (`clamp(36px, min(13vw, 7.2svh), 60px)`) scale with screen
-height as well as width, ministry names stack tightly, and the Visit actions
-stack — the six-ministry chapters (Connect, Grow) fit down to 360×640 and
+height as well as width, and ministry names stack tightly
+— the six-ministry chapters (Connect, Grow) fit down to 360×640 and
 375×600. The phone hero is tightened to fit one
 screen down to 360×640 (centred column, single-row Sunday card). The Tamil
 title uses a display hierarchy on phones: "வாரும்," at ~2× on its own line,
@@ -161,7 +157,7 @@ If `prefers-reduced-motion: reduce` **or** `(max-height: 550px)` matches
 (tracked live, so rotating a phone switches modes), the section gets the
 `flat` class: every chapter is visible, `aria-hidden`/`inert` are removed, no
 scroll listener is attached, and the pin becomes normal document flow with
-chapters stacked — hero first, Visit last. Masks, drift, entrance choreography
+chapters stacked — hero first, Serve last. Masks, drift, entrance choreography
 offsets, aura, sweep, rail and snap stops are all removed. The FAB uses an
 IntersectionObserver on the hero instead.
 
@@ -216,7 +212,7 @@ through every chapter: phone 390×844@3x went from ~40 fps (p95 frame 83ms) to
 - [ ] The hero fills the first screen under the floating header, on desktop,
       tablet, and phones down to 375×667, with nothing clipped.
 - [ ] Desktop/tablet: one wheel notch, arrow key, PageDown or hard fling moves
-      exactly one stop, Welcome → Worship → Connect → Grow → Serve → Visit →
+      exactly one stop, Welcome → Worship → Connect → Grow → Serve →
       Footer, in both directions.
 - [ ] Phones use `y proximity`; reduced motion has no snapping; short screens
       show the stacked flat document.

@@ -1,8 +1,7 @@
 import { type CSSProperties, type ReactNode, useEffect, useRef, useState } from "react";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ministryPathways } from "../../data/ministryPathways";
-import { churchInfo } from "../../data/site";
 import styles from "./FollowTheLight.module.css";
 
 // Height of the soft dissolve edge, as a fraction of the pin. Must match
@@ -114,53 +113,6 @@ export default function FollowTheLight({ opening, onActiveChange }: FollowTheLig
         </>
       ),
     })),
-    {
-      // Closing chapter: the first-time-visitor essentials, so the story ends
-      // on "here is when and where" before the site footer.
-      key: "visit",
-      labelTa: "வாரும்",
-      labelEn: "Visit",
-      render: () => (
-        <>
-          <div className={styles.marker}>
-            <div className={styles.markerCopy}>
-              <span className={styles.markerTamil} lang="ta">வாரும்</span>
-            </div>
-            <span className={styles.markerRule} aria-hidden="true" />
-          </div>
-          <h2 className={styles.headline}>
-            {["Come", "as", "you", "are."].map((word, wordIndex, words) => (
-              <span
-                key={word}
-                className={wordIndex === 0 ? `${styles.w} ${styles.accent}` : styles.w}
-              >
-                {word}
-                {wordIndex < words.length - 1 ? " " : ""}
-              </span>
-            ))}
-          </h2>
-          <p className={styles.sub}>
-            Sunday worship begins at {churchInfo.worship.time}. We’d love to welcome you and your family.
-          </p>
-          <div className={styles.visitActions}>
-            <a
-              className={styles.visitAddress}
-              href={churchInfo.address.directionsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <MapPin size={17} aria-hidden="true" />
-              {churchInfo.address.short}
-              <span className="sr-only"> (directions, opens in a new tab)</span>
-            </a>
-            <Link className={styles.visitCta} to="/visit">
-              Plan your visit
-              <ArrowRight size={17} aria-hidden="true" />
-            </Link>
-          </div>
-        </>
-      ),
-    },
   ];
   const last = chapters.length - 1;
   const hasOpening = Boolean(opening);
