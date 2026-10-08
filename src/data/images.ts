@@ -14,9 +14,14 @@ import fellowshipHourHall from "../assets/images/fellowship-hour-hall.jpg";
 import fellowshipTable from "../assets/images/fellowship-meal.jpg";
 import fellowshipPicnic from "../assets/images/fellowship-picnic.jpg";
 import mensFellowshipGroup from "../assets/images/mens-fellowship-group.jpg";
+import kidsCircleNameEggs from "../assets/images/kids-circle-name-eggs.jpg";
+import growTower from "../assets/images/grow-hero-tower.jpg";
+import kidsCircleHeroBlessings from "../assets/images/kids-circle-hero-blessings.jpg";
+import kidsCircleNameOrnaments from "../assets/images/kids-circle-name-ornaments.jpg";
 import ministryKids from "../assets/images/ministry-kids.jpg";
 import ministrySchool from "../assets/images/ministry-school.jpg";
 import outreachHall from "../assets/images/outreach-hall.jpg";
+import outreachHeroPacking from "../assets/images/outreach-hero-packing.jpg";
 import outreachHero from "../assets/images/outreach-hero-group.jpg";
 import outreachMeal from "../assets/images/outreach-meal.jpg";
 import outreachPackingLine from "../assets/images/outreach-packing-line.jpg";
@@ -90,6 +95,36 @@ export const siteImages = {
     usage: "Sunday School parent band (autumn-film grade)",
     objectPosition: "center 35%"
   },
+  kidsCircleHeroBlessings: {
+    id: "ctc-kids-circle-hero-blessings",
+    src: kidsCircleHeroBlessings,
+    alt: "A row of canvases painted by the children, each with red handprint flowers, their names and the words Count Your Blessings",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Kids Circle verse band (supplied with its own warm grade; cropped to the canvases)",
+    objectPosition: "center center"
+  },
+  kidsCircleNameEggs: {
+    id: "ctc-kids-circle-name-eggs",
+    src: kidsCircleNameEggs,
+    alt: "Colourful Easter eggs, each with a child's name handwritten on it, spread on a table beside white flowers",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Kids Circle parent band (autumn-film grade)",
+    objectPosition: "center 72%"
+  },
+  kidsCircleNameOrnaments: {
+    id: "ctc-kids-circle-name-ornaments",
+    src: kidsCircleNameOrnaments,
+    alt: "Round painted ornaments, each decorated by a child with their own name and favourite picture",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Kids Circle hero (autumn-film grade)",
+    objectPosition: "center center"
+  },
   kidsMinistry: {
     id: "ctc-kids-ministry",
     src: ministryKids,
@@ -98,6 +133,16 @@ export const siteImages = {
     creditUrl: "",
     unsplashUrl: "",
     usage: "Children's ministry supporting image",
+    objectPosition: "center center"
+  },
+  outreachHeroPacking: {
+    id: "ctc-outreach-hero-packing",
+    src: outreachHeroPacking,
+    alt: "Church volunteers in hairnets gathered around a packing table at a Feed My Starving Children warehouse, praying together before packing meals",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Community Outreach hero (autumn-film grade)",
     objectPosition: "center center"
   },
   outreachHero: {
@@ -163,11 +208,11 @@ export const siteImages = {
   outreachPrayer: {
     id: "ctc-outreach-prayer",
     src: outreachPrayer,
-    alt: "A church member praying with a neighbor on a downtown Chicago sidewalk during street outreach",
+    alt: "A church member praying with a neighbor on a downtown Chicago sidewalk during street outreach, as young people from the church look on",
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Community Outreach collage (autumn-film grade)",
+    usage: "Community Outreach hero (autumn-film grade)",
     objectPosition: "center 30%"
   },
   fellowshipPicnic: {
@@ -367,6 +412,16 @@ export const siteImages = {
     unsplashUrl: "",
     usage: "Bible Study page hero and Bible Study event card (autumn-film grade)",
     objectPosition: "center 58%"
+  },
+  growTower: {
+    id: "ctc-grow-tower",
+    src: growTower,
+    alt: "A tall stone bell tower with a cross near its top, rising above green trees against a blue sky",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Grow hero (autumn-film grade)",
+    objectPosition: "center center"
   },
   bibleStudyHomePrayer: {
     id: "ctc-bible-study-home-prayer",

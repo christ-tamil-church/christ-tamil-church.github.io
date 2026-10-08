@@ -12,3 +12,17 @@
 @media(max-width:900px){.study-expect-band,.study-verse-band{grid-template-columns:1fr}.study-expect-image{order:2}}
 @media(max-width:620px){.study-hero,.study-gatherings,.study-verse-band{width:min(100% - 40px,var(--container))}.study-hero{padding-block:58px 76px}.study-hero h1{font-size:clamp(3.2rem,15vw,5rem)}.study-hero-visual,.study-hero-visual>img{min-height:450px;height:450px}.study-hero-card{right:12px;bottom:-28px;width:calc(100% - 24px)}.study-gathering-row{grid-template-columns:36px 44px 1fr;gap:12px;padding-block:24px}.study-gathering-row>p{grid-column:1/-1;padding:0}.study-expect-band,.study-related{padding-inline:20px}.study-expect-image img{height:400px}}
 @media(prefers-reduced-motion:reduce){.study-hero-copy>*,.study-hero-visual,.study-gatherings.reveal,.study-expect-band.reveal,.study-gathering-row{opacity:1;transform:none;animation:none;transition:none}.study-gathering-row>*,.study-related-list>a>*{transition:none}}
+
+/* Hero detail card: a compact strip fully under the photo, matching the Grow/Serve/Worship heroes (icon, label + title + details, link at the end). */
+.study-hero-visual{display:flex;flex-direction:column;min-height:0;height:auto}
+.study-hero .study-hero-visual .study-hero-card{position:static;display:flex;align-items:center;gap:14px;width:auto;margin:14px 0 0;padding:18px 22px;border:1px solid var(--line);border-radius:18px;background:rgba(255,254,250,.97);box-shadow:var(--shadow-card)}
+.study-hero-card-icon{display:grid;flex:0 0 auto;width:48px;height:48px;place-items:center;border-radius:var(--radius-pill);background:var(--sage);color:var(--primary)}
+.study-hero-card-body{display:grid;flex:1 1 auto;gap:5px;min-width:0}
+.study-hero-card-body small{color:var(--gold);font-family:var(--font-mono);font-size:.64rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase}
+.study-hero-card-body strong{color:var(--ink);font-family:var(--font-display);font-size:1.16rem;font-weight:500;line-height:1.25}
+.study-hero .study-hero-card ul{display:flex;flex-wrap:wrap;gap:4px 16px;margin:2px 0 0;padding:0;border:0;list-style:none}
+.study-hero .study-hero-card li{display:flex;gap:7px;align-items:center;color:var(--muted);font-size:.82rem}
+.study-hero .study-hero-card li svg{color:var(--green-deep)}
+.study-hero .study-hero-card>a{display:inline-flex;flex:0 0 auto;align-items:center;gap:7px;align-self:center;color:var(--clay-dark);font-size:.88rem;font-weight:700;text-decoration:none}
+@media(max-width:1280px){.study-hero .study-hero-visual .study-hero-card{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:start;gap:10px 14px}.study-hero .study-hero-card>a{grid-column:2;justify-self:start}}
+@media(max-width:620px){.study-hero .study-hero-visual .study-hero-card{margin-top:10px;padding:16px 18px}}

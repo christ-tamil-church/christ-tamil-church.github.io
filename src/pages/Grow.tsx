@@ -21,19 +21,26 @@ export default function Grow() {
 
   return <>
     <section className="grow-hero" aria-labelledby="grow-title">
-      <div className="grow-hero-copy">
-        <PathwayMarker pathway="grow" className="grow-hero-kicker" />
-        <h1 id="grow-title">Rooted in Christ. <em>Growing together.</em></h1>
-        <p>Faith grows through God’s Word, prayer, and life with His people. Wherever you are starting, there is a place for you and your family to take a next step.</p>
-        <a className="grow-primary" href="#grow-pathways">Find your next step <ArrowRight size={17} /></a>
-      </div>
-      <div className="grow-hero-visual">
-        <img src={siteImages.bibleStudy.src} alt={siteImages.bibleStudy.alt} width="1200" height="900" style={{ objectPosition: siteImages.bibleStudy.objectPosition }} />
-        <aside className="grow-hero-card" aria-label="Featured growth pathway">
-          <span>Start here</span><strong>Bible Study & Prayer</strong>
-          <p>Scripture, prayer, questions, and encouragement for everyday faith.</p>
-          <Link to="/grow/bible-study-prayer">Explore this pathway <ArrowRight size={14} /></Link>
-        </aside>
+      <div className="grow-hero-shell grow-hero-grid">
+        <div className="grow-hero-copy">
+          <PathwayMarker pathway="grow" className="grow-hero-kicker" />
+          <h1 id="grow-title">Rooted in Christ. <em>Growing together.</em></h1>
+          <p>Faith grows through God’s Word, prayer, and life with His people. Wherever you are starting, there is a place for you and your family to take a next step.</p>
+          <a className="grow-primary" href="#grow-pathways">Find your next step <ArrowRight size={17} /></a>
+        </div>
+        <figure className="grow-hero-visual">
+          <span className="grow-hero-photo">
+            <img src={siteImages.growTower.src} alt={siteImages.growTower.alt} width={1200} height={1500} fetchPriority="high" />
+          </span>
+          <figcaption className="grow-hero-card">
+            <span className="grow-hero-card-icon" aria-hidden="true"><BookOpen size={20} /></span>
+            <span className="grow-hero-card-body">
+              <small>Start here</small>
+              <strong>Bible Study &amp; Prayer</strong>
+            </span>
+            <Link to="/grow/bible-study-prayer">Explore this pathway <ArrowRight size={14} /></Link>
+          </figcaption>
+        </figure>
       </div>
     </section>
 

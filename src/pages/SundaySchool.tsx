@@ -36,7 +36,7 @@ export default function SundaySchool() {
       </div>
       <div className="ss-hero-visual">
         <img src={siteImages.sundaySchoolColoring.src} alt={siteImages.sundaySchoolColoring.alt} width="1440" height="1796" style={{objectPosition:siteImages.sundaySchoolColoring.objectPosition}} />
-        <aside className="ss-hero-card" aria-label="Sunday School details"><span>Every Sunday</span><strong>B.L.A.S.T.</strong><p>Bible Learning And Spiritual Training</p><ul><li><CalendarDays size={16}/> During the sermon</li><li><UsersRound size={16}/> Kids of all ages welcome</li></ul><Link to="/contact">Ask a parent question <ArrowRight size={14}/></Link></aside>
+        <aside className="ss-hero-card" aria-label="Sunday School details"><span className="ss-hero-card-icon" aria-hidden="true"><Sparkles size={20}/></span><div className="ss-hero-card-body"><small>Every Sunday</small><strong>B.L.A.S.T. Sunday School</strong><ul><li><CalendarDays size={15}/> During the sermon</li><li><UsersRound size={15}/> Kids of all ages welcome</li></ul></div><Link to="/contact">Ask a parent question <ArrowRight size={14}/></Link></aside>
       </div>
     </section>
 

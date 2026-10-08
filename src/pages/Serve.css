@@ -34,7 +34,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, .95fr) minmax(420px, .82fr);
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 1fr);
   align-items: center;
   gap: clamp(56px, 7vw, 108px);
   padding-block: clamp(82px, 8vw, 116px);
@@ -80,7 +80,7 @@
   margin: 22px 0 0;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: var(--text-hero);
+  font-size: clamp(3.4rem, 6.6vw, 7rem);
   font-weight: 300;
   letter-spacing: -.02em;
   line-height: .94;
@@ -105,43 +105,19 @@
   margin: 0;
 }
 
-.ctc-serve-collage {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
-}
-
-/* One soft ambient shadow under the whole collage, so the gaps between photos
-   stay clean instead of collecting five overlapping drop shadows. */
-.ctc-serve-collage::before {
-  position: absolute;
-  inset: 8% 6% -3%;
-  z-index: -1;
-  background: rgba(16, 37, 27, .26);
-  border-radius: 36px;
-  filter: blur(42px);
-  content: "";
-}
-
-.ctc-serve-collage-column {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-height: 0;
-}
-
-.ctc-serve-tile {
+/* One photo of street-outreach prayer, shown uncropped. */
+.ctc-serve-hero-photo {
   position: relative;
   display: block;
   overflow: hidden;
+  border-radius: 24px;
   background: var(--clay-soft);
-  border-radius: 12px;
+  box-shadow: 0 30px 70px rgba(16, 37, 27, .18);
+  animation: ctcServeFadeUp 900ms 160ms var(--ease-out) both;
 }
 
-/* A thin warm inner edge gives each photo a printed finish. */
-.ctc-serve-tile::after {
+/* A thin warm inner edge gives the photo a printed finish. */
+.ctc-serve-hero-photo::after {
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -150,47 +126,10 @@
   pointer-events: none;
 }
 
-.ctc-serve-tile img {
+.ctc-serve-hero-photo img {
   display: block;
   width: 100%;
   height: auto;
-  object-fit: cover;
-  animation: ctcServeTileIn 1100ms calc(160ms + var(--tile-order, 0) * 110ms) var(--ease-out) both;
-  transition: scale 700ms var(--ease-out), filter 700ms var(--ease-out);
-}
-
-/* The last photo in each column absorbs the small height difference, so both
-   columns end on the same line without cropping the photos above it. */
-.ctc-serve-collage-column .ctc-serve-tile:last-child {
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-.ctc-serve-collage-column .ctc-serve-tile:last-child img {
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Left column: every tile takes an equal share of the column height. */
-.ctc-serve-collage-column.is-even .ctc-serve-tile {
-  flex: 1 1 0;
-  min-height: 0;
-}
-
-.ctc-serve-collage-column.is-even .ctc-serve-tile img {
-  height: 100%;
-}
-
-.ctc-serve-collage-column:first-child .ctc-serve-tile:first-child { border-top-left-radius: 24px; }
-.ctc-serve-collage-column:first-child .ctc-serve-tile:last-child { border-bottom-left-radius: 24px; }
-.ctc-serve-collage-column:last-child .ctc-serve-tile:first-child { border-top-right-radius: 24px; }
-.ctc-serve-collage-column:last-child .ctc-serve-tile:last-child { border-bottom-right-radius: 24px; }
-
-@media (hover: hover) and (pointer: fine) {
-  .ctc-serve-tile:hover img {
-    scale: 1.025;
-    filter: brightness(1.06);
-  }
 }
 
 .ctc-serve-hero-visual figcaption {
@@ -432,14 +371,8 @@
   to { opacity: 1; transform: none; }
 }
 
-/* Each photo wipes up into its frame, like light filling the collage. */
-@keyframes ctcServeTileIn {
-  from { clip-path: inset(100% 0 0 0); transform: scale(1.08); }
-  to { clip-path: inset(0); transform: none; }
-}
-
-/* Tablets (iPad portrait included): keep headline and collage side by side so
-   the collage fills the right half instead of leaving an empty strip. */
+/* Tablets (iPad portrait included): keep headline and photo side by side so
+   the photo fills the right half instead of leaving an empty strip. */
 @media (max-width: 1120px) {
   .ctc-serve-hero-grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
@@ -447,7 +380,7 @@
   }
 }
 
-/* Narrow screens: stack, and let the collage use the full width. */
+/* Narrow screens: stack, and let the photo use the full width. */
 @media (max-width: 760px) {
   .ctc-serve-hero-grid {
     grid-template-columns: 1fr;
@@ -486,10 +419,6 @@
     font-size: 1.24rem;
   }
 
-  .ctc-serve-collage,
-  .ctc-serve-collage-column {
-    gap: 4px;
-  }
 
   .ctc-serve-hero-visual figcaption {
     margin-top: 10px;
@@ -532,7 +461,7 @@
     transition-duration: .01ms;
   }
 
-  .ctc-serve-tile img,
+  .ctc-serve-hero-photo,
   .ctc-serve-hero-visual figcaption {
     animation: none;
     transition: none;

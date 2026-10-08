@@ -47,8 +47,9 @@ export default function BibleStudyPrayer() {
       <div className="study-hero-visual">
         <img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} />
         <aside className="study-hero-card" aria-label="Next Bible study gathering">
-          <span>Weekly gathering</span><strong>{bibleStudy?.frequency} · {bibleStudy?.time}</strong>
-          <ul><li><CalendarDays size={16}/> Bible study & prayer</li><li><UsersRound size={16}/> Adults and families welcome</li></ul>
+          <span className="study-hero-card-icon" aria-hidden="true"><CalendarDays size={20}/></span>
+          <div className="study-hero-card-body"><small>Weekly gathering</small><strong>{bibleStudy?.frequency} · {bibleStudy?.time}</strong>
+          <ul><li><BookOpen size={15}/> Bible study & prayer</li><li><UsersRound size={15}/> Adults and families welcome</li></ul></div>
           <Link to="/contact">Get gathering details <ArrowRight size={14}/></Link>
         </aside>
       </div>

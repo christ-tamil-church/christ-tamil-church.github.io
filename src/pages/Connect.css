@@ -275,15 +275,6 @@
   margin: 0;
 }
 
-.connect-fellowship-photo::after {
-  position: absolute;
-  inset: 22px -22px -22px 22px;
-  z-index: -1;
-  background: var(--primary);
-  border-radius: 18px;
-  content: "";
-}
-
 .connect-fellowship-photo img {
   display: block;
   width: 100%;
@@ -583,10 +574,6 @@
 
   .connect-sunday-card {
     padding: 16px 18px;
-  }
-
-  .connect-fellowship-photo {
-    width: calc(100% - 22px);
   }
 
   .connect-fellowship-photo figcaption {
