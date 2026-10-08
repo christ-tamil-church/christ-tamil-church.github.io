@@ -17,6 +17,13 @@ import outreachPackingLine from "../assets/images/outreach-packing-line.jpg";
 import outreachSeniorHome from "../assets/images/outreach-senior-home.jpg";
 import outreachSealing from "../assets/images/outreach-sealing.jpg";
 import outreachPrayer from "../assets/images/outreach-street-prayer.jpg";
+import worshipEaster from "../assets/images/worship-easter.jpg";
+import worshipHall from "../assets/images/worship-fellowship-hall.jpg";
+import worshipKidsChoir from "../assets/images/worship-kids-choir.jpg";
+import worshipTeam from "../assets/images/worship-team-cross.jpg";
+import worshipTeamStage from "../assets/images/worship-team-red-stage.jpg";
+import worshipTeamScreens from "../assets/images/worship-team-screens.jpg";
+import worshipYouth from "../assets/images/worship-youth.jpg";
 
 export type SiteImage = {
   id: string;
@@ -219,6 +226,76 @@ export const siteImages = {
     unsplashUrl: "",
     usage: "Homepage hero",
     objectPosition: "38% 50%"
+  },
+  worshipTeam: {
+    id: "ctc-worship-team",
+    src: worshipTeam,
+    alt: "The Christ Tamil Church worship team leading songs beneath the lit cross, with Tamil lyrics on the screen",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 60%"
+  },
+  worshipTeamScreens: {
+    id: "ctc-worship-team-screens",
+    src: worshipTeamScreens,
+    alt: "Worship leaders in saris and shirts singing at microphones in front of the altar",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 70%"
+  },
+  worshipYouth: {
+    id: "ctc-worship-youth",
+    src: worshipYouth,
+    alt: "Children and youth reading and singing together at the front of the sanctuary",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 65%"
+  },
+  worshipEaster: {
+    id: "ctc-worship-easter",
+    src: worshipEaster,
+    alt: "The choir singing with keyboard and drums on Easter Sunday, with He Is Risen banners beside the cross",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 55%"
+  },
+  worshipTeamStage: {
+    id: "ctc-worship-team-stage",
+    src: worshipTeamStage,
+    alt: "Singers and a keyboardist leading worship on the red-carpeted stage",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 60%"
+  },
+  worshipKidsChoir: {
+    id: "ctc-worship-kids-choir",
+    src: worshipKidsChoir,
+    alt: "The children's choir standing together and singing in front of the altar",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 60%"
+  },
+  worshipHall: {
+    id: "ctc-worship-hall",
+    src: worshipHall,
+    alt: "A worship band with guitars and keyboard leading songs in the fellowship hall",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Worship hero collage (autumn-film grade)",
+    objectPosition: "center 40%"
   },
   worship: {
     id: "small-group-network-community",
