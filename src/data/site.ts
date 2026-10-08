@@ -71,7 +71,7 @@ export const churchEvents = [
       "Bible-based learning for children to grow in faith through age-appropriate lessons and activities.",
     date: "Every Sunday",
     location: "Christ Tamil Church",
-    image: siteImages.sundaySchool.src
+    image: siteImages.sundaySchoolOutdoor.src
   },
   {
     title: "Prayer Conference",
@@ -93,7 +93,7 @@ export const churchEvents = [
       "Grow deeper in God's Word through weekly Bible study and prayer on Friday evenings.",
     date: "Friday",
     location: "Christ Tamil Church",
-    image: siteImages.bibleStudy.src
+    image: siteImages.bibleStudyCircle.src
   },
   {
     title: "Fasting Prayer",
@@ -173,7 +173,7 @@ export const churchEvents = [
       "Stay after worship to connect, encourage one another, and share life together.",
     date: "After Service",
     location: "Christ Tamil Church",
-    image: siteImages.fellowshipHourTables.src
+    image: siteImages.fellowshipHourHall.src
   }
 ] as const satisfies readonly ChurchEvent[];
 

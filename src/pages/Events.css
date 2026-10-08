@@ -239,12 +239,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: filter var(--motion-base) var(--ease-out), transform var(--motion-base) var(--ease-out);
-}
-
-.ctc-events-row:hover .ctc-events-row-media img {
-  filter: saturate(1.05);
-  transform: scale(1.025);
 }
 
 .ctc-events-row-fallback {

@@ -35,7 +35,7 @@ export default function SundaySchool() {
         <Link className="ss-primary" to="/visit">Plan a family visit <ArrowRight size={17}/></Link>
       </div>
       <div className="ss-hero-visual">
-        <img src={siteImages.sundaySchool.src} alt={siteImages.sundaySchool.alt} width="1200" height="900" style={{objectPosition:siteImages.sundaySchool.objectPosition}} />
+        <img src={siteImages.sundaySchoolColoring.src} alt={siteImages.sundaySchoolColoring.alt} width="1440" height="1796" style={{objectPosition:siteImages.sundaySchoolColoring.objectPosition}} />
         <aside className="ss-hero-card" aria-label="Sunday School details"><span>Every Sunday</span><strong>B.L.A.S.T.</strong><p>Bible Learning And Spiritual Training</p><ul><li><CalendarDays size={16}/> During the sermon</li><li><UsersRound size={16}/> Kids of all ages welcome</li></ul><Link to="/contact">Ask a parent question <ArrowRight size={14}/></Link></aside>
       </div>
     </section>
@@ -46,7 +46,7 @@ export default function SundaySchool() {
     </section>
 
     <section className="ss-parent-band reveal" ref={parentRef} aria-labelledby="ss-parent-title">
-      <div className="ss-parent-image"><img src={siteImages.kidsMinistry.src} alt={siteImages.kidsMinistry.alt} loading="lazy" width="1200" height="900" style={{objectPosition:siteImages.kidsMinistry.objectPosition}} /></div>
+      <div className="ss-parent-image"><img src={siteImages.sundaySchoolBibleTable.src} alt={siteImages.sundaySchoolBibleTable.alt} loading="lazy" width="2048" height="1536" style={{objectPosition:siteImages.sundaySchoolBibleTable.objectPosition}} /></div>
       <div className="ss-parent-copy"><span className="eyebrow">For parents</span><h2 id="ss-parent-title">A Sunday School experience built on trust.</h2><p>Experienced leaders use strong Bible resources to present the gospel with warmth, clarity, and care. Our hope is that every child knows the love of God and the love of God’s family.</p><ul><li><ShieldCheck size={18}/><span>Caring, experienced leaders</span></li><li><Lightbulb size={18}/><span>Age-appropriate Bible learning</span></li><li><Heart size={18}/><span>A welcoming church family</span></li></ul></div>
     </section>
 

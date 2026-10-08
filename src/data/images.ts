@@ -1,14 +1,19 @@
+import bibleStudyHomePrayer from "../assets/images/bible-study-home-prayer.jpg";
+import bibleStudyCircle from "../assets/images/bible-study-circle.jpg";
+import churchPicnicGrill from "../assets/images/church-picnic-grill.jpg";
 import ctcHeroBackground from "../assets/images/ctc-hero-background-green.webp";
 import ctcHeroBackgroundMobile from "../assets/images/ctc-hero-background-green-mobile.webp";
 import ctcHeroImage from "../assets/images/ctc-hero-image.jpg";
 import ctcLogo from "../assets/images/ctc-logo.png";
+import familyCampGames from "../assets/images/family-camp-games.jpg";
 import fellowshipCampfire from "../assets/images/fellowship-campfire.jpg";
 import fellowshipCarnival from "../assets/images/fellowship-carnival.jpg";
 import fellowshipChristmas from "../assets/images/fellowship-christmas.jpg";
 import fellowshipHarvest from "../assets/images/fellowship-harvest.jpg";
-import fellowshipHourTables from "../assets/images/fellowship-hour-tables.jpg";
+import fellowshipHourHall from "../assets/images/fellowship-hour-hall.jpg";
 import fellowshipTable from "../assets/images/fellowship-meal.jpg";
 import fellowshipPicnic from "../assets/images/fellowship-picnic.jpg";
+import mensFellowshipGroup from "../assets/images/mens-fellowship-group.jpg";
 import ministryKids from "../assets/images/ministry-kids.jpg";
 import ministrySchool from "../assets/images/ministry-school.jpg";
 import outreachHall from "../assets/images/outreach-hall.jpg";
@@ -18,6 +23,11 @@ import outreachPackingLine from "../assets/images/outreach-packing-line.jpg";
 import outreachSeniorHome from "../assets/images/outreach-senior-home.jpg";
 import outreachSealing from "../assets/images/outreach-sealing.jpg";
 import outreachPrayer from "../assets/images/outreach-street-prayer.jpg";
+import sundaySchoolBibleTable from "../assets/images/sunday-school-bible-table.jpg";
+import sundaySchoolOutdoor from "../assets/images/sunday-school-outdoor.jpg";
+import sundaySchoolColoring from "../assets/images/sunday-school-coloring.jpg";
+import vbsCrafts from "../assets/images/vbs-crafts.jpg";
+import womensFellowshipPainting from "../assets/images/womens-fellowship-painting.jpg";
 import worshipEaster from "../assets/images/worship-easter.jpg";
 import worshipHall from "../assets/images/worship-fellowship-hall.jpg";
 import worshipKidsChoir from "../assets/images/worship-kids-choir.jpg";
@@ -49,6 +59,36 @@ export const siteImages = {
     unsplashUrl: "",
     usage: "Sunday School hero",
     objectPosition: "center center"
+  },
+  sundaySchoolOutdoor: {
+    id: "ctc-sunday-school-outdoor",
+    src: sundaySchoolOutdoor,
+    alt: "Children in matching purple shirts gathered around an outdoor table with their Bibles as a young leader teaches",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Sunday School event card (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  sundaySchoolColoring: {
+    id: "ctc-sunday-school-coloring",
+    src: sundaySchoolColoring,
+    alt: "Children in festive clothes and flower hair garlands gathered on the floor colouring 'He is risen' Easter pages",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Sunday School hero (autumn-film grade)",
+    objectPosition: "center 48%"
+  },
+  sundaySchoolBibleTable: {
+    id: "ctc-sunday-school-bible-table",
+    src: sundaySchoolBibleTable,
+    alt: "A Sunday School teacher reading Scripture with children as they follow along in their Bibles at a classroom table",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Sunday School parent band (autumn-film grade)",
+    objectPosition: "center 35%"
   },
   kidsMinistry: {
     id: "ctc-kids-ministry",
@@ -190,10 +230,10 @@ export const siteImages = {
     usage: "Fellowship hour section (autumn-film grade)",
     objectPosition: "center center"
   },
-  fellowshipHourTables: {
-    id: "ctc-fellowship-hour-tables",
-    src: fellowshipHourTables,
-    alt: "Fellowship hall tables set with banana leaves and water bottles, ready for a shared meal after worship",
+  fellowshipHourHall: {
+    id: "ctc-fellowship-hour-hall",
+    src: fellowshipHourHall,
+    alt: "A full fellowship hall of families and children seated together, smiling during a church gathering",
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
@@ -318,6 +358,27 @@ export const siteImages = {
     usage: "Welcome/about section",
     objectPosition: "center center"
   },
+  bibleStudyCircle: {
+    id: "ctc-bible-study-circle",
+    src: bibleStudyCircle,
+    alt: "Youth and young adults sitting in a circle of chairs, talking together during Bible study",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Bible Study page hero and Bible Study event card (autumn-film grade)",
+    objectPosition: "center 58%"
+  },
+  bibleStudyHomePrayer: {
+    id: "ctc-bible-study-home-prayer",
+    src: bibleStudyHomePrayer,
+    alt: "Church members gathered in a sunlit living room with Bibles, praying together as a leader speaks",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Bible Study 'What to expect' section (autumn-film grade)",
+    // Anchor right so the standing leader at the right edge is never cropped.
+    objectPosition: "right 72%"
+  },
   bibleStudy: {
     id: "aaron-burden-open-bible",
     src: "https://images.unsplash.com/photo-1593485552030-019bfbf6ee1d?auto=format&fit=crop&w=1200&q=80",
@@ -349,53 +410,53 @@ export const siteImages = {
     objectPosition: "center center"
   },
   mensFellowship: {
-    id: "matheus-ferrero-mens-fellowship",
-    src: "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=1200&q=80",
-    alt: "Four friends sitting together on a mountain trail",
-    creditName: "Matheus Ferrero",
-    creditUrl: `https://unsplash.com/@matheusferrero?${utm}`,
-    unsplashUrl: "https://unsplash.com/photos/699cd4e2cf59",
-    usage: "Men's Fellowship event",
+    id: "ctc-mens-fellowship",
+    src: mensFellowshipGroup,
+    alt: "The Christ Tamil Church men's fellowship in matching Cool Dad Crew shirts, gathered outside the church building",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Men's Fellowship event (autumn-film grade)",
     objectPosition: "center center"
   },
   womensFellowship: {
-    id: "meredith-spencer-womens-study",
-    src: "https://images.unsplash.com/photo-1663162550932-f67b561e656f?auto=format&fit=crop&w=1200&q=80",
-    alt: "Friends gathered on the grass reading together",
-    creditName: "Meredith Spencer",
-    creditUrl: `https://unsplash.com/@meredithspencer22?${utm}`,
-    unsplashUrl: "https://unsplash.com/photos/f67b561e656f",
-    usage: "Women's Fellowship event",
+    id: "ctc-womens-fellowship",
+    src: womensFellowshipPainting,
+    alt: "Women from the church smiling and holding up the matching truck paintings they made together at a paint night",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Women's Fellowship event (autumn-film grade)",
     objectPosition: "center center"
   },
   churchPicnic: {
-    id: "liviu-boldis-family-picnic",
-    src: "https://images.unsplash.com/photo-1719759336550-4fecc23ab176?auto=format&fit=crop&w=1200&q=80",
-    alt: "A family relaxing together on a picnic blanket",
-    creditName: "Liviu Boldis",
-    creditUrl: `https://unsplash.com/@livioart?${utm}`,
-    unsplashUrl: "https://unsplash.com/photos/4fecc23ab176",
-    usage: "Church Picnic event",
-    objectPosition: "center center"
+    id: "ctc-church-picnic",
+    src: churchPicnicGrill,
+    alt: "Church men grilling burgers and chicken together under a park picnic shelter",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Church Picnic event (autumn-film grade)",
+    objectPosition: "center 35%"
   },
   familyCamp: {
-    id: "kitera-dent-group-retreat",
-    src: "https://images.unsplash.com/photo-1597120590849-a1d5a743d155?auto=format&fit=crop&w=1200&q=80",
-    alt: "A group walking together along a wooded trail",
-    creditName: "Kitera Dent",
-    creditUrl: `https://unsplash.com/@kitera?${utm}`,
-    unsplashUrl: "https://unsplash.com/photos/a1d5a743d155",
-    usage: "Family Camp event",
+    id: "ctc-family-camp",
+    src: familyCampGames,
+    alt: "Family camp friends cheering and laughing as a giant wooden block tower topples",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Family Camp event (autumn-film grade)",
     objectPosition: "center center"
   },
   kidsCraft: {
-    id: "alan-rodriguez-kids-craft",
-    src: "https://images.unsplash.com/photo-1617117206620-b01f2919ff86?auto=format&fit=crop&w=1200&q=80",
-    alt: "Children drawing together with colorful markers and crayons",
-    creditName: "Alan Rodriguez",
-    creditUrl: `https://unsplash.com/@alanrodriguez?${utm}`,
-    unsplashUrl: "https://unsplash.com/photos/b01f2919ff86",
-    usage: "Vacation Bible School event",
+    id: "ctc-vbs-crafts",
+    src: vbsCrafts,
+    alt: "Children in Vacation Bible School shirts making crafts along a long table with youth helpers",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Vacation Bible School event (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipMeal: {

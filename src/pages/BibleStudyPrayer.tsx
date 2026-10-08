@@ -45,7 +45,7 @@ export default function BibleStudyPrayer() {
         <Link className="study-primary" to="/contact">Ask about joining <ArrowRight size={17} /></Link>
       </div>
       <div className="study-hero-visual">
-        <img src={siteImages.bibleStudy.src} alt={siteImages.bibleStudy.alt} width="1200" height="900" style={{ objectPosition: siteImages.bibleStudy.objectPosition }} />
+        <img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} />
         <aside className="study-hero-card" aria-label="Next Bible study gathering">
           <span>Weekly gathering</span><strong>{bibleStudy?.frequency} · {bibleStudy?.time}</strong>
           <ul><li><CalendarDays size={16}/> Bible study & prayer</li><li><UsersRound size={16}/> Adults and families welcome</li></ul>
@@ -65,7 +65,7 @@ export default function BibleStudyPrayer() {
     </section>
 
     <section className="study-expect-band reveal" ref={expectRef} aria-labelledby="study-expect-title">
-      <div className="study-expect-image"><img src={siteImages.prayer.src} alt={siteImages.prayer.alt} loading="lazy" width="1200" height="900" style={{ objectPosition: siteImages.prayer.objectPosition }} /></div>
+      <div className="study-expect-image"><img src={siteImages.bibleStudyHomePrayer.src} alt={siteImages.bibleStudyHomePrayer.alt} loading="lazy" width="1600" height="1200" style={{ objectPosition: siteImages.bibleStudyHomePrayer.objectPosition }} /></div>
       <div className="study-expect-copy"><span className="eyebrow">What to expect</span><h2 id="study-expect-title">A welcoming room. An open Bible. Space to pray.</h2><p>We read Scripture carefully, make room for questions, and pray for the needs people carry into the week. You can participate aloud or simply listen while you get comfortable.</p>
         <ul><li><MessageCircleQuestion size={18}/><span>Honest questions are welcome</span></li><li><BookOpen size={18}/><span>Teaching rooted in Scripture</span></li><li><HeartHandshake size={18}/><span>Prayer shared with care</span></li></ul>
       </div>
