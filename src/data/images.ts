@@ -6,6 +6,7 @@ import fellowshipCampfire from "../assets/images/fellowship-campfire.jpg";
 import fellowshipCarnival from "../assets/images/fellowship-carnival.jpg";
 import fellowshipChristmas from "../assets/images/fellowship-christmas.jpg";
 import fellowshipHarvest from "../assets/images/fellowship-harvest.jpg";
+import fellowshipHourTables from "../assets/images/fellowship-hour-tables.jpg";
 import fellowshipTable from "../assets/images/fellowship-meal.jpg";
 import fellowshipPicnic from "../assets/images/fellowship-picnic.jpg";
 import ministryKids from "../assets/images/ministry-kids.jpg";
@@ -187,6 +188,16 @@ export const siteImages = {
     creditUrl: "",
     unsplashUrl: "",
     usage: "Fellowship hour section (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  fellowshipHourTables: {
+    id: "ctc-fellowship-hour-tables",
+    src: fellowshipHourTables,
+    alt: "Fellowship hall tables set with banana leaves and water bottles, ready for a shared meal after worship",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Fellowship Hour event card (autumn-film grade)",
     objectPosition: "center center"
   },
   logo: {

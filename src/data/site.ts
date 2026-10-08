@@ -173,7 +173,7 @@ export const churchEvents = [
       "Stay after worship to connect, encourage one another, and share life together.",
     date: "After Service",
     location: "Christ Tamil Church",
-    image: siteImages.fellowshipTable.src
+    image: siteImages.fellowshipHourTables.src
   }
 ] as const satisfies readonly ChurchEvent[];
 
