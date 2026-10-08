@@ -587,6 +587,70 @@ textarea {
   line-height: 1.68;
 }
 
+/* Verse with photo: a band's one strong image, with its Scripture card tucked
+   under the photo's lower edge (used where an inner page's hero photo moved). */
+.verse-visual {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.verse-visual > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 28px 70px rgba(16, 37, 27, 0.14);
+}
+
+body .verse-visual > blockquote {
+  position: relative;
+  z-index: 1;
+  margin: -64px 24px 0;
+  background: #fff;
+  box-shadow: var(--shadow-card);
+}
+
+body .verse-visual > blockquote p {
+  font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+  line-height: 1.22;
+}
+
+/* Desktop: the copy centres on the photo itself; the verse card hangs below
+   in its own row, so the text never floats beside the middle of the stack. */
+@media (min-width: 901px) {
+  body .verse-band {
+    grid-template-areas: "photo copy" "quote .";
+    align-items: center;
+    row-gap: 0;
+  }
+
+  .verse-band > .verse-visual {
+    display: contents;
+  }
+
+  .verse-band > .verse-visual > img {
+    grid-area: photo;
+  }
+
+  body .verse-band > .verse-visual > blockquote {
+    grid-area: quote;
+    align-self: start;
+  }
+
+  .verse-band > div:last-child {
+    grid-area: copy;
+  }
+}
+
+@media (max-width: 620px) {
+  body .verse-visual > blockquote {
+    margin: -40px 12px 0;
+  }
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

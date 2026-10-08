@@ -10,20 +10,29 @@ import {
   Sun,
   Wheat
 } from "lucide-react";
-import PathwayMarker from "../components/PathwayMarker";
-import PhotoCollage, { type CollageTile } from "../components/PhotoCollage";
-import { siteImages } from "../data/images";
+import InnerHero from "../components/InnerHero";
+import { pathwayLabels } from "../data/ministryPathways";
+import { siteImages, type SiteImage } from "../data/images";
 import { churchInfo } from "../data/site";
 import { useRevealGroup } from "../hooks/useRevealGroup";
 import "./Connect.css";
-import "./PageHeroTypography.css";
 
-const connectTraditions = [
+type ConnectTradition = {
+  number: string;
+  title: string;
+  text: string;
+  icon: typeof Sun;
+  photo?: { image: SiteImage; width: number; height: number };
+};
+
+/* The hero carries words only; each tradition shows its own photo instead. */
+const connectTraditions: ConnectTradition[] = [
   {
     number: "01",
     title: "Summer Picnic",
     text: "An easygoing day outdoors with shared food, games, conversation, and time for every generation to enjoy being together.",
-    icon: Sun
+    icon: Sun,
+    photo: { image: siteImages.fellowshipPicnic, width: 1100, height: 846 }
   },
   {
     number: "02",
@@ -35,32 +44,23 @@ const connectTraditions = [
     number: "03",
     title: "Summer Carnival",
     text: "A joyful community celebration where children, parents, friends, and neighbors can share activities, laughter, and hospitality.",
-    icon: Sparkles
+    icon: Sparkles,
+    photo: { image: siteImages.fellowshipCarnival, width: 800, height: 1000 }
   },
   {
     number: "04",
     title: "Harvest Festival",
     text: "A seasonal gathering to give thanks for God’s goodness and celebrate with food, family activities, and fellowship.",
-    icon: Wheat
+    icon: Wheat,
+    photo: { image: siteImages.fellowshipHarvest, width: 1100, height: 825 }
   },
   {
     number: "05",
     title: "Carol Rounds",
     text: "At Christmas, we carry songs of hope from home to home and share the joy of Christ’s birth with our church family.",
-    icon: Music
+    icon: Music,
+    photo: { image: siteImages.fellowshipChristmas, width: 1100, height: 825 }
   }
-];
-
-const heroCollage: CollageTile[][] = [
-  [
-    { image: siteImages.fellowshipPicnic, width: 1100, height: 846 },
-    { image: siteImages.fellowshipHarvest, width: 1100, height: 825 },
-    { image: siteImages.fellowshipCampfire, width: 1100, height: 660 }
-  ],
-  [
-    { image: siteImages.fellowshipCarnival, width: 800, height: 1000, ratio: "4 / 5" },
-    { image: siteImages.fellowshipChristmas, width: 1100, height: 825 }
-  ]
 ];
 
 export default function Connect() {
@@ -68,34 +68,24 @@ export default function Connect() {
 
   return (
     <div className="connect-page" ref={pageRef}>
-      <section className="connect-hero" aria-labelledby="connect-title">
-        <div className="connect-shell connect-hero-grid">
-          <div className="connect-hero-copy">
-            <PathwayMarker pathway="connect" className="connect-hero-kicker" />
-            <h1 id="connect-title">Come as a guest. Leave as <em>family.</em></h1>
-            <p className="connect-hero-lede">
-              Faith grows in shared life. Around the table, through every season,
-              and in one another’s homes, there is a place for you to belong.
-            </p>
-          </div>
-
-          <div className="connect-hero-visual">
-            <PhotoCollage columns={heroCollage} evenFirstColumn />
-
-            <aside className="connect-sunday-card" aria-label="Sunday fellowship details">
-              <span className="connect-icon" aria-hidden="true"><Coffee size={22} /></span>
-              <div>
-                <p className="connect-card-label">Every Sunday</p>
-                <h2>Fellowship after worship</h2>
-                <div className="connect-card-details">
-                  <span><Clock size={16} aria-hidden="true" /> After {churchInfo.worship.time} worship</span>
-                  <span><MapPin size={16} aria-hidden="true" /> Fellowship auditorium</span>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
+      <InnerHero
+        titleId="connect-title"
+        kicker={pathwayLabels.connect}
+        title={["Come as a guest.", <>Leave as <em>family.</em></>]}
+        lede="Faith grows in shared life. Around the table, through every season, and in one another’s homes, there is a place for you to belong."
+        action={{ label: "Plan your first Sunday", to: "/visit" }}
+        card={{
+          ariaLabel: "Sunday fellowship details",
+          icon: Coffee,
+          label: "Every Sunday",
+          title: "Fellowship after worship",
+          details: [
+            { icon: Clock, text: `After ${churchInfo.worship.time} worship` },
+            { icon: MapPin, text: <>Fellowship auditorium<br />{churchInfo.address.short}</> }
+          ],
+          link: { label: "Get directions", href: churchInfo.address.directionsUrl }
+        }}
+      />
 
       <section className="connect-band connect-fellowship connect-reveal" id="fellowship-hour" aria-labelledby="fellowship-title">
         <div className="connect-shell connect-fellowship-grid">
@@ -141,13 +131,24 @@ export default function Connect() {
             {connectTraditions.map((tradition) => {
               const Icon = tradition.icon;
               return (
-                <article key={tradition.title}>
+                <article key={tradition.title} className={tradition.photo ? "has-photo" : undefined}>
                   <span className="connect-tradition-number">{tradition.number}</span>
                   <Icon size={21} aria-hidden="true" />
                   <div>
                     <h3>{tradition.title}</h3>
                     <p>{tradition.text}</p>
                   </div>
+                  {tradition.photo && (
+                    <img
+                      className="connect-tradition-photo"
+                      src={tradition.photo.image.src}
+                      alt={tradition.photo.image.alt}
+                      width={tradition.photo.width}
+                      height={tradition.photo.height}
+                      loading="lazy"
+                      style={{ objectPosition: tradition.photo.image.objectPosition }}
+                    />
+                  )}
                 </article>
               );
             })}
@@ -158,9 +159,14 @@ export default function Connect() {
       <section className="connect-band connect-care connect-reveal" aria-labelledby="care-title">
         <div className="connect-shell connect-care-grid">
           <div className="connect-care-intro">
-            <div className="connect-care-mark" aria-hidden="true">
-              <HeartHandshake size={34} />
-            </div>
+            <img
+              className="connect-care-photo"
+              src={siteImages.fellowshipCampfire.src}
+              alt={siteImages.fellowshipCampfire.alt}
+              width="1100"
+              height="660"
+              loading="lazy"
+            />
             <p className="connect-eyebrow">Life together</p>
             <h2 id="care-title">Connection that continues beyond an event.</h2>
             <p>

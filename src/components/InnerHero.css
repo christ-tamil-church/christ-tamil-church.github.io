@@ -1,0 +1,314 @@
+/* Inner-page hero (template 6.1, light variant). Words only: kicker, headline,
+   lede and one bronze CTA, with the page's key-facts card beside them on
+   desktop. Photos live in the bands below, where each can be seen at size. */
+.inner-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(115deg, #fff 0%, var(--canvas) 63%, var(--sage) 100%);
+}
+
+.inner-hero::after {
+  position: absolute;
+  inset: 0 0 0 52%;
+  background: radial-gradient(circle at 62% 60%, rgba(141, 198, 63, .2), transparent 40%);
+  content: "";
+  pointer-events: none;
+}
+
+.inner-hero-copy {
+  position: relative;
+  z-index: 1;
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+  padding-block: clamp(64px, 7vw, 104px) clamp(72px, 8vw, 112px);
+  animation: innerHeroRise 760ms var(--ease-out) both;
+}
+
+.inner-hero-kicker {
+  margin-bottom: 22px;
+}
+
+/* Beats the shared PageHeroTypography h1 scale. */
+body .inner-hero h1.inner-hero-title {
+  margin: 0 0 clamp(32px, 4vw, 52px);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 300;
+  letter-spacing: -.02em;
+  line-height: .98;
+  text-wrap: balance;
+}
+
+body .inner-hero h1.inner-hero-title:not(.is-lined) {
+  max-width: 14ch;
+  font-size: min(var(--text-hero), 5.6rem);
+  line-height: 1;
+}
+
+.inner-hero-title.is-lined > span {
+  display: block;
+}
+
+.inner-hero-title em {
+  color: var(--green-deep);
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.inner-hero-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, 520px);
+  align-items: start;
+  gap: clamp(40px, 6vw, 96px);
+}
+
+.inner-hero-intro {
+  display: grid;
+  justify-items: start;
+  gap: 30px;
+  padding-top: 6px;
+}
+
+.inner-hero-lede {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(17px, 1.4vw, 19px);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+
+/* Bronze primary pill (template 6.2): the one strong action in this view. */
+.inner-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 26px;
+  color: #fff;
+  background: var(--clay-dark);
+  border: 1px solid var(--clay-dark);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 16px 38px rgba(150, 112, 47, .3);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    background var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.inner-hero-primary svg,
+.inner-hero-card-link svg {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.inner-hero-primary:hover {
+  color: #fff;
+  background: #7d5c26;
+  border-color: #7d5c26;
+  box-shadow: 0 20px 44px rgba(150, 112, 47, .36);
+  transform: translateY(-2px);
+}
+
+.inner-hero-primary:hover svg,
+.inner-hero-card-link:hover svg {
+  transform: translateX(3px);
+}
+
+.inner-hero-primary:focus-visible,
+.inner-hero-card-link:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Key-facts card (template 6.3), resting on the flat band. */
+.inner-hero-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  justify-self: end;
+  padding: 34px 36px 28px;
+  background: rgba(255, 254, 250, .97);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 22px 54px rgba(16, 37, 27, .09);
+  animation: innerHeroRise 760ms 220ms var(--ease-out) both;
+}
+
+.inner-hero-card > div {
+  min-width: 0;
+}
+
+.inner-hero-card-icon {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--primary);
+  background: var(--sage);
+  border-radius: var(--radius-pill);
+}
+
+.inner-hero-card-label {
+  margin: 2px 0 8px;
+  color: var(--primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.inner-hero-card-title {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.3vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.inner-hero-card-details {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inner-hero-card-details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.inner-hero-card-details svg {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  color: var(--primary);
+}
+
+.inner-hero-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 6px;
+  color: var(--clay-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+@keyframes innerHeroRise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Desktop: words on the left, the card beside them on the right. */
+@media (min-width: 1121px) {
+  .inner-hero-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 490px);
+    grid-template-areas:
+      "kicker card"
+      "title  card"
+      "intro  card";
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(56px, 6vw, 104px);
+  }
+
+  .inner-hero-kicker {
+    grid-area: kicker;
+  }
+
+  body .inner-hero h1.inner-hero-title {
+    grid-area: title;
+    font-size: clamp(4.4rem, 6.6vw, 6.2rem);
+  }
+
+  body .inner-hero h1.inner-hero-title:not(.is-lined) {
+    font-size: clamp(3.6rem, 5.2vw, 5rem);
+  }
+
+  .inner-hero-row {
+    display: contents;
+  }
+
+  .inner-hero-intro {
+    grid-area: intro;
+  }
+
+  .inner-hero-card {
+    grid-area: card;
+    align-self: center;
+  }
+
+  .inner-hero-card-title {
+    font-size: clamp(1.6rem, 2vw, 1.85rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .inner-hero-row {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .inner-hero-card {
+    max-width: 560px;
+  }
+}
+
+/* The decorative glow belongs beside the card; on narrow screens it would sit
+   behind the copy as a tinted edge. */
+@media (max-width: 760px) {
+  .inner-hero::after {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .inner-hero-copy {
+    width: min(calc(100% - 32px), var(--container));
+    padding-block: 48px 64px;
+  }
+
+  body .inner-hero h1.inner-hero-title,
+  body .inner-hero h1.inner-hero-title:not(.is-lined) {
+    margin-bottom: 26px;
+    font-size: clamp(2.5rem, 11.4vw, 4.4rem);
+    line-height: 1.02;
+  }
+
+  .inner-hero-intro {
+    gap: 24px;
+  }
+
+  .inner-hero-card {
+    gap: 14px;
+    padding: 20px 20px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner-hero-copy,
+  .inner-hero-card {
+    animation: none;
+  }
+
+  .inner-hero-primary,
+  .inner-hero-primary svg,
+  .inner-hero-card-link svg {
+    transition: none;
+  }
+}

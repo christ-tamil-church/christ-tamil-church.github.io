@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, CalendarDays, HeartHandshake, MessageCircleQuestion, MoonStar, Sparkles, UsersRound, type LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
+import InnerHero from "../components/InnerHero";
 import RelatedLinks, { type RelatedLink } from "../components/RelatedLinks";
 import SectionHeader from "../components/SectionHeader";
 import { siteImages } from "../data/images";
@@ -37,23 +38,24 @@ export default function BibleStudyPrayer() {
   const expectRef = useRevealOnScroll<HTMLElement>();
 
   return <>
-    <section className="study-hero" aria-labelledby="study-title">
-      <div className="study-hero-copy">
-        <span className="study-hero-kicker"><span lang="ta">வேதமும் ஜெபமும்</span><small>Grow</small></span>
-        <h1 id="study-title">Know God through <em>Word and prayer.</em></h1>
-        <p>Come as you are and grow alongside a Tamil church family through Scripture, honest questions, prayer, and encouragement.</p>
-        <Link className="study-primary" to="/contact">Ask about joining <ArrowRight size={17} /></Link>
-      </div>
-      <div className="study-hero-visual">
-        <img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} />
-        <aside className="study-hero-card" aria-label="Next Bible study gathering">
-          <span className="study-hero-card-icon" aria-hidden="true"><CalendarDays size={20}/></span>
-          <div className="study-hero-card-body"><small>Weekly gathering</small><strong>{bibleStudy?.frequency} · {bibleStudy?.time}</strong>
-          <ul><li><BookOpen size={15}/> Bible study & prayer</li><li><UsersRound size={15}/> Adults and families welcome</li></ul></div>
-          <Link to="/contact">Get gathering details <ArrowRight size={14}/></Link>
-        </aside>
-      </div>
-    </section>
+    <InnerHero
+      titleId="study-title"
+      kicker={{ ta: "வேதமும் ஜெபமும்", en: "Grow" }}
+      title={["Know God through", <em key="em">Word and prayer.</em>]}
+      lede="Come as you are and grow alongside a Tamil church family through Scripture, honest questions, prayer, and encouragement."
+      action={{ label: "Ask about joining", to: "/contact" }}
+      card={{
+        ariaLabel: "Next Bible study gathering",
+        icon: CalendarDays,
+        label: "Weekly gathering",
+        title: `${bibleStudy?.frequency} · ${bibleStudy?.time}`,
+        details: [
+          { icon: BookOpen, text: "Bible study & prayer" },
+          { icon: UsersRound, text: "Adults and families welcome" }
+        ],
+        link: { label: "Get gathering details", to: "/contact" }
+      }}
+    />
 
     <section className="study-gatherings reveal" ref={gatheringRef} aria-labelledby="study-gatherings-title">
       <SectionHeader eyebrow="A steady rhythm" title="Ways we seek God together" text="You do not need advanced Bible knowledge—just come ready to listen, ask, pray, and be encouraged." />
@@ -72,8 +74,8 @@ export default function BibleStudyPrayer() {
       </div>
     </section>
 
-    <section className="study-verse-band" aria-labelledby="study-verse-title">
-      <blockquote><p>“Your word is a lamp for my feet, a light on my path.”</p><cite>Psalm 119:105</cite></blockquote>
+    <section className="study-verse-band verse-band" aria-labelledby="study-verse-title">
+      <div className="verse-visual"><img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" loading="lazy" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} /><blockquote><p>“Your word is a lamp for my feet, a light on my path.”</p><cite>Psalm 119:105</cite></blockquote></div>
       <div><span className="eyebrow">Faith for everyday life</span><h2 id="study-verse-title">Carry the Word into your week.</h2><p>Spiritual growth is more than gathering. It is learning to hear Christ and follow Him at home, at work, and in our relationships.</p><Link to="/sermons">Watch a message <ArrowRight size={15}/></Link></div>
     </section>
 

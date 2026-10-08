@@ -1,12 +1,13 @@
-import { ArrowRight, BookOpen, Headphones, School, Sprout } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, Headphones, School, Sprout } from "lucide-react";
 import { Link } from "react-router-dom";
-import PathwayMarker from "../components/PathwayMarker";
+import InnerHero from "../components/InnerHero";
 import SectionHeader from "../components/SectionHeader";
 import { siteImages } from "../data/images";
+import { pathwayLabels } from "../data/ministryPathways";
+import { churchEvents } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import { formatStep } from "../utils/format";
 import "./Grow.css";
-import "./PageHeroTypography.css";
 
 const pathways = [
   { title: "Bible Study & Prayer", meta: "Adults & families · Throughout the week", text: "Study Scripture, pray with others, and build a steady rhythm of discipleship.", href: "/grow/bible-study-prayer", icon: BookOpen },
@@ -15,34 +16,28 @@ const pathways = [
   { title: "Messages & Moments", meta: "Watch anytime", text: "Watch worship, teaching, celebrations, and stories from Christ Tamil Church.", href: "/sermons", icon: Headphones }
 ];
 
+const bibleStudy = churchEvents.find((event) => event.title === "Bible Study & Prayer");
+
 export default function Grow() {
   const pathwaysRef = useRevealOnScroll<HTMLElement>({ staggerChildren: true });
   const familyRef = useRevealOnScroll<HTMLElement>();
 
   return <>
-    <section className="grow-hero" aria-labelledby="grow-title">
-      <div className="grow-hero-shell grow-hero-grid">
-        <div className="grow-hero-copy">
-          <PathwayMarker pathway="grow" className="grow-hero-kicker" />
-          <h1 id="grow-title">Rooted in Christ. <em>Growing together.</em></h1>
-          <p>Faith grows through God’s Word, prayer, and life with His people. Wherever you are starting, there is a place for you and your family to take a next step.</p>
-          <a className="grow-primary" href="#grow-pathways">Find your next step <ArrowRight size={17} /></a>
-        </div>
-        <figure className="grow-hero-visual">
-          <span className="grow-hero-photo">
-            <img src={siteImages.growTower.src} alt={siteImages.growTower.alt} width={1200} height={1500} fetchPriority="high" />
-          </span>
-          <figcaption className="grow-hero-card">
-            <span className="grow-hero-card-icon" aria-hidden="true"><BookOpen size={20} /></span>
-            <span className="grow-hero-card-body">
-              <small>Start here</small>
-              <strong>Bible Study &amp; Prayer</strong>
-            </span>
-            <Link to="/grow/bible-study-prayer">Explore this pathway <ArrowRight size={14} /></Link>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
+    <InnerHero
+      titleId="grow-title"
+      kicker={pathwayLabels.grow}
+      title={["Rooted in Christ.", <em key="em">Growing together.</em>]}
+      lede="Faith grows through God’s Word, prayer, and life with His people. Wherever you are starting, there is a place for you and your family to take a next step."
+      action={{ label: "Find your next step", to: "#grow-pathways" }}
+      card={{
+        ariaLabel: "Where to start growing",
+        icon: BookOpen,
+        label: "Start here",
+        title: "Bible Study & Prayer",
+        details: bibleStudy ? [{ icon: CalendarDays, text: `${bibleStudy.frequency} · ${bibleStudy.time}` }] : undefined,
+        link: { label: "Explore this pathway", to: "/grow/bible-study-prayer" }
+      }}
+    />
 
     <section className="grow-pathways reveal" ref={pathwaysRef} id="grow-pathways" aria-labelledby="grow-pathways-title">
       <SectionHeader eyebrow="One church · Every generation" title="Choose a place to grow" text="Each pathway is designed to help you know Christ more deeply and follow Him in everyday life." />
@@ -66,8 +61,8 @@ export default function Grow() {
       </div>
     </section>
 
-    <section className="grow-word-band" aria-labelledby="grow-word-title">
-      <blockquote><p>“Grow in the grace and knowledge of our Lord and Savior Jesus Christ.”</p><cite>2 Peter 3:18</cite></blockquote>
+    <section className="grow-word-band verse-band" aria-labelledby="grow-word-title">
+      <div className="verse-visual"><img src={siteImages.growTower.src} alt={siteImages.growTower.alt} width={1200} height={1500} loading="lazy" style={{ aspectRatio: "1 / 1", objectPosition: "center 14%" }} /><blockquote><p>“Grow in the grace and knowledge of our Lord and Savior Jesus Christ.”</p><cite>2 Peter 3:18</cite></blockquote></div>
       <div><span className="eyebrow">Grow through the Word</span><h2 id="grow-word-title">Take Scripture with you.</h2><p>Watch biblical messages wherever your week takes you.</p><Link to="/sermons">Watch messages <ArrowRight size={15} /></Link></div>
     </section>
 

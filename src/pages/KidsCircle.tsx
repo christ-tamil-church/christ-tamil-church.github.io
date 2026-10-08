@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, CalendarDays, Heart, MessageCircleQuestion, Search, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { Link } from "react-router-dom";
+import InnerHero from "../components/InnerHero";
 import RelatedLinks, { type RelatedLink } from "../components/RelatedLinks";
 import SectionHeader from "../components/SectionHeader";
 import { siteImages } from "../data/images";
@@ -26,22 +27,28 @@ export default function KidsCircle() {
   const parentRef = useRevealOnScroll<HTMLElement>();
 
   return <>
-    <section className="kc-hero" aria-labelledby="kc-title">
-      <div className="kc-hero-copy">
-        <span className="kc-hero-kicker"><span lang="ta">குழந்தைகள் வட்டம்</span><small>Grow</small></span>
-        <h1 id="kc-title">A little space for faith to <em>bud and bloom.</em></h1>
-        <p>During Sunday worship, Kids Circle gives children a brief, joyful place to hear God’s Word, ask questions, make friends, and know they are loved.</p>
-        <Link className="kc-primary" to="/visit">Plan a family visit <ArrowRight size={17}/></Link>
-      </div>
-      <div className="kc-hero-visual">
-        <img src={siteImages.kidsCircleNameOrnaments.src} alt={siteImages.kidsCircleNameOrnaments.alt} width="1400" height="1050" fetchPriority="high" style={{objectPosition:siteImages.kidsCircleNameOrnaments.objectPosition}} />
-        <aside className="kc-hero-card" aria-label="Kids Circle details"><span className="kc-hero-card-icon" aria-hidden="true"><UsersRound size={20}/></span><div className="kc-hero-card-body"><small>During Sunday worship</small><strong>Kids Circle</strong><ul><li><CalendarDays size={15}/> Every Sunday</li><li><ShieldCheck size={15}/> Warm and child-friendly</li></ul></div><Link to="/contact">Ask a parent question <ArrowRight size={14}/></Link></aside>
-      </div>
-    </section>
+    <InnerHero
+      titleId="kc-title"
+      kicker={{ ta: "குழந்தைகள் வட்டம்", en: "Grow" }}
+      title={<>A little space for faith to <em>bud and bloom.</em></>}
+      lede="During Sunday worship, Kids Circle gives children a brief, joyful place to hear God’s Word, ask questions, make friends, and know they are loved."
+      action={{ label: "Plan a family visit", to: "/visit" }}
+      card={{
+        ariaLabel: "Kids Circle details",
+        icon: UsersRound,
+        label: "During Sunday worship",
+        title: "Kids Circle",
+        details: [
+          { icon: CalendarDays, text: "Every Sunday" },
+          { icon: ShieldCheck, text: "Warm and child-friendly" }
+        ],
+        link: { label: "Ask a parent question", to: "/contact" }
+      }}
+    />
 
     <section className="kc-experience reveal" ref={experienceRef} aria-labelledby="kc-experience-title">
       <SectionHeader eyebrow="A joyful moment in worship" title="What children experience" text="Kids Circle is intentionally brief, accessible, and full of opportunities for children to participate." />
-      <div className="kc-experience-list" id="kc-experience-title">{experiences.map((item,index)=>{const Icon=item.icon;return <article className="kc-experience-row" key={item.title} data-reveal-child><span className="kc-row-number">{formatStep(index)}</span><span className="kc-row-icon"><Icon size={21}/></span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>;})}</div>    </section>
+      <div className="kc-experience-body"><div className="kc-experience-list" id="kc-experience-title">{experiences.map((item,index)=>{const Icon=item.icon;return <article className="kc-experience-row" key={item.title} data-reveal-child><span className="kc-row-number">{formatStep(index)}</span><span className="kc-row-icon"><Icon size={21}/></span><div><h3>{item.title}</h3><p>{item.text}</p></div></article>;})}</div><img className="kc-experience-photo" src={siteImages.kidsCircleNameOrnaments.src} alt={siteImages.kidsCircleNameOrnaments.alt} width="1400" height="1050" loading="lazy" style={{objectPosition:siteImages.kidsCircleNameOrnaments.objectPosition}} /></div></section>
 
     <section className="kc-parent-band reveal" ref={parentRef} aria-labelledby="kc-parent-title">
       <div className="kc-parent-copy"><span className="eyebrow">For parents</span><h2 id="kc-parent-title">Brief, meaningful, and part of worship.</h2><p>Kids Circle is not a separate children’s service. It is a welcoming moment within Sunday worship where children receive concise Bible teaching before continuing through the service with their family.</p><ul><li><Sparkles size={18}/><span>Designed for children’s attention</span></li><li><BookOpen size={18}/><span>Rooted in God’s Word</span></li><li><ShieldCheck size={18}/><span>Led with warmth and care</span></li></ul></div>

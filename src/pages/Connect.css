@@ -29,7 +29,7 @@
   gap: 12px;
   width: max-content;
   margin: 0 0 18px;
-  color: var(--gold);
+  color: var(--clay-dark);
   font-family: var(--font-mono);
   font-size: .72rem;
   font-weight: 800;
@@ -59,21 +59,11 @@
 }
 
 .connect-heading > p:last-child,
-.connect-fellowship-copy > p,
-.connect-care p {
+.connect-fellowship-copy > p:not(.connect-eyebrow),
+.connect-care p:not(.connect-eyebrow) {
   color: var(--muted);
   font-size: 16px;
   line-height: 1.72;
-}
-
-.connect-icon {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  color: var(--primary);
-  background: var(--sage);
-  border-radius: var(--radius-pill);
 }
 
 .connect-text-link {
@@ -96,171 +86,6 @@
 .connect-page a:focus-visible {
   outline: 3px solid var(--light);
   outline-offset: 4px;
-}
-
-.connect-page .connect-hero {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  align-items: center;
-  min-height: 690px;
-  padding: 0;
-  background: linear-gradient(115deg, #fff 0%, var(--canvas) 63%, var(--sage) 100%);
-  border: 0;
-}
-
-.connect-page .connect-hero::after {
-  position: absolute;
-  inset: 0 0 0 52%;
-  background:
-    radial-gradient(circle at 58% 36%, rgba(141, 198, 63, .22), transparent 36%),
-    linear-gradient(135deg, transparent 49%, rgba(21, 61, 43, .055) 49.2%, transparent 49.5%);
-  content: "";
-  opacity: .7;
-  pointer-events: none;
-}
-
-.connect-hero-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
-  align-items: center;
-  gap: clamp(48px, 6vw, 96px);
-  padding-block: 100px;
-}
-
-.connect-hero-copy {
-  max-width: 730px;
-  animation: connectFadeUp 760ms var(--ease-out) both;
-}
-
-.connect-hero-kicker {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 10px;
-  width: max-content;
-  margin: 0 0 20px;
-}
-
-.connect-hero-kicker span[lang="ta"] {
-  color: var(--green-deep);
-  font-family: var(--font-tamil);
-  font-size: clamp(1.3rem, 2.4vw, 2rem);
-  font-weight: 500;
-  line-height: 1.1;
-}
-
-.connect-hero-kicker small {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, .72);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: .68rem;
-  font-weight: 800;
-  letter-spacing: .2em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.connect-page .connect-hero h1 {
-  max-width: 10.5ch;
-  margin: 18px 0 28px;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(3.8rem, 7vw, 7.2rem);
-  font-weight: 300;
-  letter-spacing: -.03em;
-  line-height: .94;
-}
-
-.connect-page .connect-hero h1 em {
-  color: var(--green-deep);
-  font-family: inherit;
-  font-weight: inherit;
-}
-
-.connect-page .connect-hero .connect-hero-lede {
-  max-width: 56ch;
-  margin: 0 0 34px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.72;
-}
-
-.connect-hero-visual {
-  display: grid;
-  gap: 14px;
-}
-
-/* Compact Sunday card under the collage: icon beside label, title, details. */
-.connect-sunday-card {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px 22px;
-  background: rgba(255, 254, 250, .97);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: var(--shadow-card);
-  animation: connectFadeUp 760ms 760ms var(--ease-out) both;
-}
-
-.connect-sunday-card .connect-icon {
-  flex: 0 0 auto;
-}
-
-.connect-card-label {
-  margin: 2px 0 6px;
-  color: var(--primary);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .18em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.connect-sunday-card h2 {
-  margin: 0;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: 1.35rem;
-  font-weight: 400;
-  line-height: 1.1;
-}
-
-.connect-sunday-card > p:not(.connect-card-label) {
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.65;
-}
-
-.connect-card-details {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-  margin: 10px 0 0;
-}
-
-.connect-card-details span {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.45;
-}
-
-.connect-card-details svg {
-  flex: 0 0 auto;
-  color: var(--green-deep);
 }
 
 .connect-fellowship-grid {
@@ -300,14 +125,12 @@
   color: var(--ink);
   background: rgba(255, 254, 250, .92);
   border-radius: var(--radius-pill);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.connect-fellowship-copy > p {
+.connect-fellowship-copy > p:not(.connect-eyebrow) {
   max-width: 58ch;
   margin: 24px 0;
 }
@@ -383,6 +206,20 @@
   transform: scaleY(1);
 }
 
+.connect-tradition-list article.has-photo {
+  grid-template-columns: 44px 34px 1fr 176px;
+}
+
+.connect-tradition-photo {
+  display: block;
+  width: 176px;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+}
+
 .connect-tradition-number {
   display: grid;
   place-items: center;
@@ -435,20 +272,19 @@
   gap: clamp(64px, 9vw, 132px);
 }
 
-.connect-care-mark {
-  display: grid;
-  place-items: center;
-  width: 76px;
-  height: 76px;
-  color: var(--primary);
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
+.connect-care-photo {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 1100 / 660;
+  object-fit: cover;
+  border-radius: 18px;
   box-shadow: var(--shadow-card);
 }
 
 .connect-care-intro .connect-eyebrow {
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .connect-care-intro h2 {
@@ -494,17 +330,7 @@
   margin: 20px 0 28px;
 }
 
-@keyframes connectFadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: none; }
-}
-
 @media (max-width: 1120px) {
-  .connect-hero-grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
-    gap: clamp(28px, 4vw, 48px);
-  }
-
   .connect-care-grid {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -516,17 +342,9 @@
 }
 
 @media (max-width: 900px) {
-  .connect-page .connect-hero {
-    min-height: auto;
-  }
-
   .connect-fellowship-grid,
   .connect-traditions-grid {
     grid-template-columns: 1fr;
-  }
-
-  .connect-hero-grid {
-    padding-block: 82px;
   }
 
   .connect-fellowship-grid,
@@ -535,7 +353,7 @@
   }
 
   .connect-fellowship-photo {
-    width: min(72vw, 510px);
+    width: 100%;
   }
 
   .connect-traditions .connect-heading {
@@ -543,11 +361,18 @@
   }
 }
 
-/* Narrow screens: stack the hero and let the collage use the full width. */
+/* Narrow screens: tradition photos drop below their text. */
 @media (max-width: 760px) {
-  .connect-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 44px;
+  .connect-tradition-list article.has-photo {
+    grid-template-columns: 44px 34px 1fr;
+  }
+
+  .connect-tradition-photo {
+    grid-column: 3;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 10;
+    margin-top: 6px;
   }
 }
 
@@ -560,30 +385,19 @@
     padding: 64px 0;
   }
 
-  .connect-hero-grid {
-    padding-block: 68px;
-  }
-
-  .connect-page .connect-hero h1 {
-    font-size: clamp(3.15rem, 15vw, 4.6rem);
-  }
-
-  .connect-page .connect-hero .connect-hero-lede {
-    font-size: 16px;
-  }
-
-  .connect-sunday-card {
-    padding: 16px 18px;
-  }
-
   .connect-fellowship-photo figcaption {
     right: 10px;
     bottom: 10px;
-    font-size: 9px;
+    font-size: 12px;
   }
 
-  .connect-tradition-list article {
+  .connect-tradition-list article,
+  .connect-tradition-list article.has-photo {
     grid-template-columns: 40px 1fr;
+  }
+
+  .connect-tradition-photo {
+    grid-column: 2;
   }
 
   .connect-tradition-list article > svg {

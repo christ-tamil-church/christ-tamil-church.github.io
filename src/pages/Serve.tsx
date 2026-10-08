@@ -4,11 +4,11 @@ import {
   Package,
   Utensils
 } from "lucide-react";
-import PathwayMarker from "../components/PathwayMarker";
+import InnerHero from "../components/InnerHero";
 import { siteImages } from "../data/images";
+import { pathwayLabels } from "../data/ministryPathways";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import "./Serve.css";
-import "./PageHeroTypography.css";
 
 const outreachActivities = [
   {
@@ -40,47 +40,36 @@ export default function Serve() {
 
   return (
     <div className="ctc-serve-page">
-      <section className="ctc-serve-hero" aria-labelledby="serve-title">
-        <div className="ctc-serve-shell ctc-serve-hero-grid">
-          <div className="ctc-serve-hero-copy">
-            <PathwayMarker pathway="serve" className="ctc-serve-hero-kicker" />
-            <h1 id="serve-title">
-              Love your neighbor in <em>practical ways.</em>
-            </h1>
-            <p className="ctc-serve-hero-lede">
-              Grow in Christ as you care for our neighbors through food, generosity,
-              prayer, and a willing heart.
-            </p>
-          </div>
-
-          <figure className="ctc-serve-hero-visual">
-            <span className="ctc-serve-hero-photo">
-              <img
-                src={siteImages.outreachHeroPacking.src}
-                alt={siteImages.outreachHeroPacking.alt}
-                width={960}
-                height={720}
-                fetchPriority="high"
-              />
-            </span>
-            <figcaption>
-              <span className="ctc-serve-hero-icon" aria-hidden="true">
-                <CalendarDays size={20} />
-              </span>
-              <span>
-                <small>Community outreach</small>
-                <strong>Saturday before Communion Sunday</strong>
-              </span>
-            </figcaption>
-          </figure>
-        </div>
-      </section>
+      <InnerHero
+        titleId="serve-title"
+        kicker={pathwayLabels.serve}
+        title={<>Love your neighbor in <em>practical ways.</em></>}
+        lede="Grow in Christ as you care for our neighbors through food, generosity, prayer, and a willing heart."
+        action={{ label: "Ask about serving", to: "/contact" }}
+        card={{
+          ariaLabel: "Next community outreach",
+          icon: CalendarDays,
+          label: "Community outreach",
+          title: "Saturday before Communion Sunday",
+          details: [
+            { icon: Package, text: "Food packing, meals, and donation drives" }
+          ]
+        }}
+      />
 
       <section className="ctc-serve-story" aria-labelledby="serve-story-title">
         <div className="ctc-serve-shell ctc-serve-story-grid ctc-serve-reveal" ref={storyRef}>
           <header>
             <p className="ctc-serve-eyebrow">Serving to grow in Christ</p>
             <h2 id="serve-story-title">Compassion becomes visible when we serve.</h2>
+            <img
+              className="ctc-serve-story-photo"
+              src={siteImages.outreachHeroPacking.src}
+              alt={siteImages.outreachHeroPacking.alt}
+              width={960}
+              height={720}
+              loading="lazy"
+            />
           </header>
           <div className="ctc-serve-story-copy">
             <p>

@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, CalendarDays, Heart, Lightbulb, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { Link } from "react-router-dom";
+import InnerHero from "../components/InnerHero";
 import RelatedLinks, { type RelatedLink } from "../components/RelatedLinks";
 import SectionHeader from "../components/SectionHeader";
 import { siteImages } from "../data/images";
@@ -27,18 +28,24 @@ export default function SundaySchool() {
   const parentRef = useRevealOnScroll<HTMLElement>();
 
   return <>
-    <section className="ss-hero" aria-labelledby="ss-title">
-      <div className="ss-hero-copy">
-        <span className="ss-hero-kicker"><span lang="ta">ஞாயிறு பள்ளி</span><small>Grow</small></span>
-        <h1 id="ss-title">Helping children grow strong in <em>God’s Word.</em></h1>
-        <p>B.L.A.S.T.—Bible Learning And Spiritual Training—helps children experience the gospel in a joyful, memorable, and age-appropriate way.</p>
-        <Link className="ss-primary" to="/visit">Plan a family visit <ArrowRight size={17}/></Link>
-      </div>
-      <div className="ss-hero-visual">
-        <img src={siteImages.sundaySchoolColoring.src} alt={siteImages.sundaySchoolColoring.alt} width="1440" height="1796" style={{objectPosition:siteImages.sundaySchoolColoring.objectPosition}} />
-        <aside className="ss-hero-card" aria-label="Sunday School details"><span className="ss-hero-card-icon" aria-hidden="true"><Sparkles size={20}/></span><div className="ss-hero-card-body"><small>Every Sunday</small><strong>B.L.A.S.T. Sunday School</strong><ul><li><CalendarDays size={15}/> During the sermon</li><li><UsersRound size={15}/> Kids of all ages welcome</li></ul></div><Link to="/contact">Ask a parent question <ArrowRight size={14}/></Link></aside>
-      </div>
-    </section>
+    <InnerHero
+      titleId="ss-title"
+      kicker={{ ta: "ஞாயிறு பள்ளி", en: "Grow" }}
+      title={<>Helping children grow strong in <em>God’s Word.</em></>}
+      lede="B.L.A.S.T.—Bible Learning And Spiritual Training—helps children experience the gospel in a joyful, memorable, and age-appropriate way."
+      action={{ label: "Plan a family visit", to: "/visit" }}
+      card={{
+        ariaLabel: "Sunday School details",
+        icon: Sparkles,
+        label: "Every Sunday",
+        title: "B.L.A.S.T. Sunday School",
+        details: [
+          { icon: CalendarDays, text: "During the sermon" },
+          { icon: UsersRound, text: "Kids of all ages welcome" }
+        ],
+        link: { label: "Ask a parent question", to: "/contact" }
+      }}
+    />
 
     <section className="ss-blast reveal" ref={blastRef} aria-labelledby="ss-blast-title">
       <SectionHeader eyebrow="Join in · Team up · Get strong" title="What B.L.A.S.T. means" text="Five simple ideas shape a Sunday School experience children can understand and remember." />
@@ -52,7 +59,7 @@ export default function SundaySchool() {
 
     <section className="ss-difference" aria-labelledby="ss-difference-title"><div><span className="eyebrow">Two moments · One purpose</span><h2 id="ss-difference-title">Kids Circle and Sunday School are different.</h2><p>Both help children know God’s love, but each has a distinct place in the Sunday experience.</p></div><div className="ss-difference-rows"><Link to="/grow/kids-circle"><span>During worship</span><strong>Kids Circle</strong><p>A brief, child-friendly teaching moment as part of the service.</p><ArrowRight size={17}/></Link><article><span>During the sermon</span><strong>B.L.A.S.T. Sunday School</strong><p>A fuller, structured time of Bible learning and spiritual formation.</p><BookOpen size={19}/></article></div></section>
 
-    <section className="ss-verse" aria-labelledby="ss-verse-title"><blockquote><p>“Let the little children come to me.”</p><cite>Matthew 19:14</cite></blockquote><div><span className="eyebrow">Children belong here</span><h2 id="ss-verse-title">Faith can take root at every age.</h2><p>Children are not an interruption to church life. They are a treasured part of our church family, learning to worship and follow Jesus alongside us.</p></div></section>
+    <section className="ss-verse verse-band" aria-labelledby="ss-verse-title"><div className="verse-visual"><img src={siteImages.sundaySchoolColoring.src} alt={siteImages.sundaySchoolColoring.alt} width="1440" height="1796" loading="lazy" style={{ objectPosition: siteImages.sundaySchoolColoring.objectPosition }} /><blockquote><p>“Let the little children come to me.”</p><cite>Matthew 19:14</cite></blockquote></div><div><span className="eyebrow">Children belong here</span><h2 id="ss-verse-title">Faith can take root at every age.</h2><p>Children are not an interruption to church life. They are a treasured part of our church family, learning to worship and follow Jesus alongside us.</p></div></section>
 
     <section className="ss-related" aria-labelledby="ss-related-title"><SectionHeader eyebrow="Continue growing" title="More for your family"/><RelatedLinks items={related} className="ss-related-list" id="ss-related-title" /><p className="ss-sunday-note">Join us {churchInfo.worship.schedule}. We’ll help your family know where to go when you arrive.</p></section>
   </>;

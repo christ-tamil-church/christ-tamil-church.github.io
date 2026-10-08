@@ -222,7 +222,7 @@ export const siteImages = {
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Fellowship hero collage (autumn-film grade)",
+    usage: "Connect traditions row: Summer Picnic (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipHarvest: {
@@ -232,7 +232,7 @@ export const siteImages = {
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Fellowship hero collage (autumn-film grade)",
+    usage: "Connect traditions row: Harvest Festival (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipCampfire: {
@@ -242,7 +242,7 @@ export const siteImages = {
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Fellowship hero collage (autumn-film grade)",
+    usage: "Connect life-together band (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipCarnival: {
@@ -252,7 +252,7 @@ export const siteImages = {
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Fellowship hero collage (autumn-film grade)",
+    usage: "Connect traditions row: Summer Carnival (autumn-film grade)",
     objectPosition: "center 40%"
   },
   fellowshipChristmas: {
@@ -262,7 +262,7 @@ export const siteImages = {
     creditName: "Christ Tamil Church",
     creditUrl: "",
     unsplashUrl: "",
-    usage: "Fellowship hero collage (autumn-film grade)",
+    usage: "Connect traditions row: Carol Rounds (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipTable: {
