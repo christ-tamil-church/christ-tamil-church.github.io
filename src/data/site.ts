@@ -31,7 +31,7 @@ export const churchInfo = {
 // Update this single object when the featured weekly scripture changes.
 export const verseOfTheWeek = {
   label: "Verse of the Week",
-  text: "என்னைப் பெலப்படுத்துகிற கிறிஸ்துவினாலே எல்லாவற்றையும் செய்ய எனக்குப் பெலனுண்டு.",
+  text: "என்னைப் பெலப்படுத்துகிற கிறிஸ்துவினாலே எல்லாவற்றையுஞ்செய்ய எனக்குப் பெலனுண்டு.",
   reference: "Philippians 4:13"
 } as const;
 

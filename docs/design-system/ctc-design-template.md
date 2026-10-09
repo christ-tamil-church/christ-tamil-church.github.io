@@ -96,14 +96,17 @@ former `--ql-*` palette has been replaced by the canonical tokens above.
 | Section headline (h2) | Fraunces 300–500 | `clamp(30px, 4.4vw, 56px)`, line-height ~1.04 |
 | Body / UI / buttons | Space Grotesk 300–600 | 16–17px body, line-height 1.6; buttons use the stronger available weights |
 | Eyebrow / kicker / cite | Space Grotesk or the `--font-mono` fallback stack | 11–12px, uppercase, `letter-spacing: .16–.24em`, color `--gold` (eyebrows) or `--green-deep` (citations) |
-| Tamil | Catamaran 300–800 | Sentence case, minimal tracking; pair with an English small-caps reference badge (see hero kicker) |
+| Tamil display & Scripture | Noto Serif Tamil 300/400, italic 400 | Always `lang="ta"`, `letter-spacing: 0`, line-height ≥1.28 (vowel signs sit above and below). Size ~0.85× the Latin display size it replaces, since Tamil reads larger. **Upright = welcome/headline voice; italic = Scripture voice** (plus the one accent word). |
+| Tamil UI labels | Catamaran 300–800 | Sentence case, minimal tracking; pair with an English small-caps reference badge (see hero kicker) |
 
 Patterns:
 
 - **Accent word:** the final/subject word of a display headline may be colored
   `--green-deep` (optionally italic Fraunces).
 - **Tamil first:** where scripture leads a page, the Tamil phrase leads and the
-  reference sits in a small pill badge (see `.ctc-hero-kicker`).
+  reference sits in a small pill badge (see `.ctc-hero-kicker`). Scripture
+  quotes are Tamil (Noto Serif Tamil italic) with the English reference in
+  the mono cite.
 - Sentence case for body and headings; Title Case for ministry names.
   Uppercase only for mono eyebrows/labels.
 
@@ -131,7 +134,10 @@ The homepage hero is the master pattern (see `src/pages/Home.tsx`):
 
 1. **Kicker** (`.ctc-hero-kicker`): Tamil phrase in Catamaran/Fraunces green
    + small uppercase reference badge in a white pill.
-2. **Display headline** (`.ctc-hero-title`): Fraunces, ink.
+2. **Display headline** (`.ctc-hero-title`): on the homepage, Tamil-first in
+   Noto Serif Tamil. The invitation word "வாரும்," leads in green italic at
+   ~1.4× and the phrase lines follow in light 300 ink. Inner pages use
+   Fraunces, ink.
 3. **Lede** (`.ctc-hero-lede`): 1–2 sentences of visitor-focused copy.
 4. **One primary CTA** — never a pair of competing buttons in a hero.
 5. Optional full-bleed photo with a white wash gradient
