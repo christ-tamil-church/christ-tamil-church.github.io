@@ -60,11 +60,14 @@ export default function Events() {
         }}
       />
 
-      <section className="ctc-events-upcoming" id="upcoming-events" aria-labelledby="upcoming-title">
+      <section className="ctc-events-upcoming" id="upcoming-events" aria-label="Upcoming events">
         <div className="ctc-events-shell">
           <header className="ctc-events-list-heading">
-            <p>Church life · சபை வாழ்க்கை</p>
-            <h2 id="upcoming-title">Upcoming at CTC.</h2>
+            <p>
+              <span>Every week, all year</span>
+              <span className="ctc-events-list-heading-dot" aria-hidden="true">·</span>
+              <span lang="ta">வாரந்தோறும், ஆண்டு முழுவதும்</span>
+            </p>
           </header>
 
           {churchEvents.length ? (
