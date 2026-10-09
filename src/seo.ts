@@ -26,7 +26,7 @@ const place = `${churchInfo.address.city}, ${churchInfo.address.state}`;
 export const pageMeta = {
   "/": {
     title: "Christ Tamil Church – Tamil Church in Chicago (Downers Grove)",
-    description: `A Tamil and English Christian church family in ${place}, serving Chicago and the western suburbs since 2015. Join us ${sunday}.`
+    description: `A Tamil Christian church family serving Chicago and the surrounding suburbs. Join us ${sunday} at ${churchInfo.address.short}.`
   },
   "/visit": {
     label: "Plan Your Visit",
