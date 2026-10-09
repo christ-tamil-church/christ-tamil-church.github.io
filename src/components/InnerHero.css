@@ -18,7 +18,7 @@
 .inner-hero-copy {
   position: relative;
   z-index: 1;
-  width: min(calc(100% - 48px), var(--container));
+  width: min(calc(100% - 56px), var(--container));
   margin-inline: auto;
   padding-block: clamp(64px, 7vw, 104px) clamp(72px, 8vw, 112px);
   animation: innerHeroRise 760ms var(--ease-out) both;
@@ -286,11 +286,10 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
     gap: 36px;
   }
 
-  /* Stacked under the copy, the card shares its left edge instead of
-     floating against the right gutter. */
+  /* Stacked under the copy, the card spans the full content width so it
+     closes the hero instead of floating in a half-empty row. */
   .inner-hero-card {
-    max-width: 560px;
-    justify-self: start;
+    justify-self: stretch;
   }
 }
 
@@ -304,7 +303,7 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
 
 @media (max-width: 620px) {
   .inner-hero-copy {
-    width: min(calc(100% - 32px), var(--container));
+    width: min(calc(100% - 40px), var(--container));
     padding-block: 48px 64px;
   }
 
