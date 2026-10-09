@@ -286,8 +286,11 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
     gap: 36px;
   }
 
+  /* Stacked under the copy, the card shares its left edge instead of
+     floating against the right gutter. */
   .inner-hero-card {
     max-width: 560px;
+    justify-self: start;
   }
 }
 
