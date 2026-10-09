@@ -286,10 +286,11 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
     gap: 36px;
   }
 
-  /* Stacked under the copy, the card spans the full content width so it
-     closes the hero instead of floating in a half-empty row. */
+  /* Stacked under the copy, the card sits centred with equal breathing room
+     on both sides. */
   .inner-hero-card {
-    justify-self: stretch;
+    width: min(100% - 48px, 560px);
+    justify-self: center;
   }
 }
 
@@ -319,6 +320,7 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
   }
 
   .inner-hero-card {
+    width: calc(100% - 24px);
     gap: 14px;
     padding: 20px 20px 16px;
   }
