@@ -8,6 +8,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import InnerHero from "../components/InnerHero";
 import { beliefs, churchInfo } from "../data/site";
 import { useRevealGroup } from "../hooks/useRevealGroup";
 import "./Visit.css";
@@ -26,30 +27,24 @@ export default function Visit() {
 
   return (
     <main className="visit-page" ref={pageRef}>
-      <section className="visit-hero" aria-labelledby="visit-title">
-        <div className="visit-shell visit-hero-grid">
-          <div className="visit-hero-copy">
-            <p className="visit-hero-kicker">
-              <span lang="ta">வரவேற்கிறோம்</span>
-              <small>I’m New</small>
-            </p>
-            <h1 id="visit-title">A church home where you can <em>belong.</em></h1>
-            <p className="visit-hero-lede">Whether this is your first time in church or you are looking for a Tamil Christian community, we would love to welcome you this Sunday.</p>
-          </div>
-
-          <aside className="visit-sunday-card" aria-label="This Sunday at Christ Tamil Church">
-            <span className="visit-icon"><CalendarDays size={22} aria-hidden="true" /></span>
-            <p className="visit-card-label">This Sunday</p>
-            <h2>{churchInfo.worship.time}</h2>
-            <ul>
-              <li><Clock size={17} aria-hidden="true" /> Worship begins at 10:30</li>
-              <li><MapPin size={17} aria-hidden="true" /> {churchInfo.address.short}</li>
-              <li><Coffee size={17} aria-hidden="true" /> Fellowship after worship</li>
-            </ul>
-            <a href={churchInfo.address.directionsUrl} target="_blank" rel="noreferrer">Get directions <ArrowRight size={16} aria-hidden="true" /></a>
-          </aside>
-        </div>
-      </section>
+      <InnerHero
+        titleId="visit-title"
+        kicker={{ ta: "வரவேற்கிறோம்", en: "I’m New" }}
+        title={["A church home", <>where you can <em>belong.</em></>]}
+        lede="Whether this is your first time in church or you are looking for a Tamil Christian community, we would love to welcome you this Sunday."
+        card={{
+          ariaLabel: "This Sunday at Christ Tamil Church",
+          icon: CalendarDays,
+          label: "This Sunday",
+          title: churchInfo.worship.time,
+          details: [
+            { icon: Clock, text: "Worship begins at 10:30" },
+            { icon: MapPin, text: churchInfo.address.short },
+            { icon: Coffee, text: "Fellowship after worship" }
+          ],
+          link: { label: "Get directions", href: churchInfo.address.directionsUrl }
+        }}
+      />
 
       <section className="visit-band visit-welcome visit-reveal" aria-labelledby="welcome-title">
         <div className="visit-shell visit-split">

@@ -37,6 +37,9 @@ import worshipEaster from "../assets/images/worship-easter.jpg";
 import worshipHall from "../assets/images/worship-fellowship-hall.jpg";
 import worshipKidsChoir from "../assets/images/worship-kids-choir.jpg";
 import worshipTeam from "../assets/images/worship-team-cross.jpg";
+import prayerFastingBowed from "../assets/images/prayer-fasting-bowed.jpg";
+import prayerTamilBible from "../assets/images/prayer-tamil-bible.jpg";
+import worshipSundayService from "../assets/images/worship-sunday-service.jpg";
 import worshipTeamStage from "../assets/images/worship-team-red-stage.jpg";
 import worshipTeamScreens from "../assets/images/worship-team-screens.jpg";
 import worshipYouth from "../assets/images/worship-youth.jpg";
@@ -273,6 +276,36 @@ export const siteImages = {
     creditUrl: "",
     unsplashUrl: "",
     usage: "Fellowship hour section (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  prayerFastingBowed: {
+    id: "christian-harb-congregation-prayer-graded",
+    src: prayerFastingBowed,
+    alt: "A congregation standing with heads bowed together in prayer",
+    creditName: "Christian Harb",
+    creditUrl: `https://unsplash.com/@c7arb?${utm}`,
+    unsplashUrl: "https://unsplash.com/photos/a-crowd-of-people-bowing-their-heads-in-prayer-I5WoV6h36n0",
+    usage: "Fasting Prayer event card (Unsplash stock placeholder, autumn-film grade)",
+    objectPosition: "center center"
+  },
+  prayerTamilBible: {
+    id: "ctc-prayer-tamil-bible",
+    src: prayerTamilBible,
+    alt: "A Tamil Bible open at Psalms 22 and 23, with a sprig of frosted berries resting on the pages",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Prayer Conference event card (autumn-film grade)",
+    objectPosition: "center center"
+  },
+  worshipSundayService: {
+    id: "ctc-worship-sunday-service",
+    src: worshipSundayService,
+    alt: "The congregation standing to sing during Sunday worship, the pastor at the altar beneath the lit cross",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Sunday Worship Service event card (autumn-film grade)",
     objectPosition: "center center"
   },
   fellowshipHourHall: {

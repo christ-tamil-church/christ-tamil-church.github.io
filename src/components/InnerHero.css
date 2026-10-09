@@ -198,6 +198,28 @@ body .inner-hero h1.inner-hero-title:not(.is-lined) {
   color: var(--primary);
 }
 
+/* Detail rows can hold a direct contact link (phone, email). */
+.inner-hero-card-details a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-block: -11px;
+  color: inherit;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-out);
+}
+
+.inner-hero-card-details a:hover {
+  color: var(--primary);
+}
+
+.inner-hero-card-details a:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
 .inner-hero-card-link {
   display: inline-flex;
   align-items: center;

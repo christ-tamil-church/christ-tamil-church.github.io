@@ -1489,3 +1489,13 @@
     opacity: 0.18;
   }
 }
+
+/* Tamil verse of the week: the line is longer than the English, so it may
+   wrap (balanced) inside the ribbon instead of running under the Sunday card. */
+html body .ctc-hero-weekly-verse p[lang="ta"] {
+  min-width: 0;
+  font-size: clamp(0.98rem, 1.12vw, 1.18rem);
+  line-height: 1.5;
+  white-space: normal;
+  text-wrap: balance;
+}

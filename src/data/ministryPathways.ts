@@ -65,7 +65,6 @@ export const ministryPathways: MinistryPathway[] = [
     ministries: [
       { name: "Sunday School" },
       { name: "Youth Group, Women’s Fellowship & Men’s Fellowship" },
-      { name: "Cottage Prayer Meetings" },
       { name: "Monthly Fasting Prayer & Annual Family Camp" },
       { name: "Intercessory Prayer" },
       { name: "Weekly Bible Study" }

@@ -62,7 +62,7 @@ export default function Grow() {
     </section>
 
     <section className="grow-word-band verse-band" aria-labelledby="grow-word-title">
-      <div className="verse-visual"><img src={siteImages.growTower.src} alt={siteImages.growTower.alt} width={1200} height={1500} loading="lazy" style={{ aspectRatio: "1 / 1", objectPosition: "center 14%" }} /><blockquote><p>“Grow in the grace and knowledge of our Lord and Savior Jesus Christ.”</p><cite>2 Peter 3:18</cite></blockquote></div>
+      <div className="verse-visual"><img src={siteImages.growTower.src} alt={siteImages.growTower.alt} width={1200} height={1500} loading="lazy" style={{ aspectRatio: "1 / 1", objectPosition: "center 14%" }} /><blockquote><p lang="ta">“நம்முடைய கர்த்தரும் இரட்சகருமாகிய இயேசுகிறிஸ்துவின் கிருபையிலும் அவரை அறிகிற அறிவிலும் வளருங்கள்.”</p><cite>2 Peter 3:18</cite></blockquote></div>
       <div><span className="eyebrow">Grow through the Word</span><h2 id="grow-word-title">Take Scripture with you.</h2><p>Watch biblical messages wherever your week takes you.</p><Link to="/sermons">Watch messages <ArrowRight size={15} /></Link></div>
     </section>
 

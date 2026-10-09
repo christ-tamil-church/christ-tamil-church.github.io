@@ -13,146 +13,6 @@
   outline-offset: 4px;
 }
 
-.ctc-events-home-hero {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  align-items: center;
-  min-height: 620px;
-  background: linear-gradient(115deg, var(--bg) 0%, var(--canvas) 66%, var(--sage) 100%);
-}
-
-.ctc-events-home-hero::after {
-  position: absolute;
-  inset: 0 0 0 52%;
-  background:
-    radial-gradient(circle at 58% 36%, rgba(141, 198, 63, .18), transparent 36%),
-    linear-gradient(135deg, transparent 49%, rgba(21, 61, 43, .05) 49.2%, transparent 49.5%);
-  content: "";
-  pointer-events: none;
-}
-
-.ctc-events-home-hero-grid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 390px);
-  align-items: center;
-  gap: clamp(58px, 8vw, 116px);
-  padding-block: clamp(84px, 9vw, 122px);
-}
-
-.ctc-events-home-hero-copy {
-  max-width: 760px;
-  animation: ctcEventsCopyIn 760ms var(--ease-out) both;
-}
-
-.ctc-events-hero-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 0 18px;
-}
-
-.ctc-events-hero-kicker span[lang="ta"] {
-  color: var(--green-deep);
-  font-family: var(--font-tamil);
-  font-size: clamp(1.34rem, 2.5vw, 2.08rem);
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: 1.1;
-}
-
-.ctc-events-hero-kicker small {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
-  color: var(--muted);
-  background: rgba(255, 255, 255, .76);
-  border: 1px solid rgba(140, 198, 62, .24);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .24em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.ctc-events-home-hero h1 {
-  max-width: 11.8ch;
-  margin: 22px 0 0;
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-size: var(--text-hero);
-  font-weight: 300;
-  letter-spacing: -.02em;
-  line-height: .94;
-  text-wrap: balance;
-}
-
-.ctc-events-home-hero h1 em {
-  color: var(--green-deep);
-  font-weight: inherit;
-}
-
-.ctc-events-home-hero-lede {
-  max-width: 38ch;
-  margin: 28px 0 0;
-  color: var(--muted);
-  font-family: var(--font-body);
-  font-size: clamp(1.1rem, 1.7vw, 1.42rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.5;
-}
-
-.ctc-events-sunday-card {
-  padding: 34px;
-  background: rgba(255, 254, 250, .97);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: 0 28px 80px rgba(16, 37, 27, .16);
-  animation: ctcEventsCopyIn 760ms 140ms var(--ease-out) both;
-}
-
-.ctc-events-sunday-icon {
-  display: grid;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  color: var(--primary);
-  background: var(--sage);
-  border-radius: var(--radius-pill);
-}
-
-.ctc-events-sunday-label {
-  margin: 24px 0 8px;
-  color: var(--gold);
-  font-family: var(--font-body);
-  font-size: .72rem;
-  font-weight: 500;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-}
-
-.ctc-events-sunday-card h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 2.6rem;
-  font-weight: 300;
-  letter-spacing: -.02em;
-  line-height: .95;
-}
-
-.ctc-events-sunday-card > p:not(.ctc-events-sunday-label) {
-  margin: 16px 0 24px;
-  color: var(--muted);
-  font-size: .94rem;
-  line-height: 1.65;
-}
-
 .ctc-events-upcoming {
   padding: clamp(86px, 9vw, 132px) 0 clamp(78px, 8vw, 116px);
   background: var(--bg);
@@ -343,26 +203,7 @@
   margin: 0 0 20px;
 }
 
-@keyframes ctcEventsCopyIn {
-  from { opacity: 0; transform: translateY(22px); }
-  to { opacity: 1; transform: none; }
-}
-
 @media (max-width: 900px) {
-  .ctc-events-home-hero {
-    min-height: auto;
-  }
-
-  .ctc-events-home-hero-grid {
-    grid-template-columns: 1fr;
-    gap: 46px;
-    padding-block: 82px;
-  }
-
-  .ctc-events-sunday-card {
-    max-width: 580px;
-  }
-
   .ctc-events-row {
     grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
     gap: 32px;
@@ -373,23 +214,6 @@
 @media (max-width: 620px) {
   .ctc-events-shell {
     width: min(calc(100% - 32px), var(--container));
-  }
-
-  .ctc-events-home-hero-grid {
-    padding-block: 64px;
-  }
-
-  .ctc-events-home-hero h1 {
-    font-size: clamp(3.2rem, 15vw, 5rem);
-  }
-
-  .ctc-events-home-hero-lede {
-    font-size: 1.24rem;
-    line-height: 1.5;
-  }
-
-  .ctc-events-sunday-card {
-    padding: 24px;
   }
 
   .ctc-events-upcoming {

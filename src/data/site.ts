@@ -16,13 +16,14 @@ export const churchInfo = {
       "https://www.google.com/maps/search/?api=1&query=1330%2063rd%20St%20Downers%20Grove%20IL%2060516"
   },
   contact: {
-    phone: "(773) 936-3697",
-    phoneHref: "tel:+17739363697",
+    phone: "(773) 936-3097",
+    phoneHref: "tel:+17739363097",
     email: "info@christtamilchurch.com",
     emailHref: "mailto:info@christtamilchurch.com"
   },
   social: {
     facebookUrl: "https://www.facebook.com/ChristTamilChurchChicago",
+    instagramUrl: "https://www.instagram.com/christtamilchurchchicago/",
     youtubeUrl: churchYoutubeChannelUrl
   }
 } as const;
@@ -30,7 +31,7 @@ export const churchInfo = {
 // Update this single object when the featured weekly scripture changes.
 export const verseOfTheWeek = {
   label: "Verse of the Week",
-  text: "I can do all things through Christ who strengthens me.",
+  text: "என்னைப் பெலப்படுத்துகிற கிறிஸ்துவினாலே எல்லாவற்றையும் செய்ய எனக்குப் பெலனுண்டு.",
   reference: "Philippians 4:13"
 } as const;
 
@@ -60,7 +61,7 @@ export const churchEvents = [
       "Join us for Tamil and English worship, prayer, Scripture, sermon, children's ministry, communion, and fellowship.",
     date: "Every Sunday",
     location: "Christ Tamil Church",
-    image: siteImages.hero.src
+    image: siteImages.worshipSundayService.src
   },
   {
     title: "Sunday School",
@@ -82,7 +83,7 @@ export const churchEvents = [
       "Join us during the week for prayer, encouragement, and spiritual strengthening as a church family.",
     date: "Monday to Thursday",
     location: "UberConference (online)",
-    image: siteImages.prayer.src
+    image: siteImages.prayerTamilBible.src
   },
   {
     title: "Bible Study & Prayer",
@@ -104,7 +105,7 @@ export const churchEvents = [
       "A dedicated time of prayer, fasting, worship, and seeking God together.",
     date: "First Saturday of every month",
     location: "Christ Tamil Church",
-    image: siteImages.prayer.src
+    image: siteImages.prayerFastingBowed.src
   },
   {
     title: "Men's Fellowship",

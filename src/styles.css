@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Space+Grotesk:wght@300;400;500;600&family=Catamaran:wght@300;500;800&family=Noto+Serif+Tamil:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Space+Grotesk:wght@300;400;500;600&family=Catamaran:wght@300;500;800&family=Noto+Serif+Tamil:ital,wght@0,400;1,400&display=swap");
 
 :root {
   color-scheme: light;
@@ -2035,4 +2035,32 @@ select:focus-visible {
     transform: none !important;
     will-change: auto !important;
   }
+}
+
+/* Scripture quotes are shown in Tamil (references stay in English). Fraunces
+   has no Tamil glyphs, so verses use Noto Serif Tamil (the homepage title
+   face) in its true italic, echoing the Fraunces italic quotes, with no
+   negative tracking and extra line-height for the stacked vowel signs. */
+html body blockquote p[lang="ta"] {
+  font-family: "Noto Serif Tamil", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.55;
+}
+
+/* Tamil glyphs sit much larger than Fraunces at the same px, so verse cards
+   step the size and padding down to keep a compact, quiet card (and keep
+   long Tamil words inside it on phones). */
+html body .verse-visual > blockquote:has(> p[lang="ta"]),
+html body .kc-verse blockquote:has(> p[lang="ta"]),
+html body .ctc-serve-story blockquote:has(> p[lang="ta"]) {
+  padding: clamp(22px, 2.6vw, 34px);
+}
+
+html body .verse-visual > blockquote p[lang="ta"],
+html body .kc-verse blockquote p[lang="ta"],
+html body .ctc-serve-story blockquote p[lang="ta"] {
+  margin-bottom: 14px;
+  font-size: clamp(1.05rem, 0.85rem + 0.6vw, 1.4rem);
 }

@@ -83,10 +83,14 @@ export default function Serve() {
               <a href="https://www.fmsc.org/" target="_blank" rel="noreferrer">
                 Feed My Starving Children
               </a>
-              , packing nutritious meals for children in need.
+              , packing nutritious meals for children in need, and volunteering with{" "}
+              <a href="https://www.samaritanspurse.org/" target="_blank" rel="noreferrer">
+                Samaritan&apos;s Purse
+              </a>
+              .
             </p>
             <blockquote>
-              <p>“Blessed are those who are generous, because they feed the poor.”</p>
+              <p lang="ta">“கடாட்சக் கண்ணுள்ளவன் ஆசீர்வதிக்கப்படுவான்; அவன் தன் அப்பத்தில் தரித்திரனுக்குக் கொடுக்கிறான்.”</p>
               <cite>Proverbs 22:9</cite>
             </blockquote>
           </div>

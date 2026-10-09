@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Clock,
   Coffee,
-  HeartHandshake,
   MapPin,
   Music,
   Sparkles,
@@ -36,26 +35,20 @@ const connectTraditions: ConnectTradition[] = [
   },
   {
     number: "02",
-    title: "Family Visits",
-    text: "Fellowship travels beyond the church building as families visit, encourage, pray with, and care for one another.",
-    icon: HeartHandshake
-  },
-  {
-    number: "03",
     title: "Summer Carnival",
     text: "A joyful community celebration where children, parents, friends, and neighbors can share activities, laughter, and hospitality.",
     icon: Sparkles,
     photo: { image: siteImages.fellowshipCarnival, width: 800, height: 1000 }
   },
   {
-    number: "04",
+    number: "03",
     title: "Harvest Festival",
     text: "A seasonal gathering to give thanks for God’s goodness and celebrate with food, family activities, and fellowship.",
     icon: Wheat,
     photo: { image: siteImages.fellowshipHarvest, width: 1100, height: 825 }
   },
   {
-    number: "05",
+    number: "04",
     title: "Carol Rounds",
     text: "At Christmas, we carry songs of hope from home to home and share the joy of Christ’s birth with our church family.",
     icon: Music,

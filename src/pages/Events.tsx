@@ -1,5 +1,6 @@
-import { ArrowRight, CalendarDays, Clock, MapPin } from "lucide-react";
+import { ArrowRight, CalendarDays, Clock, Heart, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import InnerHero from "../components/InnerHero";
 import { churchEvents, churchInfo, type ChurchEvent } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import "./Events.css";
@@ -39,33 +40,25 @@ export default function Events() {
 
   return (
     <div className="ctc-events-page">
-      <section className="ctc-events-home-hero" aria-labelledby="events-title">
-        <div className="ctc-events-shell ctc-events-home-hero-grid">
-          <div className="ctc-events-home-hero-copy">
-            <p className="ctc-events-hero-kicker">
-              <span lang="ta">ஒன்றுகூடுவோம்</span>
-              <small>Events</small>
-            </p>
-            <h1 id="events-title">There is a place for you <em>here.</em></h1>
-            <p className="ctc-events-home-hero-lede">
-              Worship, learn, pray, and share life with our Tamil Christian church family.
-              Explore the rhythms and gatherings that bring us together.
-            </p>
-          </div>
-
-          <aside className="ctc-events-sunday-card" aria-label="Sunday worship invitation">
-            <span className="ctc-events-sunday-icon" aria-hidden="true">
-              <CalendarDays size={22} />
-            </span>
-            <p className="ctc-events-sunday-label">Planning your first visit?</p>
-            <h2>Start with Sunday worship.</h2>
-            <p>Join us each Sunday at {churchInfo.worship.time} in Downers Grove. Children are warmly welcomed.</p>
-            <Link className="ctc-events-row-link" to="/visit">
-              Plan your visit <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </aside>
-        </div>
-      </section>
+      <InnerHero
+        titleId="events-title"
+        kicker={{ ta: "ஒன்றுகூடுவோம்", en: "Events" }}
+        title={["There is a place", <>for you <em>here.</em></>]}
+        lede="Worship, learn, pray, and share life with our Tamil Christian church family. Explore the rhythms and gatherings that bring us together."
+        action={{ label: "See what’s coming up", to: "#upcoming-events" }}
+        card={{
+          ariaLabel: "Sunday worship invitation",
+          icon: CalendarDays,
+          label: "Planning your first visit?",
+          title: "Start with Sunday worship.",
+          details: [
+            { icon: Clock, text: `Each Sunday at ${churchInfo.worship.time}` },
+            { icon: MapPin, text: churchInfo.address.short },
+            { icon: Heart, text: "Children are warmly welcomed" }
+          ],
+          link: { label: "Plan your visit", to: "/visit" }
+        }}
+      />
 
       <section className="ctc-events-upcoming" id="upcoming-events" aria-labelledby="upcoming-title">
         <div className="ctc-events-shell">

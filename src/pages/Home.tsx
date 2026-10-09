@@ -17,7 +17,7 @@ function WeeklyVerse({ className = "" }: { className?: string }) {
     >
       <span>{verseOfTheWeek.label}</span>
       <i aria-hidden="true">·</i>
-      <p>“{verseOfTheWeek.text}”</p>
+      <p lang="ta">“{verseOfTheWeek.text}”</p>
       <i aria-hidden="true">·</i>
       <cite>{verseOfTheWeek.reference}</cite>
     </blockquote>

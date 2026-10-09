@@ -144,7 +144,7 @@ function churchSchema() {
       "@type": "Place",
       name
     })),
-    sameAs: [churchInfo.social.facebookUrl, churchInfo.social.youtubeUrl.replace(/\/videos$/, "")]
+    sameAs: [churchInfo.social.facebookUrl, churchInfo.social.instagramUrl, churchInfo.social.youtubeUrl.replace(/\/videos$/, "")]
   };
 }
 

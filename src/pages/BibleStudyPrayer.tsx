@@ -75,7 +75,7 @@ export default function BibleStudyPrayer() {
     </section>
 
     <section className="study-verse-band verse-band" aria-labelledby="study-verse-title">
-      <div className="verse-visual"><img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" loading="lazy" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} /><blockquote><p>“Your word is a lamp for my feet, a light on my path.”</p><cite>Psalm 119:105</cite></blockquote></div>
+      <div className="verse-visual"><img src={siteImages.bibleStudyCircle.src} alt={siteImages.bibleStudyCircle.alt} width="1440" height="1796" loading="lazy" style={{ objectPosition: siteImages.bibleStudyCircle.objectPosition }} /><blockquote><p lang="ta">“உம்முடைய வசனம் என் கால்களுக்குத் தீபமும், என் பாதைக்கு வெளிச்சமுமாயிருக்கிறது.”</p><cite>Psalm 119:105</cite></blockquote></div>
       <div><span className="eyebrow">Faith for everyday life</span><h2 id="study-verse-title">Carry the Word into your week.</h2><p>Spiritual growth is more than gathering. It is learning to hear Christ and follow Him at home, at work, and in our relationships.</p><Link to="/sermons">Watch a message <ArrowRight size={15}/></Link></div>
     </section>
 

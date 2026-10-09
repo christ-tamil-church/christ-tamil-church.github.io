@@ -41,7 +41,7 @@ A bilingual Tamil and English congregation: Tamil identity named with pride, and
   - Harvest Festival
   - Christmas carol rounds
 - **Contact:**
-  - phone (773) 936-3697
+  - phone (773) 936-3097
   - email info@christtamilchurch.com
   - Facebook (ChristTamilChurchChicago)
   - YouTube channel with 10+ years of worship and sermons

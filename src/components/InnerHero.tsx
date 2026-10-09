@@ -8,7 +8,7 @@ type HeroLink = {
   label: string;
   /** Internal route or in-page hash (rendered as a router Link / plain anchor). */
   to?: string;
-  /** External URL, opened in a new tab. */
+  /** External URL, opened in a new tab (mailto:/tel: links stay in place). */
   href?: string;
 };
 
@@ -33,6 +33,7 @@ type InnerHeroProps = {
 
 function HeroAnchor({ link, className, size }: { link: HeroLink; className: string; size: number }) {
   const content = <>{link.label} <ArrowRight size={size} aria-hidden="true" /></>;
+  if (link.href && /^(mailto|tel):/.test(link.href)) return <a className={className} href={link.href}>{content}</a>;
   if (link.href) {
     return (
       <a className={className} href={link.href} target="_blank" rel="noreferrer">

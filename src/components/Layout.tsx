@@ -1,4 +1,4 @@
-import { ChevronDown, Clock, Facebook, Mail, MapPin, Menu, Phone, X, Youtube } from "lucide-react";
+import { ChevronDown, Clock, Facebook, Instagram, Mail, MapPin, Menu, Phone, X, Youtube } from "lucide-react";
 import { MouseEvent, ReactNode, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { siteImages } from "../data/images";
@@ -286,6 +286,15 @@ export default function Layout({ children }: LayoutProps) {
                 aria-label="Christ Tamil Church on Facebook"
               >
                 <Facebook size={18} aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+              <a
+                href={churchInfo.social.instagramUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Christ Tamil Church on Instagram"
+              >
+                <Instagram size={18} aria-hidden="true" />
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
               <a
