@@ -6,6 +6,9 @@ import ctcHeroBackgroundMobile from "../assets/images/ctc-hero-background-green-
 import ctcHeroImage from "../assets/images/ctc-hero-image.jpg";
 import ctcLogo from "../assets/images/ctc-logo.png";
 import familyCampGames from "../assets/images/family-camp-games.jpg";
+import featuredEventFlyer from "../assets/images/featured-event-flyer.jpg";
+import featuredEventFlyer800 from "../assets/images/featured-event-flyer-800.jpg";
+import featuredEventFlyerSize from "../assets/images/featured-event-flyer.json";
 import fellowshipCampfire from "../assets/images/fellowship-campfire.jpg";
 import fellowshipCarnival from "../assets/images/fellowship-carnival.jpg";
 import fellowshipChristmas from "../assets/images/fellowship-christmas.jpg";
@@ -53,11 +56,29 @@ export type SiteImage = {
   unsplashUrl: string;
   usage: string;
   objectPosition?: string;
+  /** Intrinsic size and responsive sources, for images shown uncropped. */
+  width?: number;
+  height?: number;
+  srcSet?: string;
 };
 
 const utm = "utm_source=christ_tamil_church&utm_medium=referral";
 
 export const siteImages = {
+  // The featured-event flyer slot. scripts/featured-flyer.ps1 rewrites these
+  // files for each new flyer; its alt text lives on `featuredEvent` instead.
+  featuredEventFlyer: {
+    id: "ctc-featured-event-flyer",
+    src: featuredEventFlyer,
+    alt: "",
+    creditName: "Christ Tamil Church",
+    creditUrl: "",
+    unsplashUrl: "",
+    usage: "Featured event flyer (homepage notice + Events page)",
+    width: featuredEventFlyerSize.width,
+    height: featuredEventFlyerSize.height,
+    srcSet: `${featuredEventFlyer800} 800w, ${featuredEventFlyer} ${featuredEventFlyerSize.width}w`
+  },
   sundaySchool: {
     id: "ctc-sunday-school",
     src: ministrySchool,

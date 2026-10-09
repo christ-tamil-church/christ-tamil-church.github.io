@@ -1,0 +1,319 @@
+/* Featured event band at the top of /events (FeaturedEventSection.tsx).
+   Cream band between the light hero and the white "every week" list. */
+.ctc-featured {
+  padding: clamp(56px, 7vw, 104px) 0 clamp(64px, 7.5vw, 112px);
+  background: var(--canvas);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  scroll-margin-top: 72px;
+}
+
+.ctc-featured-inner {
+  width: min(calc(100% - 48px), var(--container));
+  margin-inline: auto;
+}
+
+/* ---- Flyer: always whole, never cropped ---- */
+.ctc-featured-flyer {
+  margin: 0;
+}
+
+.ctc-featured-flyer-frame {
+  display: block;
+  overflow: hidden;
+  border: 1px solid rgba(16, 37, 27, 0.1);
+  border-radius: 18px;
+  background: #fffefa;
+  box-shadow: 0 28px 70px rgba(16, 37, 27, 0.14);
+  transition:
+    transform var(--motion-base) var(--ease-out),
+    border-color var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out);
+}
+
+.ctc-featured-flyer-frame:hover {
+  border-color: rgba(21, 61, 43, 0.22);
+  box-shadow: 0 34px 80px rgba(16, 37, 27, 0.18);
+  transform: translateY(-3px);
+}
+
+.ctc-featured-flyer img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ctc-featured-flyer figcaption {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.ctc-featured-flyer figcaption a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(21, 61, 43, 0.28);
+  text-underline-offset: 4px;
+}
+
+.ctc-featured-flyer figcaption a:hover {
+  text-decoration-color: var(--green-deep);
+}
+
+/* ---- Placeholder poster (no flyer supplied) ---- */
+.ctc-featured-poster {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(28px, 5vw, 72px);
+  min-height: clamp(260px, 28vw, 400px);
+  border-radius: 18px;
+  padding: clamp(32px, 5vw, 72px);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(141, 198, 63, 0.22), transparent 42%),
+    radial-gradient(circle at 8% 110%, rgba(185, 144, 69, 0.18), transparent 46%),
+    var(--primary);
+  color: #fff;
+  box-shadow: 0 28px 70px rgba(16, 37, 27, 0.2);
+}
+
+.ctc-featured-poster-date {
+  display: grid;
+  justify-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.22);
+  padding-right: clamp(28px, 5vw, 72px);
+  text-align: center;
+}
+
+.ctc-featured-poster-date span {
+  color: var(--light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ctc-featured-poster-date strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 9vw, 7.5rem);
+  font-variant-numeric: lining-nums;
+  font-weight: 300;
+  line-height: 0.95;
+}
+
+.ctc-featured-poster-copy p {
+  margin: 0;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.6vw, 4rem);
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.ctc-featured-poster-copy span {
+  display: block;
+  margin-top: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ---- Details ---- */
+.ctc-featured-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 5vw, 80px);
+  margin-top: clamp(28px, 3.6vw, 48px);
+}
+
+.ctc-featured-heading h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.ctc-featured-facts {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0 0;
+  padding: 0;
+  color: var(--primary);
+  font-size: 1rem;
+  font-weight: 700;
+  list-style: none;
+}
+
+.ctc-featured-facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ctc-featured-facts svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--green-deep);
+}
+
+.ctc-featured-body > p:first-child {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+.ctc-featured-directions {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: var(--clay-dark);
+  font-size: 0.94rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.ctc-featured-directions svg {
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.ctc-featured-directions:hover svg {
+  transform: translateX(3px);
+}
+
+.ctc-featured-ask {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 20px;
+  margin: 18px 0 0;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.ctc-featured-ask span {
+  flex-basis: 100%;
+}
+
+.ctc-featured-ask a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 7px;
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ctc-featured-ask a:hover {
+  color: var(--green-deep);
+}
+
+.ctc-featured a:focus-visible {
+  outline: 3px solid var(--light);
+  outline-offset: 4px;
+}
+
+/* ---- Portrait / square flyer: flyer beside the details ---- */
+.ctc-featured--tall .ctc-featured-inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 440px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(36px, 6vw, 96px);
+}
+
+.ctc-featured--tall .ctc-featured-details {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .ctc-featured-details,
+  .ctc-featured--tall .ctc-featured-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ctc-featured-details {
+    gap: 22px;
+  }
+
+  .ctc-featured--tall .ctc-featured-flyer {
+    width: min(100%, 440px);
+  }
+}
+
+@media (max-width: 620px) {
+  .ctc-featured {
+    padding: 44px 0 56px;
+  }
+
+  .ctc-featured-inner {
+    width: min(calc(100% - 32px), var(--container));
+  }
+
+  .ctc-featured-flyer-frame,
+  .ctc-featured-poster {
+    border-radius: 12px;
+  }
+
+  .ctc-featured-flyer figcaption {
+    justify-content: flex-start;
+    margin-top: 6px;
+  }
+
+  .ctc-featured-poster {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    min-height: 0;
+    padding: 30px 26px;
+  }
+
+  .ctc-featured-poster-date {
+    grid-auto-flow: column;
+    align-items: baseline;
+    justify-content: start;
+    gap: 10px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    padding: 0 0 18px;
+  }
+
+  .ctc-featured-poster-date strong {
+    font-size: 3.4rem;
+  }
+
+  .ctc-featured-heading h2 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ctc-featured-flyer-frame,
+  .ctc-featured-flyer-frame:hover,
+  .ctc-featured-directions svg,
+  .ctc-featured-directions:hover svg {
+    transition: none;
+    transform: none;
+  }
+}

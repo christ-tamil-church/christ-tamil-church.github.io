@@ -5,3 +5,21 @@ Events is a standalone discovery page built from the shared `churchEvents` data.
 The page follows the CTC design template: green-led editorial typography, restrained brass labels, a bronze primary action, generous white space, warm photography, and page-scoped reveal motion. Event rows use a 16:9 image beside title, schedule, location, description, and action. At 620px the rows become intentionally stacked image-first stories, matching the reference’s mobile reading order.
 
 The current data describes recurring schedules rather than dated calendar instances. For that reason, the page says “gatherings” and displays the supplied cadence/date language without implying chronological order. When church leadership adds exact dates, registration URLs, or event-specific alt text to the shared data model, the cards can surface them without changing the page structure.
+
+## Featured event
+
+One current event can be featured at a time: a quiet notice line under "I'm New" in the homepage hero links to a cream band at the top of this page (`/events#featured`) that shows the whole flyer.
+
+**Changing it each week** (all names are generic; only values change):
+
+1. `powershell -ExecutionPolicy Bypass -File scripts/featured-flyer.ps1 "path\to\flyer.jpg"` writes the flyer into its fixed slot (`src/assets/images/featured-event-flyer.jpg`, an 800px copy for phones, and its pixel size).
+2. Edit `featuredEvent` in `src/data/site.ts`: title, `startsOn`/`endsOn` (YYYY-MM-DD, Chicago dates), time, location, summary, and `flyerAlt` (what the flyer says, for screen readers).
+3. No event this week: set `featuredEvent = null`. The hero and this page then look exactly as they do without the feature.
+
+**Rules**
+
+- The flyer is never cropped. Wide banners (3:1 and similar) span the band with the details below; portrait or square flyers sit beside the details.
+- The flyer's text is unreadable on phones, so every fact (date, time, place, summary) is repeated as real text, and the flyer links to its full-size file.
+- `flyer: null` shows a lettered poster (deep green, date block, Fraunces title) in the flyer's place; it is `aria-hidden` because the same facts follow as text.
+- The notice is a small sibling of the "This Sunday" card: warm white, hairline border, a "Featured Event · date" label in the card's uppercase green type, the title in Fraunces and a bronze arrow. It is never a bronze button: "I'm New" stays the one primary CTA. On short phones (≤680px tall) the hero rhythm tightens slightly so it still fits one screen.
+- Expiry: an event disappears the day after `endsOn`. Prerendered pages judge this from the build date (`__BUILD_DATE__`), the browser re-checks the real date after load, and a daily scheduled deploy refreshes the static HTML.

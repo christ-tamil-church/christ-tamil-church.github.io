@@ -1,7 +1,9 @@
 import { ArrowRight, CalendarDays, Clock, Heart, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import FeaturedEventSection from "../components/FeaturedEventSection";
 import InnerHero from "../components/InnerHero";
 import { churchEvents, churchInfo, type ChurchEvent } from "../data/site";
+import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import "./Events.css";
 
@@ -37,6 +39,7 @@ export default function Events() {
     staggerChildren: true,
     staggerStepMs: 85
   });
+  const featured = useFeaturedEvent();
 
   return (
     <div className="ctc-events-page">
@@ -59,6 +62,8 @@ export default function Events() {
           link: { label: "Plan your visit", to: "/visit" }
         }}
       />
+
+      {featured ? <FeaturedEventSection event={featured} /> : null}
 
       <section className="ctc-events-upcoming" id="upcoming-events" aria-label="Upcoming events">
         <div className="ctc-events-shell">

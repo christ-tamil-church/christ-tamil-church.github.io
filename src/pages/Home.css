@@ -183,6 +183,37 @@
     min-height: 48px;
   }
 
+  /* Full width under the CTA; the title truncates rather than wrapping so
+     the hero still fits one short phone screen. */
+  .ctc-home .ctc-hero-notice {
+    display: flex;
+    width: 100%;
+    min-height: 52px;
+    gap: 12px;
+    margin-top: clamp(10px, 1.8svh, 16px);
+    border-radius: 16px;
+    padding: 7px 16px 7px 7px;
+  }
+
+  .ctc-home .ctc-hero-notice-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .ctc-home .ctc-hero-notice-text {
+    flex: 1;
+  }
+
+  .ctc-home .ctc-hero-notice-label {
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+  }
+
+  .ctc-home .ctc-hero-notice-title {
+    font-size: 1.04rem;
+  }
+
   .ctc-home .ctc-hero-card {
     grid-template-columns: 1fr auto;
     align-items: end;
@@ -210,6 +241,37 @@
 
   .ctc-home .ctc-hero-weekly-verse-ribbon p {
     font-size: clamp(1rem, 2.2svh, 1.2rem);
+  }
+}
+
+/* Short phones (360×640, 375×667): the featured-event notice takes the slack
+   the Sunday card needs, so tighten the copy rhythm just enough to keep the
+   hero on one screen. Only while a notice is showing. */
+@media (max-width: 620px) and (max-height: 680px) {
+  .ctc-home .ctc-hero-copy:has(.ctc-hero-notice) .ctc-hero-lede {
+    margin-top: 13px;
+  }
+
+  .ctc-home .ctc-hero-copy:has(.ctc-hero-notice) .ctc-hero-actions {
+    margin-top: 14px;
+  }
+
+  .ctc-home .ctc-hero-notice {
+    min-height: 48px;
+    margin-top: 6px;
+    padding-block: 5px;
+  }
+
+  .ctc-home .ctc-hero-notice-icon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 620px) and (max-height: 660px) {
+  .ctc-home .ctc-hero-copy:has(.ctc-hero-notice) .ctc-hero-title-accent {
+    font-size: 2.1em;
+    margin-bottom: 4px;
   }
 }
 
@@ -709,6 +771,101 @@
   border-color: #7d5c26;
   background: #7d5c26;
   color: #fff;
+}
+
+/* Featured-event notice: a small sibling of the "This Sunday" card (same warm
+   white, hairline, label type and bronze arrow) under the bronze CTA, which
+   stays the only primary. */
+.ctc-hero-notice {
+  position: relative;
+  z-index: 8;
+  display: inline-flex;
+  max-width: 100%;
+  min-height: 56px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  border: 1px solid rgba(16, 37, 27, 0.12);
+  border-radius: 18px;
+  padding: 9px 20px 9px 9px;
+  background: #fffefa;
+  color: var(--ink);
+  font-family: var(--font-body);
+  text-decoration: none;
+  box-shadow: 0 16px 40px rgba(16, 37, 27, 0.1);
+  animation: heroFadeUp 650ms var(--ease-premium) 460ms both;
+  transition:
+    transform var(--motion-fast) var(--ease-out),
+    border-color var(--motion-fast) var(--ease-out),
+    box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.ctc-hero-notice-icon {
+  display: grid;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--sage);
+  color: var(--primary);
+}
+
+.ctc-hero-notice-text {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.ctc-hero-notice-label {
+  color: var(--primary);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ctc-hero-notice-label i {
+  margin: 0 3px;
+  color: var(--green-deep);
+  font-style: normal;
+}
+
+.ctc-hero-notice-title {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ctc-hero-notice-arrow {
+  flex: none;
+  margin-left: 4px;
+  color: var(--clay-dark);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.ctc-hero-notice:hover {
+  border-color: rgba(21, 61, 43, 0.22);
+  box-shadow: 0 20px 46px rgba(16, 37, 27, 0.14);
+  transform: translateY(-2px);
+}
+
+.ctc-hero-notice:hover .ctc-hero-notice-arrow {
+  transform: translateX(3px);
+}
+
+.ctc-hero-notice:focus-visible {
+  outline: 3px solid var(--light);
+  outline-offset: 4px;
 }
 
 .ctc-hero-visual {
@@ -1489,7 +1646,9 @@
 .ctc-hero-weekly-verse > p,
 .ctc-hero-weekly-verse > cite,
 .ctc-hero-weekly-verse > i,
-.ctc-hero-actions a.go::before {
+.ctc-hero-actions a.go::before,
+.ctc-hero-notice,
+.ctc-hero-notice-arrow {
     animation: none !important;
     transition: none !important;
     transform: none !important;

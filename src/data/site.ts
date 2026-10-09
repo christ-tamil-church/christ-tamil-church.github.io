@@ -1,4 +1,4 @@
-import { siteImages } from "./images";
+import { siteImages, type SiteImage } from "./images";
 import { churchYoutubeChannelUrl } from "./sermonVideos";
 
 export const churchInfo = {
@@ -35,6 +35,40 @@ export const verseOfTheWeek = {
   reference: "Philippians 4:13"
 } as const;
 
+export type FeaturedEvent = {
+  title: string;
+  /** Calendar dates in Chicago time, YYYY-MM-DD. Same day for a one-day event. */
+  startsOn: string;
+  endsOn: string;
+  time: string;
+  location: string;
+  directionsUrl: string;
+  summary: string;
+  /** null shows a lettered placeholder poster in the flyer's place. */
+  flyer: SiteImage | null;
+  /** What the flyer shows, for screen readers. */
+  flyerAlt: string;
+};
+
+// Featured event: the notice in the homepage hero and the flyer at the top of
+// the Events page (/events#featured). To change it:
+//   1. powershell -ExecutionPolicy Bypass -File scripts/featured-flyer.ps1 "path\to\flyer.jpg"
+//   2. Update the values below.
+// No event to feature? Set `featuredEvent = null`. Either way it disappears by
+// itself the day after `endsOn`.
+export const featuredEvent: FeaturedEvent | null = {
+  title: "Pastor Appreciation Sunday",
+  startsOn: "2026-10-11",
+  endsOn: "2026-10-11",
+  time: churchInfo.worship.time,
+  location: churchInfo.address.short,
+  directionsUrl: churchInfo.address.directionsUrl,
+  summary:
+    "Honoring our pastor with gratitude and love. Thank you for your faithful service, love and leadership.",
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "Pastor Appreciation Sunday flyer: Honoring Our Pastor, with gratitude and love. Sunday, October 11, 2026 at 10:30 AM, hosted at Christ Tamil Church, 1330 63rd St, Downers Grove."
+};
 
 export type ChurchEvent = {
   title: string;

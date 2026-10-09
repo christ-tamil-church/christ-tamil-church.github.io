@@ -1,5 +1,6 @@
 import {
   ArrowRight,
+  CalendarDays,
   MapPin,
 } from "lucide-react";
 import { type RefObject, useCallback, useEffect, useRef } from "react";
@@ -8,6 +9,31 @@ import { Link } from "react-router-dom";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
 import { churchInfo, verseOfTheWeek } from "../data/site";
+import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
+import { formatEventDateShort } from "../utils/featuredEvent";
+
+// One quiet line under "I'm New" pointing to the current featured event
+// (`featuredEvent` in src/data/site.ts). Renders nothing when there is none,
+// which leaves the hero exactly as designed.
+function FeaturedEventNotice() {
+  const event = useFeaturedEvent();
+  if (!event) return null;
+  return (
+    <Link className="ctc-hero-notice" to="/events#featured">
+      <span className="ctc-hero-notice-icon" aria-hidden="true">
+        <CalendarDays size={18} />
+      </span>
+      <span className="ctc-hero-notice-text">
+        <span className="ctc-hero-notice-label">
+          Featured Event <i aria-hidden="true">·</i> {formatEventDateShort(event)}
+        </span>
+        <span className="ctc-hero-notice-title">{event.title}</span>
+      </span>
+      <span className="sr-only"> (event details)</span>
+      <ArrowRight className="ctc-hero-notice-arrow" size={16} aria-hidden="true" />
+    </Link>
+  );
+}
 
 function WeeklyVerse({ className = "" }: { className?: string }) {
   return (
@@ -151,6 +177,7 @@ export default function Home() {
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
+          <FeaturedEventNotice />
         </div>
 
         <div className="ctc-hero-visual">

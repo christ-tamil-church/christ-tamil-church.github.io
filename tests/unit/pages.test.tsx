@@ -8,7 +8,7 @@ const main = (container: HTMLElement) => within(container.querySelector("#main-c
 describe("Events page", () => {
   it("lists every church event in data order", () => {
     renderApp("/events");
-    const list = screen.getByRole("heading", { name: "Upcoming at CTC." }).closest("section") as HTMLElement;
+    const list = screen.getByRole("region", { name: "Upcoming events" });
     const titles = within(list).getAllByRole("heading", { level: 3 }).map((heading) => heading.textContent);
     expect(titles).toEqual(churchEvents.map((event) => event.title));
   });
