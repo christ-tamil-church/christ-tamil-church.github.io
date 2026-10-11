@@ -1373,6 +1373,30 @@
   white-space: nowrap;
 }
 
+/* Tablet and desktop: "Weekly Focus Verse" is the ribbon's heading, centred
+   on its own line above the verse (phones already stack it this way). */
+@media (min-width: 621px) {
+  .ctc-hero-weekly-verse-ribbon {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+
+  .ctc-hero-weekly-verse-ribbon > span {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .ctc-hero-weekly-verse-ribbon > i {
+    display: none;
+  }
+}
+
+/* The reference runs on straight after the verse's closing quote. */
+.ctc-hero-weekly-verse p cite {
+  margin-left: 0.5em;
+  vertical-align: baseline;
+}
+
 .ctc-hero-weekly-verse i {
   color: var(--gold);
   font-family: var(--font-body);
@@ -1755,7 +1779,8 @@
   }
 
   .ctc-hero-weekly-verse-ribbon cite {
-    flex-basis: 100%;
+    display: block;
+    margin: 5px 0 0;
     color: #fffefa;
     font-size: 0.7rem;
     letter-spacing: 0.14em;
