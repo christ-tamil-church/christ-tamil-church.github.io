@@ -1,3 +1,4 @@
+import { clayPotPath, clayPotWritingPath, clayPotWritings, type ClayPotSlug } from "./data/clayPot";
 import { siteImages } from "./data/images";
 import { churchInfo } from "./data/site";
 
@@ -17,6 +18,14 @@ export type PageMeta = {
 
 const sunday = `Sunday ${churchInfo.worship.time}`;
 const place = `${churchInfo.address.city}, ${churchInfo.address.state}`;
+
+// One page per Clay Pot writing, generated from src/data/clayPot.ts.
+const clayPotMeta = Object.fromEntries(
+  clayPotWritings.map((writing) => [
+    clayPotWritingPath(writing.slug),
+    { label: writing.title, title: `${writing.title} – Clay Pot, Christ Tamil Church`, description: writing.description }
+  ])
+) as Record<`/grow/clay-pot/${ClayPotSlug}`, PageMeta>;
 
 // The list of pages. Every key here must have a page in src/App.tsx (and vice
 // versa; TypeScript enforces both), and each one is prerendered and listed in
@@ -58,6 +67,12 @@ export const pageMeta = {
     title: "Kids Circle Children's Ministry – Christ Tamil Church",
     description: "A brief, joyful Bible teaching moment for children inside Sunday worship at Christ Tamil Church, a Tamil family church near Chicago."
   },
+  "/grow/clay-pot": {
+    label: "Clay Pot",
+    title: "Clay Pot (மண்பாண்டம்) – Writings from Christ Tamil Church",
+    description: "The writings column of Christ Tamil Church Chicago: pastoral letters and reflections on Scripture, in Tamil and English."
+  },
+  ...clayPotMeta,
   "/serve": {
     label: "Serve",
     title: "Community Outreach & Serving – Christ Tamil Church",
@@ -200,5 +215,8 @@ export const legacyRedirects: Record<string, string> = {
   "/audio-sermons": "/sermons",
   "/community-outreach": "/serve",
   "/fellowship-hour": "/connect",
-  "/annual-church-retreat": "/events"
+  "/annual-church-retreat": "/events",
+  // The old WordPress Clay Pot blog.
+  "/clay-pot": clayPotPath,
+  ...Object.fromEntries(clayPotWritings.map((writing) => [writing.legacyPath, clayPotWritingPath(writing.slug)]))
 };

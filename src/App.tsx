@@ -1,6 +1,9 @@
 import type { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import { clayPotWritingPath, clayPotWritings, type ClayPotSlug } from "./data/clayPot";
+import ClayPot from "./pages/ClayPot";
+import ClayPotArticle from "./pages/ClayPotArticle";
 import Contact from "./pages/Contact";
 import Connect from "./pages/Connect";
 import Events from "./pages/Events";
@@ -16,6 +19,10 @@ import Visit from "./pages/Visit";
 import Worship from "./pages/Worship";
 import { legacyRedirects, type PagePath } from "./seo";
 
+const clayPotPages = Object.fromEntries(
+  clayPotWritings.map((writing) => [clayPotWritingPath(writing.slug), <ClayPotArticle slug={writing.slug} />])
+) as Record<`/grow/clay-pot/${ClayPotSlug}`, ReactElement>;
+
 // One entry per page in pageMeta (src/seo.ts). A page missing from either
 // side is a compile error, so every route gets metadata, prerendering, and a
 // sitemap entry.
@@ -27,6 +34,8 @@ const pages: Record<PagePath, ReactElement> = {
   "/grow/bible-study-prayer": <BibleStudyPrayer />,
   "/grow/sunday-school": <SundaySchool />,
   "/grow/kids-circle": <KidsCircle />,
+  "/grow/clay-pot": <ClayPot />,
+  ...clayPotPages,
   "/serve": <Serve />,
   "/sermons": <Sermons />,
   "/connect": <Connect />,

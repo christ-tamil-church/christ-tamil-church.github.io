@@ -147,7 +147,7 @@ height as well as width, and ministry names stack tightly
 — the six-ministry chapters (Connect, Grow) fit down to 360×640 and
 375×600. The phone hero is tightened to fit one
 screen down to 360×640 (centred column, single-row Sunday card). The Tamil
-title uses a display hierarchy on phones: "வாரும்," at ~2× on its own line,
+title uses a display hierarchy on phones: the green opening line ("பதறாத வாழ்வும், சிதறாத மனமும்") on one line at the column width,
 the two phrase lines width-scaled so they never wrap or overflow, and the
 lede one step quieter.
 

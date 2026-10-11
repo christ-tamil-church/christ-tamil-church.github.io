@@ -77,6 +77,10 @@ describe("pageMeta", () => {
         "/events",
         "/grow",
         "/grow/bible-study-prayer",
+        "/grow/clay-pot",
+        "/grow/clay-pot/marumalarchi-aani-adippoma",
+        "/grow/clay-pot/pentecostal-paradoxes",
+        "/grow/clay-pot/theermanangalum-thadumaatrangalum",
         "/grow/kids-circle",
         "/grow/sunday-school",
         "/sermons",
@@ -157,7 +161,8 @@ describe("structuredData", () => {
 
 describe("legacyRedirects", () => {
   it.each(Object.entries(legacyRedirects))("%s → %s points at a real page", (from, to) => {
-    expect(from).toMatch(/^\/[a-z0-9-]+$/);
+    // Old Clay Pot blog URLs are nested and keep their Tamil slugs.
+    expect(from).toMatch(/^(\/[a-z0-9\p{Script=Tamil}-]+)+$/u);
     expect(paths).not.toContain(from);
     expect(paths).toContain(to.split("#")[0]);
   });

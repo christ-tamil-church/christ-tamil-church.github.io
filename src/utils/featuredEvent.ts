@@ -30,6 +30,12 @@ export function formatEventDateLong({ startsOn, endsOn }: FeaturedEvent) {
   return startsOn === endsOn ? format(startsOn, long) : `${format(startsOn, long)} – ${format(endsOn, long)}`;
 }
 
+/** "Sunday, Oct 11", or the short range form for several days. */
+export function formatEventDateMedium(event: FeaturedEvent) {
+  if (event.startsOn !== event.endsOn) return formatEventDateShort(event);
+  return format(event.startsOn, { weekday: "long", month: "short", day: "numeric" });
+}
+
 /** "Sun, Oct 11", or "Oct 10 – 11" / "Oct 31 – Nov 2" for several days. */
 export function formatEventDateShort({ startsOn, endsOn }: FeaturedEvent) {
   if (startsOn === endsOn) return format(startsOn, { weekday: "short", month: "short", day: "numeric" });
