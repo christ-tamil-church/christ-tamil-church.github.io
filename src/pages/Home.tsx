@@ -111,9 +111,12 @@ function WeeklyVerse({ className = "" }: { className?: string }) {
     >
       <span>{verseOfTheWeek.label}</span>
       <i aria-hidden="true">·</i>
-      <p lang="ta">“{verseOfTheWeek.text}”</p>
-      <i aria-hidden="true">·</i>
-      <cite>{verseOfTheWeek.reference}</cite>
+      {/* The reference sits inside the verse so it follows the last word on
+          wide screens; phones set it on its own line underneath. */}
+      <p lang="ta">
+        “{verseOfTheWeek.text}”{" "}
+        <cite lang="en">{verseOfTheWeek.reference}</cite>
+      </p>
     </blockquote>
   );
 }
