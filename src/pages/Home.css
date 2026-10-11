@@ -1990,6 +1990,20 @@
     transform: none !important;
   }
 
+  .ctc-hero .ctc-hero-actions a.go,
+  .ctc-hero .ctc-hero-visual > .ctc-hero-card,
+  .ctc-hero .ctc-hero-visual > a.ctc-hero-card-event {
+    animation: none !important;
+  }
+
+  /* The verse parts start at opacity 0 for their entrance; with the
+     animation off they must be shown outright, or the verse never appears. */
+  .ctc-hero-weekly-verse-ribbon > span,
+  .ctc-hero-weekly-verse-ribbon > p,
+  .ctc-hero-weekly-verse-ribbon > i {
+    opacity: 1 !important;
+  }
+
   .ctc-stage::after {
     opacity: 0.18;
   }
@@ -2003,4 +2017,40 @@ html body .ctc-hero-weekly-verse p[lang="ta"] {
   line-height: 1.5;
   white-space: normal;
   text-wrap: balance;
+}
+
+/* Hero entrance, one sequence on every screen: title (260ms) → welcome
+   (360ms) → the cards and "I'm New" in reading order → the verse (620ms+).
+   The Sunday card and "I'm New" sit inside elements pinned at
+   `opacity: 1 !important` for Follow the Light, so they fade with
+   filter: opacity() instead; `translate` leaves their transforms alone.
+   Reduced motion turns these off (prefers-reduced-motion block above). */
+@keyframes heroCardIn {
+  from {
+    filter: opacity(0);
+    translate: 0 14px;
+  }
+
+  to {
+    filter: opacity(1);
+    translate: 0 0;
+  }
+}
+
+/* Tablet order: "I'm New" → event card → Sunday card. */
+.ctc-hero .ctc-hero-copy > .ctc-hero-actions a.go {
+  animation: heroCardIn 650ms var(--ease-premium) 440ms both;
+}
+
+.ctc-hero .ctc-hero-visual > .ctc-hero-card {
+  animation: heroCardIn 650ms var(--ease-premium) 560ms both;
+}
+
+/* Desktop and phones: event card → Sunday card → "I'm New" (corner copy). */
+.ctc-hero .ctc-hero-visual > a.ctc-hero-card-event {
+  animation: heroCardIn 650ms var(--ease-premium) 460ms both;
+}
+
+.ctc-hero .ctc-hero-actions--corner a.go {
+  animation: heroCardIn 650ms var(--ease-premium) 640ms both;
 }
