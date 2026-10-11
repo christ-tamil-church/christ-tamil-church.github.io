@@ -7,6 +7,7 @@ import { churchInfo, featuredEvent, type FeaturedEvent } from "../../src/data/si
 import { useFeaturedEvent } from "../../src/hooks/useFeaturedEvent";
 import {
   formatEventDateLong,
+  formatEventDateMedium,
   formatEventDateShort,
   isFeaturedEventActive,
   todayInChicago
@@ -55,6 +56,8 @@ describe("featured event dates", () => {
   it("formats one-day and multi-day dates", () => {
     expect(formatEventDateShort(sample)).toBe("Sat, Nov 14");
     expect(formatEventDateLong(sample)).toBe("Saturday, November 14");
+    expect(formatEventDateMedium(sample)).toBe("Saturday, Nov 14");
+    expect(formatEventDateMedium({ ...sample, endsOn: "2026-11-15" })).toBe("Nov 14 – 15");
     expect(formatEventDateShort({ ...sample, endsOn: "2026-11-15" })).toBe("Nov 14 – 15");
     expect(formatEventDateShort({ ...sample, startsOn: "2026-10-31", endsOn: "2026-11-02" })).toBe("Oct 31 – Nov 2");
   });
@@ -115,13 +118,19 @@ describe.runIf(featuredEvent)("featured event on the site", () => {
   it("links from the homepage hero to the Events page section", () => {
     setToday(event.startsOn);
     const { container } = renderApp("/");
-    // Wider screens show the notice card; phones show a row inside the
-    // "This Sunday" card instead (CSS picks one). Both go to the same place.
+    // Wider screens show the notice card; phones show their own event card
+    // under the Sunday card instead (CSS picks one). Both go to the same place.
     const links = screen.getAllByRole("link", { name: new RegExp(event.title) });
     expect(links).toHaveLength(2);
     for (const link of links) expect(link).toHaveAttribute("href", "/events#featured");
-    expect(container.querySelector(".ctc-hero-notice")).toHaveTextContent(formatEventDateShort(event));
-    const cardRow = container.querySelector(".ctc-hero-card .ctc-hero-card-event") as HTMLElement;
+    // Label: "Sunday, Oct 11 · 10:30 AM", no "Featured Event".
+    const notice = container.querySelector(".ctc-hero-notice") as HTMLElement;
+    expect(notice).not.toHaveTextContent(/featured/i);
+    expect(notice).toHaveTextContent(`${formatEventDateMedium(event)} · ${event.time}`);
+    // The phone event card is its own card (not inside the Sunday card), shows
+    // the date as a calendar leaf and says it in full to screen readers.
+    const cardRow = container.querySelector(".ctc-hero-visual > .ctc-hero-card-event") as HTMLElement;
+    expect(cardRow.closest(".ctc-hero-card")).toBeNull();
     expect(cardRow).toHaveAccessibleName(new RegExp(formatEventDateLong(event)));
     expect(cardRow).not.toHaveTextContent(/featured/i);
   });

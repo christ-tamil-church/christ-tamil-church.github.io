@@ -135,8 +135,8 @@ The homepage hero is the master pattern (see `src/pages/Home.tsx`):
 1. **Kicker** (`.ctc-hero-kicker`): Tamil phrase in Catamaran/Fraunces green
    + small uppercase reference badge in a white pill.
 2. **Display headline** (`.ctc-hero-title`): on the homepage, Tamil-first in
-   Noto Serif Tamil. The invitation word "வாரும்," leads in green italic at
-   ~1.4× and the phrase lines follow in light 300 ink. Inner pages use
+   Noto Serif Tamil. The opening line ("பதறாத வாழ்வும், சிதறாத மனமும்") leads in green italic at
+   the same size (it is long, so colour carries the emphasis) and the second line follows in light 300 ink. Inner pages use
    Fraunces, ink.
 3. **Lede** (`.ctc-hero-lede`): 1–2 sentences of visitor-focused copy.
 4. **One primary CTA** — never a pair of competing buttons in a hero.

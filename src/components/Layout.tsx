@@ -43,7 +43,8 @@ const primaryNavItems: NavItem[] = [
       { label: "Bible Study & Prayer", href: "/grow/bible-study-prayer" },
       { label: "Sunday School – B.L.A.S.T.", href: "/grow/sunday-school" },
       { label: "Kids Circle", href: "/grow/kids-circle" },
-      { label: "Messages & Moments", href: "/sermons" }
+      { label: "Messages & Moments", href: "/sermons" },
+      { label: "Clay Pot", href: "/grow/clay-pot" }
     ]
   },
   {

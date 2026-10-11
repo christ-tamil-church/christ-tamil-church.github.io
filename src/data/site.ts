@@ -29,10 +29,15 @@ export const churchInfo = {
 } as const;
 
 // Update this single object when the featured weekly scripture changes.
+// Copy the Tamil text from a Bible source (e.g. tamilbiblesearch.com), never
+// from memory. Verses over ~100 characters are set a little smaller on
+// tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
-  label: "Verse of the Week",
-  text: "என்னைப் பெலப்படுத்துகிற கிறிஸ்துவினாலே எல்லாவற்றையுஞ்செய்ய எனக்குப் பெலனுண்டு.",
-  reference: "Philippians 4:13"
+  label: "Weekly Focus Verse",
+  // Second half of the verse (as the leaders chose), Tamil O.V. wording copied
+  // from tamilbiblesearch.com/tamil-bible-online/romans/15/
+  text: "நம்பிக்கையின் தேவன் விசுவாசத்தினால் உண்டாகும் எல்லாவித சந்தோஷத்தினாலும் சமாதானத்தினாலும் உங்களை நிரப்புவாராக.",
+  reference: "Romans 15:13"
 } as const;
 
 export type FeaturedEvent = {

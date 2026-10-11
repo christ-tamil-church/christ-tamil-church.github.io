@@ -7,13 +7,17 @@ import { renderApp } from "./renderApp";
 // this list on purpose when a headline is rewritten. Whitespace is ignored
 // because headlines are split across deliberate line breaks.
 const pageHeadings: Record<keyof typeof pageMeta, string> = {
-  "/": "வாரும், நாம் எல்லோரும் கூடி, மகிழ் கொண்டாடுவோம்",
+  "/": "பதறாத வாழ்வும், சிதறாத மனமும் பரிசாக தேவன் அருள்வார்.",
   "/visit": "A church home where you can belong.",
   "/worship": "Come as you are. Worship with us.",
   "/grow": "Rooted in Christ. Growing together.",
   "/grow/bible-study-prayer": "Know God through Word and prayer.",
   "/grow/sunday-school": "Helping children grow strong in God’s Word.",
   "/grow/kids-circle": "A little space for faith to bud and bloom.",
+  "/grow/clay-pot": "மண்பாண்டம் Clay Pot",
+  "/grow/clay-pot/theermanangalum-thadumaatrangalum": "தீர்மானங்களும் தடுமாற்றங்களும்",
+  "/grow/clay-pot/marumalarchi-aani-adippoma": "மறுமலர்ச்சி ஆணி அடிப்போமா?",
+  "/grow/clay-pot/pentecostal-paradoxes": "Pentecostal Paradoxes",
   "/serve": "Love your neighbor in practical ways.",
   "/sermons": "Faith shared. Moments remembered.",
   "/connect": "Come as a guest. Leave as family.",

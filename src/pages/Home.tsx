@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   CalendarDays,
+  Clock,
   MapPin,
 } from "lucide-react";
 import { type RefObject, useCallback, useEffect, useRef } from "react";
@@ -11,12 +12,50 @@ import { siteImages } from "../data/images";
 import { churchInfo, verseOfTheWeek } from "../data/site";
 import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
 import type { FeaturedEvent } from "../data/site";
-import { eventDateParts, formatEventDateLong, formatEventDateShort } from "../utils/featuredEvent";
+import { eventDateParts, formatEventDateLong, formatEventDateMedium } from "../utils/featuredEvent";
+
+function ImNewLink() {
+  return (
+    <Link className="go" to="/visit">
+      I'm New
+      <ArrowRight size={18} aria-hidden="true" />
+    </Link>
+  );
+}
+
+// "Every Sunday · time" with a map-pin button for directions (as on the
+// floating Sunday bar); the button is named "Get directions" for screen
+// readers and shows it as a tooltip. On phones it is the twin of the event
+// card: tile · label over value · round action (the clock tile is
+// phone-only).
+function SundayCard() {
+  return (
+    <aside className="ctc-hero-card" aria-label="Sunday worship details">
+      <span className="ctc-hero-card-tile" aria-hidden="true">
+        <Clock size={20} />
+      </span>
+      <div className="ctc-hero-card-info">
+        <span>Every Sunday</span>
+        <strong>{churchInfo.worship.time}</strong>
+      </div>
+      <a
+        className="ctc-hero-card-directions"
+        href={churchInfo.address.directionsUrl}
+        target="_blank"
+        rel="noreferrer"
+        title="Get directions"
+      >
+        <MapPin size={18} aria-hidden="true" />
+        <span className="sr-only">Get directions</span>
+      </a>
+    </aside>
+  );
+}
 
 // The current featured event (`featuredEvent` in src/data/site.ts) appears in
-// the hero in one of two places: this card under "I'm New" on wider screens,
-// or a row inside the "This Sunday" card on phones (FeaturedEventCardRow), so
-// the phone hero keeps one card instead of two. CSS shows one at a time.
+// the hero as its own card, separate from the "This Sunday" card: this one in
+// the copy column on tablets and desktops, and FeaturedEventCardRow under the
+// Sunday card on phones. CSS shows one at a time.
 function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
   return (
     <Link className="ctc-hero-notice" to="/events#featured">
@@ -25,7 +64,7 @@ function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
       </span>
       <span className="ctc-hero-notice-text">
         <span className="ctc-hero-notice-label">
-          Featured Event <i aria-hidden="true">·</i> {formatEventDateShort(event)}
+          {formatEventDateMedium(event)} <i aria-hidden="true">·</i> {event.time}
         </span>
         <span className="ctc-hero-notice-title">{event.title}</span>
       </span>
@@ -35,27 +74,39 @@ function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
   );
 }
 
-// Phone version: a calendar leaf, the title and an arrow, no label. The
-// dated tile says "occasion" on its own.
+// Phone version, the Sunday card's twin: calendar leaf (month over day),
+// "SUNDAY · 10:30 AM" over the title, and a round arrow.
 function FeaturedEventCardRow({ event }: { event: FeaturedEvent }) {
-  const { month, day } = eventDateParts(event);
+  const { weekday, month, day } = eventDateParts(event);
   return (
     <Link className="ctc-hero-card-event" to="/events#featured">
       <span className="ctc-hero-card-event-leaf" aria-hidden="true">
         <span>{month}</span>
         <strong>{day}</strong>
       </span>
-      <span className="ctc-hero-card-event-title">{event.title}</span>
-      <span className="sr-only">, {formatEventDateLong(event)} (event details)</span>
-      <ArrowRight className="ctc-hero-card-event-arrow" size={16} aria-hidden="true" />
+      <span className="ctc-hero-card-event-text">
+        <span className="ctc-hero-card-event-label" aria-hidden="true">
+          {weekday} <i>·</i> {event.time}
+        </span>
+        <span className="ctc-hero-card-event-title">{event.title}</span>
+      </span>
+      <span className="sr-only">, {formatEventDateLong(event)}, {event.time} (event details)</span>
+      <span className="ctc-hero-card-event-go" aria-hidden="true">
+        <ArrowRight size={18} />
+      </span>
     </Link>
   );
 }
 
+// Verses longer than this (in characters) are set smaller on tablets and
+// phones so they don't crowd the hero. Philippians 4:13 is ~80 characters.
+const LONG_VERSE = 100;
+
 function WeeklyVerse({ className = "" }: { className?: string }) {
+  const long = verseOfTheWeek.text.length > LONG_VERSE ? "ctc-hero-weekly-verse--long" : "";
   return (
     <blockquote
-      className={`ctc-hero-weekly-verse ${className}`.trim()}
+      className={`ctc-hero-weekly-verse ${long} ${className}`.replace(/\s+/g, " ").trim()}
       aria-label={`${verseOfTheWeek.label}: ${verseOfTheWeek.text} — ${verseOfTheWeek.reference}`}
     >
       <span>{verseOfTheWeek.label}</span>
@@ -182,41 +233,28 @@ export default function Home() {
         <div className="ctc-hero-bg-wash" aria-hidden="true" />
         <div className="ctc-hero-copy">
           <h1 className="ctc-hero-title" id="home-title" lang="ta">
-            <span className="ctc-hero-title-accent">வாரும்,</span>
-            <span>நாம் எல்லோரும் கூடி,</span>
-            <span>மகிழ் கொண்டாடுவோம்</span>
+            <span className="ctc-hero-title-accent">பதறாத வாழ்வும், சிதறாத மனமும்</span>
+            <span>பரிசாக தேவன் அருள்வார்.</span>
           </h1>
           <p className="ctc-hero-lede">
-            Join us this Sunday. We’d love to welcome you and your family.
+            <span>Join us this Sunday.</span>{" "}
+            <span>We’d love to welcome you and your family.</span>
           </p>
+          {/* On desktop "I'm New" moves to the photo's lower-right corner,
+              under the Sunday card (the --corner copy below); CSS shows one
+              copy, and display: none hides the other from screen readers. */}
           <div className="ctc-hero-actions">
-            <Link className="go" to="/visit">
-              I'm New
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
+            <ImNewLink />
           </div>
           {featured ? <FeaturedEventNotice event={featured} /> : null}
         </div>
 
         <div className="ctc-hero-visual">
-          <aside className="ctc-hero-card" aria-label="Sunday worship details">
-            <div className="ctc-hero-card-info">
-              <span>This Sunday</span>
-              <strong>{churchInfo.worship.time}</strong>
-            </div>
-            <a
-              className="ctc-hero-card-directions"
-              href={churchInfo.address.directionsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {/* Short phones swap the text for the pin (as on the Sunday bar). */}
-              <MapPin className="ctc-hero-card-directions-pin" size={18} aria-hidden="true" />
-              <span className="ctc-hero-card-directions-text">Get directions</span>
-              <ArrowRight size={14} aria-hidden="true" />
-            </a>
-            {featured ? <FeaturedEventCardRow event={featured} /> : null}
-          </aside>
+          <SundayCard />
+          {featured ? <FeaturedEventCardRow event={featured} /> : null}
+          <div className="ctc-hero-actions ctc-hero-actions--corner">
+            <ImNewLink />
+          </div>
         </div>
         <WeeklyVerse className="ctc-hero-weekly-verse-ribbon" />
       </section>
