@@ -28,16 +28,24 @@ export const churchInfo = {
   }
 } as const;
 
+// Homepage hero headline (Tamil), changed weekly. Two lines that never wrap:
+// the first in green italic, the second in ink. Phones size the headline to
+// fit the first line, so a much longer first line makes the whole headline
+// smaller there; keep each line to roughly 30 characters.
+export const heroHeadline = {
+  firstLine: "அபிஷேகத்தோடே, அதிகாரத்தோடே",
+  secondLine: "ஒரு தலைமுறை எழும்பட்டுமே!"
+} as const;
+
 // Update this single object when the featured weekly scripture changes.
 // Copy the Tamil text from a Bible source (e.g. tamilbiblesearch.com), never
 // from memory. Verses over ~100 characters are set a little smaller on
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Weekly Focus Verse",
-  // Second half of the verse (as the leaders chose), Tamil O.V. wording copied
-  // from tamilbiblesearch.com/tamil-bible-online/romans/15/
-  text: "நம்பிக்கையின் தேவன் விசுவாசத்தினால் உண்டாகும் எல்லாவித சந்தோஷத்தினாலும் சமாதானத்தினாலும் உங்களை நிரப்புவாராக.",
-  reference: "Romans 15:13"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/psalm/119/
+  text: "வாலிபன் தன் வழியை எதினால் சுத்தம்பண்ணுவான்? உமது வசனத்தின்படி தன்னைக் காத்துக்கொள்கிறதினால்தானே.",
+  reference: "Psalm 119:9"
 } as const;
 
 export type FeaturedEvent = {

@@ -135,15 +135,52 @@ The homepage hero is the master pattern (see `src/pages/Home.tsx`):
 1. **Kicker** (`.ctc-hero-kicker`): Tamil phrase in Catamaran/Fraunces green
    + small uppercase reference badge in a white pill.
 2. **Display headline** (`.ctc-hero-title`): on the homepage, Tamil-first in
-   Noto Serif Tamil. The opening line ("பதறாத வாழ்வும், சிதறாத மனமும்") leads in green italic at
-   the same size (it is long, so colour carries the emphasis) and the second line follows in light 300 ink. Inner pages use
-   Fraunces, ink.
-3. **Lede** (`.ctc-hero-lede`): 1–2 sentences of visitor-focused copy.
+   Noto Serif Tamil, two lines that never wrap. The first line leads in green
+   italic at the same size as the second (it is long, so colour carries the
+   emphasis); the second follows in light 300 ink. On phones the headline is
+   sized so the first line fills the column. Inner pages use Fraunces, ink.
+   The homepage wording is weekly content (see "Weekly homepage content"
+   below), never hardcoded in `Home.tsx`.
+3. **Lede** (`.ctc-hero-lede`): 1–2 sentences of visitor-focused copy. On the
+   homepage each sentence is its own line ("Join us this Sunday." /
+   "We'd love to welcome you and your family.") and never wraps.
 4. **One primary CTA** — never a pair of competing buttons in a hero.
 5. Optional full-bleed photo with a white wash gradient
    (`.ctc-hero-bg` + `.ctc-hero-bg-wash`) so text sits on calm space; on
    mobile the wash flips to top-down and a portrait crop serves via `<picture>`.
-6. Optional info card (see 6.3) anchored over the photo.
+6. Optional info cards (see 6.3): on the homepage, the "Every Sunday" card
+   and, while one is current, the featured event card.
+7. Optional verse ribbon (`.ctc-hero-weekly-verse-ribbon`): the "Weekly Focus
+   Verse" heading centred on its own line, the Tamil verse below, and the
+   reference running on straight after the closing quote (inside the same
+   paragraph, so it follows the last word). Phones set the reference on its
+   own line under the verse.
+
+**Homepage hero placement by screen.** Each element appears once per screen
+size. Where it moves between layouts it is rendered in both places, and CSS
+shows one (`display: none` also hides the other from screen readers).
+
+| Screen | Copy column, under the lede | Over the photo |
+|---|---|---|
+| Desktop ≥1121px | Event card (slim, `.ctc-hero-notice`) | Lower-right corner: "Every Sunday" card above, "I'm New" below at the same width (220px), 12px apart |
+| Tablet 621–1120px | "I'm New", then the event card | "Every Sunday" card, lifted clear of the verse ribbon |
+| Phone ≤620px | — | One stack: event card → "Every Sunday" card → "I'm New", 8–10px apart (twin cards, see 6.3) |
+
+On phones the hero must still fit one screen with the verse visible, down to
+360×640 and 375×560 (iPhone SE with Safari toolbars). Short screens
+(≤700px tall) slim the cards rather than dropping content.
+
+**Weekly homepage content.** Everything that changes week to week lives in
+`src/data/site.ts`, so a weekly update never touches page code:
+
+- `heroHeadline`: `firstLine` (green) and `secondLine`. Keep each line to
+  about 30 characters, or the phone headline gets small.
+- `verseOfTheWeek`: `label`, Tamil `text` and `reference`. Copy the verse from
+  a Bible source such as tamilbiblesearch.com, never from memory. Verses over
+  about 100 characters are set a step smaller on tablets and phones.
+- `featuredEvent`: the event card and the /events featured band, or `null`
+  for no event. It hides itself the day after `endsOn`. The flyer workflow is
+  in [pages/events.md](pages/events.md).
 
 Inner pages use a lighter variant: kicker + headline + lede + one CTA on a
 white or cream band; the photo and info card are optional, the structure is not.
@@ -160,25 +197,54 @@ Rounded **pill** is the sitewide button shape (`border-radius: var(--radius-pill
 - **Secondary — quiet pill** (shipping as `.ctc-hero-actions a`):
   `rgba(255,255,255,0.86)` fill, `--line` hairline border, ink text;
   hover: lime-wash fill, green text, `-2px` lift.
-- **Tertiary — arrow text link** (shipping as `.ctc-hero-card a`):
-  strong-weight Space Grotesk in `--clay-dark`, trailing `ArrowRight` (lucide) that
-  slides `3px` on hover.
+- **Tertiary — arrow text link** (shipping as `.ctc-featured-directions` on
+  the Events page): strong-weight Space Grotesk in `--clay-dark`, trailing
+  `ArrowRight` (lucide) that slides `3px` on hover.
+- **Round icon action** (shipping as `.ctc-hero-card a.ctc-hero-card-directions`,
+  the map pin, and `.ctc-hero-card-event-go`, the event arrow): a 44px circle
+  (40px on short phones) in `--sage` with a `--primary` icon; hover fills
+  `--primary` with a white icon. Icon-only, so it always carries an accessible
+  name (a `.sr-only` label such as "Get directions") and a `title` tooltip.
+  Used for a card's single action where words would crowd it.
 
 Buttons are `min-height: 52px` (44px+ touch target), Space Grotesk 500–600,
 transitions 160–180ms with the signature easing.
 
-### 6.3 Card (the "This Sunday" look, `.ctc-hero-card`)
+### 6.3 Card (the "Every Sunday" look, `.ctc-hero-card`)
 
-- Solid warm white `rgba(255, 254, 250, 0.97)` (+ `backdrop-filter: blur(16px)`
-  when floating over photos).
-- Hairline border `rgba(16, 37, 27, 0.08)` — visible edge, never white-on-white.
-- Green-tinted shadow `0 28px 80px rgba(16, 37, 27, 0.24)` when floating over
-  imagery; the softer `--shadow-card` when resting on a flat band.
+- Solid warm white `#fffefa`. No `backdrop-filter`: it is costly over the
+  pinned homepage sequence (see the Follow the Light performance rules).
+- Hairline border `rgba(16, 37, 27, 0.12–0.14)`: a visible edge, never
+  white-on-white.
+- Green-tinted shadow (`0 18px 50px rgba(16, 37, 27, 0.18)` floating over the
+  photo on desktop); the softer `--shadow-card` when resting on a flat band.
 - Radius `18px` for feature cards; `--radius-md` (8px) for in-flow cards.
-- Anatomy: mono uppercase label in `--primary` → large Fraunces value in ink →
-  tertiary arrow link.
-- Hover (linked cards only): `-3px` lift, border warms toward
+- Anatomy: small uppercase label in `--primary` ("EVERY SUNDAY") over the
+  value in ink (Fraunces "10:30 AM"), with a round icon action on the right
+  (the map pin, see 6.2). The time never wraps.
+- Hover (linked cards only): `-2…-3px` lift, border warms toward
   `rgba(21,61,43,0.22)`.
+
+**Featured event card.** Its own card, never folded into the Sunday card.
+Desktop and tablet (`.ctc-hero-notice`): a sage calendar icon tile, the label
+"SUNDAY, OCT 11 · 10:30 AM" (weekday, short month and day, then time; no
+"Featured Event" wording), the title on one line in `--font-serif-text`
+(Newsreader 600), and a `--clay-dark` arrow on the right edge. It links to
+`/events#featured`. It is a quiet card, never a second bronze button.
+
+**Phone twin cards.** On phones the event card and the "Every Sunday" card
+share one anatomy so they read as a set:
+
+- Grid `44px · 1fr · 44px`: a sage leading tile (a calendar leaf with month
+  over day for the event; a clock for Sunday), a small-caps label over a
+  Newsreader value in the middle, and a round icon action (arrow; map pin).
+- Same height (68px; 58px on screens ≤700px tall, 54px ≤600px), padding,
+  radius, border and shadow. "I'm New" below matches their width and edges.
+- Labels: "SUNDAY · 10:30 AM" / "EVERY SUNDAY". Values: the event title /
+  "10:30 AM". Both values step down together on the narrowest phones so the
+  title stays on one line.
+- Screen readers hear the event as its title, full date and time, then
+  "(event details)"; the leaf and label are `aria-hidden` duplicates.
 
 ### 6.4 Section header
 
@@ -220,7 +286,25 @@ Gentle and reverent — light revealing the page, not decoration moving on it.
 - `prefers-reduced-motion: reduce` is mandatory: kill transforms/reveals and
   show content immediately (pattern: the `.flat` mode in
   `FollowTheLight.module.css` and the global reduced-motion block in
-  `styles.css`).
+  `styles.css`). Anything that starts at `opacity: 0` and relies on its
+  entrance animation to appear must also be forced visible
+  (`opacity: 1 !important`) when motion is reduced. Turning the animation off
+  is not enough: the homepage verse once stayed invisible that way.
+
+**Homepage hero load sequence.** One sequence on every screen, in reading
+order, so nothing pops in ahead of the text:
+
+| Delay | Element |
+|---|---|
+| 260ms | Tamil headline |
+| 360ms | Lede |
+| 440–640ms | The cards and "I'm New", in reading order for that screen (phone and desktop: event → Sunday → "I'm New"; tablet: "I'm New" → event → Sunday) |
+| 620ms+ | Verse ribbon (rule, heading, then the verse with its reference) |
+
+The Sunday card and "I'm New" sit inside elements pinned at
+`opacity: 1 !important` for Follow the Light, so they fade with
+`filter: opacity()` and move with `translate` (keyframes `heroCardIn`) rather
+than `opacity`/`transform`. Use the same approach for any new element there.
 
 **Homepage-exclusive atmosphere — do NOT copy to inner pages:**
 

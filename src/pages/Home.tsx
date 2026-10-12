@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
-import { churchInfo, verseOfTheWeek } from "../data/site";
+import { churchInfo, heroHeadline, verseOfTheWeek } from "../data/site";
 import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
 import type { FeaturedEvent } from "../data/site";
 import { eventDateParts, formatEventDateLong, formatEventDateMedium } from "../utils/featuredEvent";
@@ -236,8 +236,8 @@ export default function Home() {
         <div className="ctc-hero-bg-wash" aria-hidden="true" />
         <div className="ctc-hero-copy">
           <h1 className="ctc-hero-title" id="home-title" lang="ta">
-            <span className="ctc-hero-title-accent">பதறாத வாழ்வும், சிதறாத மனமும்</span>
-            <span>பரிசாக தேவன் அருள்வார்.</span>
+            <span className="ctc-hero-title-accent">{heroHeadline.firstLine}</span>
+            <span>{heroHeadline.secondLine}</span>
           </h1>
           <p className="ctc-hero-lede">
             <span>Join us this Sunday.</span>{" "}
