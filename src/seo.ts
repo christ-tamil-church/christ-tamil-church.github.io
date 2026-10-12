@@ -1,5 +1,6 @@
 import { clayPotPath, clayPotWritingPath, clayPotWritings, type ClayPotSlug } from "./data/clayPot";
 import { siteImages } from "./data/images";
+import { latestVideo, videoSummary, videoUploadDate } from "./data/latestVideo";
 import { churchInfo } from "./data/site";
 
 // The one place the public domain lives. Canonical URLs, Open Graph tags,
@@ -194,6 +195,22 @@ export function structuredData(pathname: string) {
         name: crumb.name,
         item: canonicalUrl(crumb.path)
       }))
+    });
+  }
+
+  // The Sermons page embeds the channel's latest video; describe it so search
+  // engines can list the page in video results. Google requires an upload date.
+  const uploadDate = latestVideo && videoUploadDate(latestVideo);
+  if (path === "/sermons" && latestVideo && uploadDate) {
+    graph.push({
+      "@type": "VideoObject",
+      "@id": `${canonicalUrl("/sermons")}#latest-video`,
+      name: latestVideo.title,
+      description: videoSummary(latestVideo, 500) ?? latestVideo.title,
+      thumbnailUrl: [`https://i.ytimg.com/vi/${latestVideo.youtubeId}/hqdefault.jpg`],
+      uploadDate,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${latestVideo.youtubeId}`,
+      publisher: { "@id": churchId }
     });
   }
 

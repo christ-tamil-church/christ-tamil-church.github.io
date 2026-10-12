@@ -1,6 +1,7 @@
-import { ChevronDown, ChevronUp, ExternalLink, Play, Search, VideoOff } from "lucide-react";
+import { ArrowUpRight, ChevronDown, ChevronUp, ExternalLink, Play, Search, VideoOff } from "lucide-react";
 import { useMemo, useState } from "react";
 import SectionHeader from "../components/SectionHeader";
+import { latestVideo, splitVideoTitle, videoSummary, videoUploadDate, type LatestVideo } from "../data/latestVideo";
 import {
   churchYoutubeChannelUrl,
   sermonPlaylists,
@@ -76,6 +77,49 @@ function VideoGrid({ videos }: { videos: SermonVideo[] }) {
   );
 }
 
+const publishedFormat = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "America/Chicago" });
+
+// The channel's newest upload, playable in place. A real embedded player (not
+// a click-to-load thumbnail) so search engines can see the video on the page.
+function LatestVideoBand({ video }: { video: LatestVideo }) {
+  const revealRef = useRevealOnScroll<HTMLDivElement>();
+  const { name, date, detail } = splitVideoTitle(video.title);
+  const uploadDate = videoUploadDate(video);
+  const dateText = date ?? (video.publishedAt ? publishedFormat.format(new Date(video.publishedAt)) : undefined);
+  const summary = videoSummary(video);
+
+  return (
+    <section className="sermons-latest" aria-labelledby="sermons-latest-title">
+      <div className="sermons-latest-inner" ref={revealRef}>
+        <div className="sermons-latest-player">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${video.youtubeId}`}
+            title={`${video.title} (YouTube video player)`}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+        <div className="sermons-latest-copy">
+          <span className="eyebrow">Latest video</span>
+          {/* The date sits inside the heading so it never reads as a second
+              "Praise & Worship" heading next to the playlist below. */}
+          <h2 id="sermons-latest-title">
+            {name}
+            {detail ? <span className="sermons-latest-detail">{detail}</span> : null}
+            {dateText ? <time dateTime={uploadDate}><span className="sr-only">, </span>{dateText}</time> : null}
+          </h2>
+          {summary ? <p>{summary}</p> : null}
+          <a className="sermons-latest-link" href={`https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noreferrer">
+            Open on YouTube <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Sermons() {
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<VideoCategoryId>("all");
@@ -115,6 +159,8 @@ export default function Sermons() {
           </a>
         </div>
       </section>
+
+      {latestVideo ? <LatestVideoBand video={latestVideo} /> : null}
 
       <section className="section sermons-library" aria-labelledby="sermons-library-title">
         <div className="sermons-library-heading">

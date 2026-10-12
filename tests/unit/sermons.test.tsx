@@ -1,6 +1,7 @@
 import { screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
+import { splitVideoTitle, videoSummary, videoUploadDate } from "../../src/data/latestVideo";
 import { churchYoutubeChannelUrl, sermonPlaylists, sermonVideos } from "../../src/data/sermonVideos";
 import { renderApp } from "./renderApp";
 
@@ -121,8 +122,57 @@ describe("Sermons page", () => {
 
   it("shows the date from a video title on its card", () => {
     renderApp("/sermons");
-    const dated = sermonVideos.find((video) => video.title.includes("July 12, 2026"))!;
-    const card = screen.getAllByRole("link", { name: `Watch ${dated.title} on YouTube` })[0];
-    expect(within(card).getByText("July 12, 2026").tagName).toBe("TIME");
+    // Any card showing on first load whose title carries a full date; the
+    // newest videos change, so don't pin a specific one.
+    const card = videoCards().find((link) => splitVideoTitle(link.getAttribute("aria-label")!).date)!;
+    const { date } = splitVideoTitle(card.getAttribute("aria-label")!);
+    expect(within(card).getByText(date!).tagName).toBe("TIME");
+  });
+
+  it("features the latest video with an embedded player", () => {
+    // Tests never fetch YouTube's feed, so the first listed video stands in.
+    renderApp("/sermons");
+    const [first] = sermonVideos;
+    const { name, date } = splitVideoTitle(first.title);
+    const band = document.querySelector<HTMLElement>("section.sermons-latest")!;
+    const heading = within(band).getByRole("heading", { level: 2 });
+    expect(heading).toHaveTextContent(name);
+    expect(band).toHaveAttribute("aria-labelledby", heading.id);
+    const player = band.querySelector("iframe")!;
+    expect(player).toHaveAttribute("src", `https://www.youtube-nocookie.com/embed/${first.youtubeId}`);
+    expect(player).toHaveAttribute("title", `${first.title} (YouTube video player)`);
+    if (date) expect(within(band).getByText(date)).toHaveAttribute("datetime", videoUploadDate(first));
+    const link = within(band).getByRole("link", { name: "Open on YouTube" });
+    expect(link).toHaveAttribute("href", `https://www.youtube.com/watch?v=${first.youtubeId}`);
+    expect(link).toHaveAttribute("target", "_blank");
+  });
+});
+
+describe("latest video helpers", () => {
+  it("splits a church video title into name, detail and date", () => {
+    expect(splitVideoTitle("Christ Tamil Church Chicago – Praise & Worship | October 4, 2026")).toEqual({
+      name: "Praise & Worship",
+      date: "October 4, 2026",
+      detail: undefined
+    });
+    expect(splitVideoTitle("Christ Tamil Church Chicago – Praise & Worship | September 6, 2026 (Family Camp)")).toMatchObject({
+      name: "Praise & Worship",
+      date: "September 6, 2026",
+      detail: "(Family Camp)"
+    });
+    expect(splitVideoTitle("Christmas Program")).toEqual({ name: "Christmas Program", date: undefined, detail: undefined });
+  });
+
+  it("prefers YouTube's publish time and falls back to the date in the title", () => {
+    expect(videoUploadDate({ youtubeId: "x", title: "Worship | March 9, 2025", publishedAt: "2025-03-10T05:00:00+00:00" })).toBe("2025-03-10T05:00:00+00:00");
+    expect(videoUploadDate({ youtubeId: "x", title: "Worship | March 9, 2025" })).toBe("2025-03-09");
+    expect(videoUploadDate({ youtubeId: "x", title: "Worship" })).toBeUndefined();
+  });
+
+  it("summarizes the description without emoji or hashtags", () => {
+    const description = "Join us this Sunday ✨ for worship #CTC #shorts\n\nSecond paragraph.";
+    expect(videoSummary({ youtubeId: "x", title: "t", description })).toBe("Join us this Sunday for worship Second paragraph.");
+    expect(videoSummary({ youtubeId: "x", title: "t", description: "word ".repeat(80) }, 40)).toMatch(/^(word ){6,}word…$/);
+    expect(videoSummary({ youtubeId: "x", title: "t" })).toBeUndefined();
   });
 });

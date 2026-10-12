@@ -57,10 +57,10 @@ parallel palette. The working set:
 | `--faint` | `#8a9183` | Meta, captions |
 | `--green-deep` | `#6ba52c` | Accent green — accent words, icons, citations |
 | `--light` | `#8dc63f` | Bright leaf green — dots, glints, rail accents |
-| `--gold` / `--clay` | `#b99045` | Brass gold — eyebrows, small labels. A spice, never a flood |
+| `--gold` | `#b99045` | Brass gold — eyebrows, small labels. A spice, never a flood |
 | `--clay-dark` | `#96702f` | Bronze — primary CTA fill (white text) |
-| `--sage` / `--bg-sage` | `#edf3ea` | Sage band / inset panels |
-| `--canvas` / `--bg-sand` | `#faf6ea` | Warm cream band |
+| `--sage` | `#edf3ea` | Sage band / inset panels |
+| `--canvas` | `#faf6ea` | Warm cream band |
 | `--line` | `rgba(16,37,27,0.10)` | Hairlines, card borders |
 | `--shadow-card` | `0 16px 34px rgba(16,37,27,0.06)` | Card shadow — always green-tinted, never grey |
 | `--radius-md` | `8px` | Cards, images |
