@@ -69,18 +69,19 @@ export type FeaturedEvent = {
 //   2. Update the values below.
 // No event to feature? Set `featuredEvent = null`. Either way it disappears by
 // itself the day after `endsOn`.
+// No flyer yet? Leave `flyer: null` (the Events page shows a lettered poster
+// instead). When the flyer arrives, run the script above, then set
+// `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  title: "Pastor Appreciation Sunday",
-  startsOn: "2026-10-11",
-  endsOn: "2026-10-11",
+  title: "Youth Sunday",
+  startsOn: "2026-10-18",
+  endsOn: "2026-10-18",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
-  summary:
-    "Honoring our pastor with gratitude and love. Thank you for your faithful service, love and leadership.",
-  flyer: siteImages.featuredEventFlyer,
-  flyerAlt:
-    "Pastor Appreciation Sunday flyer: Honoring Our Pastor, with gratitude and love. Sunday, October 11, 2026 at 10:30 AM, hosted at Christ Tamil Church, 1330 63rd St, Downers Grove."
+  summary: "Join us for Youth Sunday during our Sunday worship service.",
+  flyer: null,
+  flyerAlt: ""
 };
 
 export type ChurchEvent = {
