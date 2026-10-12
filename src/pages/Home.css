@@ -418,6 +418,57 @@
   .ctc-home .ctc-hero .ctc-hero-visual {
     bottom: calc(clamp(96px, 13vh, 132px) + 52px);
   }
+
+  /* As on desktop, "I'm New" sits directly under the "Every Sunday" card at
+     the same width (the corner copy); the copy-column one is hidden. */
+  .ctc-home .ctc-hero .ctc-hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-copy > .ctc-hero-actions {
+    display: none;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-visual > .ctc-hero-actions.ctc-hero-actions--corner {
+    display: flex;
+    margin-top: 0;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-actions--corner a.go {
+    width: 100%;
+  }
+
+  /* Compact card, matching desktop: the pair is 230px wide (was up to
+     290px), with the time a step smaller and tighter padding. */
+  .ctc-home .ctc-hero .ctc-hero-visual {
+    width: 230px;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-visual > .ctc-hero-card {
+    gap: 6px 12px;
+    border-radius: 16px;
+    padding: 14px 14px 14px 18px;
+    box-shadow: 0 18px 50px rgba(16, 37, 27, 0.18);
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-visual > .ctc-hero-card .ctc-hero-card-info {
+    gap: 6px;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-visual > .ctc-hero-card span {
+    font-size: 0.64rem;
+  }
+
+  .ctc-home .ctc-hero .ctc-hero-visual > .ctc-hero-card strong {
+    font-size: 2rem;
+  }
+
+  /* The event card leads the copy column now that "I'm New" has moved. */
+  .ctc-home .ctc-hero .ctc-hero-notice {
+    margin-top: 28px;
+  }
 }
 
 /* The narrowest phones (~360px): one more step down so the event title
@@ -1416,9 +1467,16 @@
   translate: -50% 0;
 }
 
-.ctc-hero-weekly-verse-ribbon::before {
+/* The heading's underline: a short gold-to-green rule centred just under
+   "Weekly Focus Verse". The heading reserves room for it below. */
+.ctc-hero-weekly-verse-ribbon > span {
+  position: relative;
+  padding-bottom: 9px;
+}
+
+.ctc-hero-weekly-verse-ribbon > span::after {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 50%;
   width: 76px;
   height: 1px;
@@ -1791,7 +1849,7 @@
     display: none;
   }
 
-  .ctc-hero-weekly-verse-ribbon::before {
+  .ctc-hero-weekly-verse-ribbon > span::after {
     background:
       radial-gradient(circle at center, #fffefa 0 2px, transparent 2.5px),
       linear-gradient(90deg, transparent, #f0d79e 28%, #fffefa 72%, transparent);
@@ -2004,6 +2062,13 @@
     opacity: 1 !important;
   }
 
+  /* The heading's underline: shown full width, still centred. */
+  .ctc-hero-weekly-verse-ribbon > span::after {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: translateX(-50%) !important;
+  }
+
   .ctc-stage::after {
     opacity: 0.18;
   }
@@ -2037,7 +2102,9 @@ html body .ctc-hero-weekly-verse p[lang="ta"] {
   }
 }
 
-/* Tablet order: "I'm New" → event card → Sunday card. */
+/* Order on every screen: event card → Sunday card → "I'm New". Every layout
+   now uses the corner copy of "I'm New"; the copy-column one is hidden, but
+   keeps its timing in case a layout shows it again. */
 .ctc-hero .ctc-hero-copy > .ctc-hero-actions a.go {
   animation: heroCardIn 650ms var(--ease-premium) 440ms both;
 }

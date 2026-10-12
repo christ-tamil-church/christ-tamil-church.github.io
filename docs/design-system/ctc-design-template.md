@@ -163,7 +163,7 @@ shows one (`display: none` also hides the other from screen readers).
 | Screen | Copy column, under the lede | Over the photo |
 |---|---|---|
 | Desktop ≥1121px | Event card (slim, `.ctc-hero-notice`) | Lower-right corner: "Every Sunday" card above, "I'm New" below at the same width (220px), 12px apart |
-| Tablet 621–1120px | "I'm New", then the event card | "Every Sunday" card, lifted clear of the verse ribbon |
+| Tablet 621–1120px | Event card | Lower right: "Every Sunday" card above, "I'm New" below at the same width, 12px apart, lifted clear of the verse ribbon |
 | Phone ≤620px | — | One stack: event card → "Every Sunday" card → "I'm New", 8–10px apart (twin cards, see 6.3) |
 
 On phones the hero must still fit one screen with the verse visible, down to
@@ -298,7 +298,7 @@ order, so nothing pops in ahead of the text:
 |---|---|
 | 260ms | Tamil headline |
 | 360ms | Lede |
-| 440–640ms | The cards and "I'm New", in reading order for that screen (phone and desktop: event → Sunday → "I'm New"; tablet: "I'm New" → event → Sunday) |
+| 440–640ms | The cards and "I'm New", in reading order for that screen (event → Sunday → "I'm New" on every screen) |
 | 620ms+ | Verse ribbon (rule, heading, then the verse with its reference) |
 
 The Sunday card and "I'm New" sit inside elements pinned at
