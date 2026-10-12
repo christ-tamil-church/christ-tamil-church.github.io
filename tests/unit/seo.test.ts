@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { siteImages } from "../../src/data/images";
+import { sermonVideos } from "../../src/data/sermonVideos";
 import { churchInfo } from "../../src/data/site";
 import {
   absoluteUrl,
@@ -143,6 +144,20 @@ describe("structuredData", () => {
   it("has no breadcrumbs on the homepage or unknown pages", () => {
     expect(nodeOfType(structuredData("/") as Graph, "BreadcrumbList")).toBeUndefined();
     expect(nodeOfType(structuredData("/nope") as Graph, "BreadcrumbList")).toBeUndefined();
+  });
+
+  it("describes the embedded latest video on the Sermons page only", () => {
+    const [first] = sermonVideos;
+    expect(nodeOfType(structuredData("/sermons/") as Graph, "VideoObject")).toMatchObject({
+      "@id": `${siteUrl}/sermons/#latest-video`,
+      name: first.title,
+      thumbnailUrl: [`https://i.ytimg.com/vi/${first.youtubeId}/hqdefault.jpg`],
+      uploadDate: expect.stringMatching(/^\d{4}-\d{2}-\d{2}/),
+      embedUrl: `https://www.youtube-nocookie.com/embed/${first.youtubeId}`,
+      publisher: { "@id": `${siteUrl}/#church` }
+    });
+    expect(nodeOfType(structuredData("/") as Graph, "VideoObject")).toBeUndefined();
+    expect(nodeOfType(structuredData("/worship") as Graph, "VideoObject")).toBeUndefined();
   });
 
   it("builds nested breadcrumbs from page labels", () => {
