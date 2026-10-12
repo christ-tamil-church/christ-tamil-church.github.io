@@ -124,7 +124,9 @@ layering another timeout or lock onto it.
     280ms; ribbon rises at 340ms; ministry names stagger at
     70ms from 420ms.
   - The hero has no element choreography of its own beyond its load
-    animations; returning to it plays the scene-level resolve.
+    sequence (spec: "Homepage hero load sequence" in
+    `ctc-design-template.md` §7); returning to it plays the scene-level
+    resolve.
 - **Chapter rail** (right edge of the pin, hidden ≤620px): one station per
   chapter on a hairline, with a `--light` point gliding continuously
   (`translateY(progress × 100%)`). Passed stations fill green; the active one
@@ -146,10 +148,13 @@ and the headline (`clamp(36px, min(13vw, 7.2svh), 60px)`) scale with screen
 height as well as width, and ministry names stack tightly
 — the six-ministry chapters (Connect, Grow) fit down to 360×640 and
 375×600. The phone hero is tightened to fit one
-screen down to 360×640 (centred column, single-row Sunday card). The Tamil
-title uses a display hierarchy on phones: the green opening line ("பதறாத வாழ்வும், சிதறாத மனமும்") on one line at the column width,
-the two phrase lines width-scaled so they never wrap or overflow, and the
-lede one step quieter.
+screen down to 360×640 and 375×560 (iPhone SE with Safari toolbars): a
+centred column with the two-line Tamil title (green first line, sized to fill
+the column, never wrapping), the two-line lede, then one stack of the event
+card, the "Every Sunday" card and "I'm New" (twin cards, see
+`ctc-design-template.md` §6.3), then the verse ribbon. Screens ≤700px tall
+slim the cards rather than dropping content. The headline and verse are
+weekly content in `src/data/site.ts`; don't quote them here.
 
 ## Flat mode (reduced motion and short screens)
 

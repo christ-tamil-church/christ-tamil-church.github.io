@@ -1,5 +1,6 @@
 import { screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+import { heroHeadline } from "../../src/data/site";
 import { legacyRedirects, pageMeta } from "../../src/seo";
 import { renderApp } from "./renderApp";
 
@@ -7,7 +8,8 @@ import { renderApp } from "./renderApp";
 // this list on purpose when a headline is rewritten. Whitespace is ignored
 // because headlines are split across deliberate line breaks.
 const pageHeadings: Record<keyof typeof pageMeta, string> = {
-  "/": "பதறாத வாழ்வும், சிதறாத மனமும் பரிசாக தேவன் அருள்வார்.",
+  // The homepage headline changes weekly in src/data/site.ts.
+  "/": `${heroHeadline.firstLine} ${heroHeadline.secondLine}`,
   "/visit": "A church home where you can belong.",
   "/worship": "Come as you are. Worship with us.",
   "/grow": "Rooted in Christ. Growing together.",
