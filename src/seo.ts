@@ -233,7 +233,11 @@ export const legacyRedirects: Record<string, string> = {
   "/community-outreach": "/serve",
   "/fellowship-hour": "/connect",
   "/annual-church-retreat": "/events",
-  // The old WordPress Clay Pot blog.
+  "/past-events": "/events",
+  // The old WordPress Clay Pot blog. Its author archives still had search
+  // impressions after the move.
   "/clay-pot": clayPotPath,
+  "/clay-pot/author/jagansd": clayPotPath,
+  "/clay-pot/author/ajithsamuel": clayPotPath,
   ...Object.fromEntries(clayPotWritings.map((writing) => [writing.legacyPath, clayPotWritingPath(writing.slug)]))
 };
