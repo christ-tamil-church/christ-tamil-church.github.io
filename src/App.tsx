@@ -2,6 +2,7 @@ import type { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import { clayPotWritingPath, clayPotWritings, type ClayPotSlug } from "./data/clayPot";
+import AudioSermons from "./pages/AudioSermons";
 import ClayPot from "./pages/ClayPot";
 import ClayPotArticle from "./pages/ClayPotArticle";
 import Contact from "./pages/Contact";
@@ -38,6 +39,7 @@ const pages: Record<PagePath, ReactElement> = {
   ...clayPotPages,
   "/serve": <Serve />,
   "/sermons": <Sermons />,
+  "/sermons/audio-archive": <AudioSermons />,
   "/connect": <Connect />,
   "/events": <Events />,
   "/contact": <Contact />

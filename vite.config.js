@@ -1,4 +1,5 @@
-import { mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { createReadStream, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { basename, join, resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
@@ -74,9 +75,56 @@ async function fetchLatestVideo() {
 
 const latestVideo = await fetchLatestVideo();
 
+// The 2015–2020 audio sermons are hosted on archive.org (src/data/audioArchive.ts).
+// When running `npm run dev` with the downloaded MP3s on this computer, play
+// them from disk instead, so the archive page works before or without the
+// upload. Set AUDIO_ARCHIVE_DIR to use a different folder. Builds and tests
+// always use archive.org.
+function localAudioArchive() {
+  const dir = resolve(process.env.AUDIO_ARCHIVE_DIR ?? "../old-site-archive/audio-sermons");
+  const prefix = "/__audio-archive/";
+  let enabled = false;
+  return {
+    name: "ctc-local-audio-archive",
+    config(_, { command, isPreview }) {
+      enabled = command === "serve" && !isPreview && !process.env.VITEST && existsSync(dir);
+      return { define: { __LOCAL_AUDIO_BASE__: JSON.stringify(enabled ? prefix : null) } };
+    },
+    configureServer(server) {
+      if (!enabled) return;
+      server.config.logger.info(`  Audio archive: playing MP3s from ${dir}`);
+      server.middlewares.use(prefix, (req, res) => {
+        const name = basename(decodeURIComponent((req.url ?? "").split("?")[0]));
+        const file = join(dir, name);
+        if (!name.endsWith(".mp3") || !existsSync(file)) {
+          res.statusCode = 404;
+          res.end("Not found");
+          return;
+        }
+        // Range requests let the browser seek without downloading the whole file.
+        const size = statSync(file).size;
+        const range = /bytes=(\d*)-(\d*)/.exec(req.headers.range ?? "");
+        res.setHeader("Content-Type", "audio/mpeg");
+        res.setHeader("Accept-Ranges", "bytes");
+        if (range) {
+          const start = range[1] ? Number(range[1]) : size - Number(range[2]);
+          const end = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+          res.statusCode = 206;
+          res.setHeader("Content-Range", `bytes ${start}-${end}/${size}`);
+          res.setHeader("Content-Length", end - start + 1);
+          createReadStream(file, { start, end }).pipe(res);
+        } else {
+          res.setHeader("Content-Length", size);
+          createReadStream(file).pipe(res);
+        }
+      });
+    }
+  };
+}
+
 export default defineConfig({
   base: "/",
-  plugins: [react()],
+  plugins: [react(), localAudioArchive()],
   define: {
     __BUILD_DATE__: JSON.stringify(buildDate),
     __LATEST_VIDEO__: JSON.stringify(latestVideo)

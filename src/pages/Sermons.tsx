@@ -1,6 +1,8 @@
-import { ArrowUpRight, ChevronDown, ChevronUp, ExternalLink, Play, Search, VideoOff } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, ChevronUp, ExternalLink, Headphones, Play, Search, VideoOff } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
+import { audioArchiveFirstYear, audioArchiveLastYear, audioArchivePath, preservedSermons } from "../data/audioArchive";
 import { latestVideo, splitVideoTitle, videoSummary, videoUploadDate, type LatestVideo } from "../data/latestVideo";
 import {
   churchYoutubeChannelUrl,
@@ -218,6 +220,19 @@ export default function Sermons() {
             })}
           </div>
         )}
+      </section>
+
+      <section className="sermons-archive" aria-labelledby="sermons-archive-title">
+        <div className="sermons-archive-inner">
+          <span className="sermons-archive-icon" aria-hidden="true"><Headphones size={26} /></span>
+          <div className="sermons-archive-copy">
+            <h2 id="sermons-archive-title">Sermons from our first years</h2>
+            <p>{preservedSermons.length} Sunday recordings from {audioArchiveFirstYear} to {audioArchiveLastYear}, most of them in Tamil. Listen right here on the site.</p>
+          </div>
+          <Link className="sermons-archive-link" to={audioArchivePath}>
+            Listen to the audio archive <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
       </section>
     </>
   );

@@ -44,7 +44,8 @@ const primaryNavItems: NavItem[] = [
       { label: "Sunday School – B.L.A.S.T.", href: "/grow/sunday-school" },
       { label: "Kids Circle", href: "/grow/kids-circle" },
       { label: "Messages & Moments", href: "/sermons" },
-      { label: "Clay Pot", href: "/grow/clay-pot" }
+      { label: "Clay Pot", href: "/grow/clay-pot" },
+      { label: "Audio Sermons 2015–2020", href: "/sermons/audio-archive" }
     ]
   },
   {

@@ -85,6 +85,7 @@ describe("pageMeta", () => {
         "/grow/kids-circle",
         "/grow/sunday-school",
         "/sermons",
+        "/sermons/audio-archive",
         "/serve",
         "/visit",
         "/worship"
