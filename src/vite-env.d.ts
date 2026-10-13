@@ -10,3 +10,6 @@ declare const __LATEST_VIDEO__: {
   publishedAt: string;
   description: string;
 } | null;
+
+/** "/__audio-archive/" when `npm run dev` serves the audio sermons from disk, otherwise null (see vite.config.js). */
+declare const __LOCAL_AUDIO_BASE__: string | null;

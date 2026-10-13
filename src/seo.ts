@@ -1,3 +1,4 @@
+import { audioArchiveItemUrl, audioArchivePath, audioSermonUrl, isoDuration, preservedSermons } from "./data/audioArchive";
 import { clayPotPath, clayPotWritingPath, clayPotWritings, type ClayPotSlug } from "./data/clayPot";
 import { siteImages } from "./data/images";
 import { latestVideo, videoSummary, videoUploadDate } from "./data/latestVideo";
@@ -83,6 +84,11 @@ export const pageMeta = {
     label: "Messages & Moments",
     title: "Tamil Sermons & Worship Videos – Christ Tamil Church",
     description: "Watch and search more than 10 years of Tamil and English worship, sermons, devotionals, VBS, and celebrations from Christ Tamil Church Chicago."
+  },
+  "/sermons/audio-archive": {
+    label: "Audio Archive",
+    title: "Tamil Audio Sermons 2015–2020 – Christ Tamil Church",
+    description: "Listen to Sunday sermons from Christ Tamil Church Chicago's first years, 2015 to 2020, mostly in Tamil, by Rev. Godwin Kanakaraj and others."
   },
   "/connect": {
     label: "Connect",
@@ -214,6 +220,32 @@ export function structuredData(pathname: string) {
     });
   }
 
+  // The audio archive: the collection and each surviving recording.
+  if (path === audioArchivePath) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": `${canonicalUrl(audioArchivePath)}#recordings`,
+      name: "Christ Tamil Church audio sermons, 2015–2020",
+      url: canonicalUrl(audioArchivePath),
+      sameAs: audioArchiveItemUrl,
+      numberOfItems: preservedSermons.length,
+      itemListElement: preservedSermons.map((sermon, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "AudioObject",
+          name: sermon.part ? `${sermon.theme} (part ${sermon.part})` : sermon.theme,
+          contentUrl: audioSermonUrl(sermon),
+          encodingFormat: "audio/mpeg",
+          uploadDate: sermon.date,
+          ...(sermon.durationSec ? { duration: isoDuration(sermon.durationSec) } : {}),
+          author: { "@type": "Person", name: sermon.speaker },
+          publisher: { "@id": churchId }
+        }
+      }))
+    });
+  }
+
   return { "@context": "https://schema.org", "@graph": graph };
 }
 
@@ -229,7 +261,7 @@ export const legacyRedirects: Record<string, string> = {
   "/bible-study": "/grow/bible-study-prayer",
   "/sunday-school": "/grow/sunday-school",
   "/kids-circle": "/grow/kids-circle",
-  "/audio-sermons": "/sermons",
+  "/audio-sermons": audioArchivePath,
   "/community-outreach": "/serve",
   "/fellowship-hour": "/connect",
   "/annual-church-retreat": "/events",

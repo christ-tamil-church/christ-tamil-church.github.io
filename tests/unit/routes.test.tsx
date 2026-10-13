@@ -22,6 +22,7 @@ const pageHeadings: Record<keyof typeof pageMeta, string> = {
   "/grow/clay-pot/pentecostal-paradoxes": "Pentecostal Paradoxes",
   "/serve": "Love your neighbor in practical ways.",
   "/sermons": "Faith shared. Moments remembered.",
+  "/sermons/audio-archive": "Sermons from our first years.",
   "/connect": "Come as a guest. Leave as family.",
   "/events": "There is a place for you here.",
   "/contact": "Let’s start a conversation."
