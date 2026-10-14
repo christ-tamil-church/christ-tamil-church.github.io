@@ -122,9 +122,10 @@ function mp3Duration(path) {
 const sermons = [];
 let facebookRows = 0;
 for (const row of html.split(/<tr[\s>]/).slice(1)) {
-  if (!row.includes("Theme:&nbsp;")) continue;
+  if (!row.includes("Date:&nbsp;")) continue;
   const date = isoDate(cell(row, "Date"));
-  const theme = cell(row, "Theme");
+  // A few rows lost their "Theme:" label; the theme column is still marked.
+  const theme = cell(row, "Theme") || decode(row.match(/<td class="theme">([\s\S]*?)<\/td>/)?.[1] ?? "");
   const speaker = cleanSpeaker(cell(row, "Speaker"));
   const files = [...new Set([...row.matchAll(/contentUrl" content="([^"]+\.mp3)"/g)].map((match) => basename(match[1])))];
   if (!files.length) {
