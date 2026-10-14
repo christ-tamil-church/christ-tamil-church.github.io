@@ -79,9 +79,11 @@ export const featuredEvent: FeaturedEvent | null = {
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
-  summary: "Join us for Youth Sunday during our Sunday worship service.",
-  flyer: null,
-  flyerAlt: ""
+  summary:
+    "Real faith, real friends, a greater purpose. Join us for Youth Sunday Service. Topic: \"Mary and Martha.\" All youth welcome!",
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "Youth Sunday Service flyer: Real Faith, Real Friends, A Greater Purpose. All Youth Welcome! Topic: Mary and Martha. \"Let no one look down on your youth, but set an example for the believers\" (1 Timothy 4:12). Sunday, October 18, 2026 at 10:30 AM CST, Christ Tamil Church Chicago, 1330 63rd St, Downers Grove, IL 60516."
 };
 
 export type ChurchEvent = {
