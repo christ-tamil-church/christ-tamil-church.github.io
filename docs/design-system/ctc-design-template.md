@@ -132,8 +132,11 @@ in `src/pages/Home.css`; shared foundations live in `src/styles.css`.
 
 The homepage hero is the master pattern (see `src/pages/Home.tsx`):
 
-1. **Kicker** (`.ctc-hero-kicker`): Tamil phrase in Catamaran/Fraunces green
-   + small uppercase reference badge in a white pill.
+1. **Kicker** (`.ctc-hero-kicker`): on the homepage, a small uppercase
+   bronze (`--clay-dark`) eyebrow inside the H1, "Tamil Church in Chicago"
+   (`heroKicker` in `src/data/site.ts`). It keeps the page's one H1 saying
+   who and where in English while the Tamil headline changes weekly; don't
+   remove it.
 2. **Display headline** (`.ctc-hero-title`): on the homepage, Tamil-first in
    Noto Serif Tamil, two lines that never wrap. The first line leads in green
    italic at the same size as the second (it is long, so colour carries the

@@ -976,6 +976,21 @@
   display: block;
 }
 
+/* English kicker above the Tamil headline, inside the H1: an eyebrow
+   (Space Grotesk, small uppercase), so it reads as a label, not a headline.
+   Bronze rather than --gold: small text over the white wash needs AA contrast. */
+.ctc-hero-title > .ctc-hero-kicker {
+  margin-bottom: 0.9rem;
+  color: var(--clay-dark);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
 /* The opening line ("அபிஷேகத்தோடே, அதிகாரத்தோடே") leads in true Tamil
    italic green, echoing the Fraunces italic accent word; the line after it
    stays light (300) ink. Same size: the line is long enough to need it. */

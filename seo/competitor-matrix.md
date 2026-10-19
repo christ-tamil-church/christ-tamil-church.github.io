@@ -21,13 +21,15 @@ _Generated 2026-10-06. Competitor facts come from public listings and websites, 
 | Language | Tamil + English | Tamil | Tamil (CSI liturgy) | Mixed Indian languages, English message |
 | Tradition | Bible-based, Protestant | Non-denominational | Church of South India | Evangelical (inside a megachurch) |
 | Founded | **2015** | 1997 (states its history) | 2013 | — |
-| Domain advantage | `christtamilchurch.us` + `.com` (split) | **Exact-match domain for the P0 query** | Facebook only | Subpage of calvarynaperville.org (strong domain) |
+| Domain advantage | `christtamilchurch.com` (old site's history; `.us` retired) | **Exact-match domain for the P0 query** | Facebook only | Subpage of calvarynaperville.org (strong domain) |
 | Kids ministry | Kids Circle + B.L.A.S.T. + VBS | Mentions youth | — | — |
 | Weekday gatherings | Wed Bible study, Mon–Thu prayer, monthly fasting | — | — | — |
 | Video archive | 160+ videos, 8 playlists | — | — | — |
 | Abbreviation | CTC | **CTC (collision)** | — | — |
 
 Other Indian-language churches compete for `indian church illinois`, but they are not Tamil: Bethel Prayer House (Telugu, Naperville), Cornerstone New Covenant (Telugu/Hindi/Tamil), Telugu Church of Naperville, and St. Thomas Orthodox and Syro-Malabar parishes (Malayalam).
+
+_Update 2026-10-16: `tamilchurchchicago.com` now redirects to an unrelated gambling site, so Chicago Tamil Church's only website is chicagotamil.church._
 
 Sources: [chicagotamil.church](https://chicagotamil.church/), [tamilchurchchicago.com](https://www.tamilchurchchicago.com/), [Sulekha – CSI Redeemer](https://us.sulekha.com/elmhurst-il/religious-service/csi-redeemer-chicago-tamil-church-1176224), [Calvary Indian Church](https://calvarynaperville.org/indian), [psalmlog – Christ Tamil Church](https://psalmlog.com/churches/illinois/downers-grove/christ-tamil-church-chicago-downers-grove-t1OTYCPU), [thokalath Illinois directory](https://www.thokalath.com/indian-churches-usa/illinois.php).
 
@@ -52,7 +54,7 @@ Another congregation is literally named **Chicago Tamil Church** and owns the ex
 
 | ID | Issue | Impact | Fix |
 | --- | --- | --- | --- |
-| **T1** | Two live domains (`.com` old site, `.us` new site) | Ranking signals split; duplicate content; conflicting service times | **Decided: christtamilchurch.com.** When the new build moves there, update `public/CNAME`, keep the old-URL redirects in `App.tsx`, and 301 `.us` → `.com`. Until then, do not point canonical URLs at `.com` (it still serves the old site). |
+| **T1** | Two live domains (`.com` old site, `.us` new site) | Ranking signals split; duplicate content; conflicting service times | **Done 2026-10-10:** the new build serves at christtamilchurch.com with legacy-URL redirects. Remaining: `.us` forwarding drops paths (deep links 404) and `www.christtamilchurch.us` still points at GitHub Pages with no site behind it. See `seo-audit-2026-10.md`. |
 | **T2** | Deep links served through the GitHub Pages `404.html` trick | Google receives **HTTP 404** for `/visit`, `/worship`, etc., so inner pages are probably not indexed | Prerender every route to `dist/<route>/index.html` at build time |
 | **T3** | Client-only rendering + JS-injected titles | Crawlers and AI tools see one generic title and an empty body | Same fix as T2 (static HTML per route, with title, description and canonical baked in) |
 | **T4** | No structured data | No rich results, weak entity signals for AI overviews | `Church` JSON-LD (NAP, geo, `openingHoursSpecification`/`Event` for services, `sameAs`), plus `FAQPage`, `Event`, `VideoObject` and `BreadcrumbList` |
@@ -62,7 +64,7 @@ Another congregation is literally named **Chicago Tamil Church** and owns the ex
 
 ## Off-site levers (as important as the website for local queries)
 
-- **Google Business Profile.** Claim or verify it. Primary category "Church", secondary "Christian church" and "Protestant church". Description should include "Tamil and English"; add Sunday hours, 20+ real photos, and weekly posts. **Ask members for Google reviews that mention "Tamil church"**, since review count and wording are the strongest local-pack factors.
+- **Google Business Profile.** Claim or verify it. Primary category "Church", secondary "Christian church" and "Protestant church". Description should include "Tamil and English"; add Sunday hours, 20+ real photos, and weekly posts. **Ask members for honest Google reviews.** Review count and recency are strong local-pack factors, but never script the wording or offer anything in return (both break Google review policy).
 - **Citations.** Add the church to thokalath.com, courtesyindia.com, garamchai.com, Sulekha, Apple Maps, Bing Places, churchfinder.com and Yelp, all with identical details.
 - **Community links.** Chicago Tamil Sangam, Illinois Tamil associations, university Indian student associations (UIC, IIT, NIU, Northwestern), and nearby Indian grocery bulletin boards.
 - **YouTube.** Put "Tamil Church Chicago" and the website URL in the channel description and every video description.

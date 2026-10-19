@@ -5,8 +5,8 @@ import { latestVideo, videoSummary, videoUploadDate } from "./data/latestVideo";
 import { churchInfo } from "./data/site";
 
 // The one place the public domain lives. Canonical URLs, Open Graph tags,
-// structured data, and sitemap.xml are all built from it. When the new site
-// moves to christtamilchurch.com, change this line and public/CNAME together.
+// structured data, and sitemap.xml are all built from it. It must match
+// public/CNAME (the domain GitHub Pages serves).
 export const siteUrl = "https://christtamilchurch.com";
 
 export const siteName = "Christ Tamil Church Chicago";
@@ -47,7 +47,7 @@ export const pageMeta = {
   "/worship": {
     label: "Sunday Worship",
     title: "Sunday Tamil & English Worship, 10:30 AM – Christ Tamil Church",
-    description: `Live Tamil and English worship, prayer, Scripture, and a Bible-based sermon every ${sunday} in ${place}, with children's ministry and fellowship after.`
+    description: `Live Tamil and English worship, prayer, and a Bible-based sermon every ${sunday} in ${place}, with children's ministry and fellowship after.`
   },
   "/grow": {
     label: "Grow",
@@ -140,8 +140,11 @@ export const shareImage = siteImages.hero;
 const churchId = `${siteUrl}/#church`;
 
 function churchSchema() {
+  // Church is a Place in schema.org; also typing it Organization makes the
+  // organization properties below (email, foundingDate, knowsLanguage,
+  // areaServed) valid and lets it act as the publisher of the site and media.
   return {
-    "@type": "Church",
+    "@type": ["Church", "Organization"],
     "@id": churchId,
     name: siteName,
     alternateName: ["Christ Tamil Church", "CTC Chicago"],

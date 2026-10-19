@@ -9,7 +9,7 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
-import { churchInfo, heroHeadline, verseOfTheWeek } from "../data/site";
+import { churchInfo, heroHeadline, heroKicker, verseOfTheWeek } from "../data/site";
 import { useFeaturedEvent } from "../hooks/useFeaturedEvent";
 import type { FeaturedEvent } from "../data/site";
 import { eventDateParts, formatEventDateLong, formatEventDateMedium } from "../utils/featuredEvent";
@@ -235,7 +235,12 @@ export default function Home() {
         </picture>
         <div className="ctc-hero-bg-wash" aria-hidden="true" />
         <div className="ctc-hero-copy">
+          {/* The kicker is part of the heading so the page's one H1 says who
+              and where in English, not only this week's Tamil headline. */}
           <h1 className="ctc-hero-title" id="home-title" lang="ta">
+            <span className="ctc-hero-kicker" lang="en">
+              {heroKicker}
+            </span>
             <span className="ctc-hero-title-accent">{heroHeadline.firstLine}</span>
             <span>{heroHeadline.secondLine}</span>
           </h1>

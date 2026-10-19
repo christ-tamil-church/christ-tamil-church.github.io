@@ -82,7 +82,7 @@
         "field": "domain",
         "value": "christtamilchurch.com",
         "status": "decided",
-        "action": "The new build will move to christtamilchurch.com; until then it lives at christtamilchurch.us. Bake absolute canonical/sitemap/schema URLs for .com only once .com serves the new build, then 301 .us -> .com."
+        "action": "Done 2026-10-10: christtamilchurch.com serves the new build; www, http and christ-tamil-church.github.io 301 to https://christtamilchurch.com/. christtamilchurch.us must not be used anywhere; it should 301 (path-preserving) to .com."
       },
       {
         "field": "phone",
@@ -356,18 +356,17 @@
   ],
   "technical_seo_state": {
     "framework": "Vite 6 + React 18 SPA, React Router 6",
-    "hosting": "GitHub Pages via .github/workflows/deploy.yml (deploys from josh_design)",
+    "hosting": "GitHub Pages (christ-tamil-church/christ-tamil-church.github.io) via .github/workflows/deploy.yml, deploys from main",
     "rendering": "Prerendered at build time (src/entry-server.tsx + scripts/prerender.mjs). Each route ships dist/<route>/index.html with full body content; the browser then renders the app as before.",
     "per_route_meta": "src/seo.ts pageMeta: title, description, canonical, Open Graph and Twitter tags baked into each page's static HTML and kept in sync on client navigation by Layout.tsx.",
-    "site_url": "src/seo.ts siteUrl (currently https://christtamilchurch.us; switch together with public/CNAME when moving to .com)",
-    "structured_data": "Church + WebSite JSON-LD on every page, BreadcrumbList on inner pages. FAQPage/Event/VideoObject are still to do (they need matching visible content).",
-    "sitemap": "dist/sitemap.xml generated from pageMeta",
+    "site_url": "src/seo.ts siteUrl = https://christtamilchurch.com (matches public/CNAME)",
+    "structured_data": "Church+Organization and WebSite JSON-LD on every page, BreadcrumbList on inner pages, VideoObject on /sermons, AudioObject list on /sermons/audio-archive.",
+    "sitemap": "dist/sitemap.xml generated from pageMeta (no lastmod: a build date on every URL is ignored by Google)",
     "robots_txt": "dist/robots.txt, allow all + sitemap",
     "legacy_urls": "Static meta-refresh + canonical pages for every legacyRedirects entry (old .com URLs)",
     "not_found": "dist/404.html prerendered from NotFound with noindex; GitHub Pages serves it with HTTP 404",
     "open_issues": [
-      "Homepage H1 is Tamil-script only; add an English line containing 'Tamil church in Chicago' (UI change, follow the design template)",
-      "No visible FAQ sections yet, so no FAQPage schema",
+      "No visible FAQ sections yet (FAQ rich results are limited to government and health sites since 2023, but visible Q&A still helps searchers and AI answers)",
       "geo coordinates not set in Church schema"
     ]
   }

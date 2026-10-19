@@ -98,12 +98,13 @@ for (const [from, to] of Object.entries(legacyRedirects)) {
   );
 }
 
-const today = new Date().toISOString().slice(0, 10);
+// No <lastmod>: every page would get the build date, and Google ignores
+// lastmod values that change on every deploy without the page changing.
 write(
   join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((path) => `  <url><loc>${canonicalUrl(path)}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
+${routes.map((path) => `  <url><loc>${canonicalUrl(path)}</loc></url>`).join("\n")}
 </urlset>
 `
 );

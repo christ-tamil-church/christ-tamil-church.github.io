@@ -17,7 +17,9 @@ import {
 const paths = Object.keys(pageMeta) as Array<keyof typeof pageMeta>;
 
 type Graph = { "@context": string; "@graph": Array<Record<string, unknown>> };
-const nodeOfType = (data: Graph, type: string) => data["@graph"].find((node) => node["@type"] === type);
+// A node can carry several types, e.g. ["Church", "Organization"].
+const nodeOfType = (data: Graph, type: string) =>
+  data["@graph"].find((node) => [node["@type"]].flat().includes(type));
 
 describe("normalizePath", () => {
   it.each([
@@ -124,6 +126,7 @@ describe("structuredData", () => {
     expect(data["@context"]).toBe("https://schema.org");
     const church = nodeOfType(data, "Church");
     expect(church).toMatchObject({
+      "@type": ["Church", "Organization"],
       "@id": `${siteUrl}/#church`,
       url: `${siteUrl}/`,
       telephone: churchInfo.contact.phoneHref.replace("tel:", ""),

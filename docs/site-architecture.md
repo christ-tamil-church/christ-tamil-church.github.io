@@ -31,8 +31,8 @@ Open Graph tags, JSON-LD, and rendered body. It also writes `sitemap.xml`,
   exist, so every page is prerendered and listed in the sitemap.
 - Code that runs during render must not touch `window` or `document` (do it in
   effects), because pages are rendered in Node at build time.
-- The public domain is `siteUrl` in `src/seo.ts`; change it with
-  `public/CNAME` when the site moves to christtamilchurch.com.
+- The public domain is `siteUrl` in `src/seo.ts` (https://christtamilchurch.com);
+  it must match `public/CNAME`.
 - SEO strategy, keyword targets, and verified church facts live in `seo/`.
 
 ## Stylesheet architecture

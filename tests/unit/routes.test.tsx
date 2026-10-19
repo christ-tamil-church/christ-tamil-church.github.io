@@ -1,6 +1,6 @@
 import { screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { heroHeadline } from "../../src/data/site";
+import { heroHeadline, heroKicker } from "../../src/data/site";
 import { legacyRedirects, pageMeta } from "../../src/seo";
 import { renderApp } from "./renderApp";
 
@@ -9,7 +9,7 @@ import { renderApp } from "./renderApp";
 // because headlines are split across deliberate line breaks.
 const pageHeadings: Record<keyof typeof pageMeta, string> = {
   // The homepage headline changes weekly in src/data/site.ts.
-  "/": `${heroHeadline.firstLine} ${heroHeadline.secondLine}`,
+  "/": `${heroKicker} ${heroHeadline.firstLine} ${heroHeadline.secondLine}`,
   "/visit": "A church home where you can belong.",
   "/worship": "Come as you are. Worship with us.",
   "/grow": "Rooted in Christ. Growing together.",

@@ -28,6 +28,11 @@ export const churchInfo = {
   }
 } as const;
 
+// Small English line above the homepage headline, inside the page's H1. It
+// tells search engines and first-time visitors who and where we are, so it
+// stays fixed while the Tamil headline below it changes.
+export const heroKicker = "Tamil Church in Chicago";
+
 // Homepage hero headline (Tamil), changed weekly. Two lines that never wrap:
 // the first in green italic, the second in ink. Phones size the headline to
 // fit the first line, so a much longer first line makes the whole headline
