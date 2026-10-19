@@ -33,8 +33,8 @@ export const churchInfo = {
 // fit the first line, so a much longer first line makes the whole headline
 // smaller there; keep each line to roughly 30 characters.
 export const heroHeadline = {
-  firstLine: "அபிஷேகத்தோடே, அதிகாரத்தோடே",
-  secondLine: "ஒரு தலைமுறை எழும்பட்டுமே!"
+  firstLine: "கிருபை இரக்கம் ஏராளம்",
+  secondLine: "மன்னிப்பும் அங்கு எனக்குண்டு"
 } as const;
 
 // Update this single object when the featured weekly scripture changes.
@@ -43,9 +43,9 @@ export const heroHeadline = {
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Weekly Focus Verse",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/psalm/119/
-  text: "வாலிபன் தன் வழியை எதினால் சுத்தம்பண்ணுவான்? உமது வசனத்தின்படி தன்னைக் காத்துக்கொள்கிறதினால்தானே.",
-  reference: "Psalm 119:9"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/ephesians/2/
+  text: "கிருபையினாலே விசுவாசத்தைக்கொண்டு இரட்சிக்கப்பட்டீர்கள்; இது உங்களால் உண்டானதல்ல, இது தேவனுடைய ஈவு.",
+  reference: "Ephesians 2:8"
 } as const;
 
 export type FeaturedEvent = {
@@ -73,17 +73,16 @@ export type FeaturedEvent = {
 // instead). When the flyer arrives, run the script above, then set
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  title: "Youth Sunday",
-  startsOn: "2026-10-18",
-  endsOn: "2026-10-18",
+  title: "Reformation Sunday",
+  startsOn: "2026-10-25",
+  endsOn: "2026-10-25",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Real faith, real friends, a greater purpose. Join us for Youth Sunday Service. Topic: \"Mary and Martha.\" All youth welcome!",
-  flyer: siteImages.featuredEventFlyer,
-  flyerAlt:
-    "Youth Sunday Service flyer: Real Faith, Real Friends, A Greater Purpose. All Youth Welcome! Topic: Mary and Martha. \"Let no one look down on your youth, but set an example for the believers\" (1 Timothy 4:12). Sunday, October 18, 2026 at 10:30 AM CST, Christ Tamil Church Chicago, 1330 63rd St, Downers Grove, IL 60516."
+    "Join us as we give thanks for the grace of God rediscovered in the Reformation: saved by grace, through faith.",
+  flyer: null,
+  flyerAlt: ""
 };
 
 export type ChurchEvent = {
