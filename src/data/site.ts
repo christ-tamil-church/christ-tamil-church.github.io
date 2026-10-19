@@ -33,8 +33,8 @@ export const churchInfo = {
 // fit the first line, so a much longer first line makes the whole headline
 // smaller there; keep each line to roughly 30 characters.
 export const heroHeadline = {
-  firstLine: "கிருபை இரக்கம் ஏராளம்",
-  secondLine: "மன்னிப்பும் அங்கு எனக்குண்டு"
+  firstLine: "கிருபை, இரக்கம் ஏராளம்;",
+  secondLine: "மன்னிப்பும், அங்கு எனக்குண்டு;"
 } as const;
 
 // Update this single object when the featured weekly scripture changes.
