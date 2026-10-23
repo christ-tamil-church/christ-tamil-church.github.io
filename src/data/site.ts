@@ -81,8 +81,9 @@ export const featuredEvent: FeaturedEvent | null = {
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
     "Join us as we give thanks for the grace of God rediscovered in the Reformation: saved by grace, through faith.",
-  flyer: null,
-  flyerAlt: ""
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "Reformation Sunday flyer: \"The Ongoing Reformation with Jesus,\" Matthew 22:34-46. Put God first, love and serve your neighbor, strengthen your spiritual life. Sunday, October 25, 2026, 10:30 AM, 1330 63rd St, Downers Grove. Love God. Love Others."
 };
 
 export type ChurchEvent = {
