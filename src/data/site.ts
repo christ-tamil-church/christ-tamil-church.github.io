@@ -29,13 +29,15 @@ export const churchInfo = {
 } as const;
 
 // Homepage hero headline (Tamil), changed weekly. Two lines that never wrap:
-// the first in green italic, the second in ink. Phones size the headline to
-// fit the first line, so a much longer first line makes the whole headline
-// smaller there; keep each line to roughly 30 characters. A one-line week
-// leaves `secondLine` empty ("") and the headline is just the green line.
-export const heroHeadline: { firstLine: string; secondLine: string } = {
-  firstLine: "அழகாய் நிற்கும் யார் இவர்கள்?",
-  secondLine: ""
+// `firstLine` leads in green italic, `firstLineRest` finishes that line in
+// grey, and `secondLine` sits below in grey. Phones size the headline to fit
+// the first line, so a much longer first line makes the whole headline
+// smaller there; keep each line to roughly 30 characters. Leave
+// `firstLineRest` or `secondLine` empty ("") when a week doesn't need it.
+export const heroHeadline: { firstLine: string; firstLineRest: string; secondLine: string } = {
+  firstLine: "சேனைத் தலைவராம் இயேசுவின் பொற்றளத்தில்,",
+  firstLineRest: "",
+  secondLine: "அழகாய் நிற்கும் யார் இவர்கள்?"
 };
 
 // Update this single object when the featured weekly scripture changes.
