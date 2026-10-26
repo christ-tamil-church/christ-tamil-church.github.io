@@ -31,11 +31,12 @@ export const churchInfo = {
 // Homepage hero headline (Tamil), changed weekly. Two lines that never wrap:
 // the first in green italic, the second in ink. Phones size the headline to
 // fit the first line, so a much longer first line makes the whole headline
-// smaller there; keep each line to roughly 30 characters.
-export const heroHeadline = {
-  firstLine: "கிருபை, இரக்கம் ஏராளம்;",
-  secondLine: "மன்னிப்பும், அங்கு எனக்குண்டு;"
-} as const;
+// smaller there; keep each line to roughly 30 characters. A one-line week
+// leaves `secondLine` empty ("") and the headline is just the green line.
+export const heroHeadline: { firstLine: string; secondLine: string } = {
+  firstLine: "அழகாய் நிற்கும் யார் இவர்கள்?",
+  secondLine: ""
+};
 
 // Update this single object when the featured weekly scripture changes.
 // Copy the Tamil text from a Bible source (e.g. tamilbiblesearch.com), never
@@ -43,9 +44,9 @@ export const heroHeadline = {
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Weekly Focus Verse",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/ephesians/2/
-  text: "கிருபையினாலே விசுவாசத்தைக்கொண்டு இரட்சிக்கப்பட்டீர்கள்; இது உங்களால் உண்டானதல்ல, இது தேவனுடைய ஈவு.",
-  reference: "Ephesians 2:8"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/hebrews/12/
+  text: "ஆகையால், மேகம்போன்ற இத்தனை திரளான சாட்சிகள் நம்மைச் சூழ்ந்துகொண்டிருக்க, பாரமான யாவற்றையும், நம்மைச் சுற்றி நெருங்கி நிற்கிற பாவத்தையும் தள்ளிவிட்டு, விசுவாசத்தைத் துவக்குகிறவரும் முடிக்கிறவருமாயிருக்கிற இயேசுவை நோக்கி, நமக்கு நியமித்திருக்கிற ஓட்டத்தில் பொறுமையோடே ஓடக்கடவோம்.",
+  reference: "Hebrews 12:1"
 } as const;
 
 export type FeaturedEvent = {
@@ -73,17 +74,16 @@ export type FeaturedEvent = {
 // instead). When the flyer arrives, run the script above, then set
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  title: "Reformation Sunday",
-  startsOn: "2026-10-25",
-  endsOn: "2026-10-25",
+  title: "All Saints’ Sunday",
+  startsOn: "2026-11-01",
+  endsOn: "2026-11-01",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Join us as we give thanks for the grace of God rediscovered in the Reformation: saved by grace, through faith.",
-  flyer: siteImages.featuredEventFlyer,
-  flyerAlt:
-    "Reformation Sunday flyer: \"The Ongoing Reformation with Jesus,\" Matthew 22:34-46. Put God first, love and serve your neighbor, strengthen your spiritual life. Sunday, October 25, 2026, 10:30 AM, 1330 63rd St, Downers Grove. Love God. Love Others."
+    "Join us as we give thanks for the saints who have gone before us, the great cloud of witnesses who ran the race with faith.",
+  flyer: null,
+  flyerAlt: ""
 };
 
 export type ChurchEvent = {

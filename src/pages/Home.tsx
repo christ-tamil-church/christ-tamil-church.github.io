@@ -237,7 +237,7 @@ export default function Home() {
         <div className="ctc-hero-copy">
           <h1 className="ctc-hero-title" id="home-title" lang="ta">
             <span className="ctc-hero-title-accent">{heroHeadline.firstLine}</span>
-            <span>{heroHeadline.secondLine}</span>
+            {heroHeadline.secondLine && <span>{heroHeadline.secondLine}</span>}
           </h1>
           <p className="ctc-hero-lede">
             <span>Join us this Sunday.</span>{" "}
