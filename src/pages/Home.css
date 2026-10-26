@@ -990,6 +990,34 @@
   margin-bottom: 0.22em;
 }
 
+/* Grey: the end of the green line (`firstLineRest`) and the line below it. */
+.ctc-hero-title > span:not(.ctc-hero-title-accent),
+.ctc-hero-title-rest {
+  color: var(--muted);
+}
+
+.ctc-hero-title-rest {
+  font-style: normal;
+  font-weight: 300;
+}
+
+/* Tablets and phones: a long first line can't sit on one line, so the green
+   line may wrap and a grey ending drops beneath the green words. */
+@media (max-width: 1120px) {
+  .ctc-home .ctc-hero-title {
+    width: auto;
+    max-width: 100%;
+  }
+
+  .ctc-hero-title > .ctc-hero-title-accent {
+    white-space: normal;
+  }
+
+  .ctc-hero-title-rest {
+    display: block;
+  }
+}
+
 /* Two sentences, two lines: the invitation, then the welcome. */
 .ctc-hero-lede {
   max-width: none;

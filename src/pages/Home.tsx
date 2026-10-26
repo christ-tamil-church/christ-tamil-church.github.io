@@ -236,7 +236,12 @@ export default function Home() {
         <div className="ctc-hero-bg-wash" aria-hidden="true" />
         <div className="ctc-hero-copy">
           <h1 className="ctc-hero-title" id="home-title" lang="ta">
-            <span className="ctc-hero-title-accent">{heroHeadline.firstLine}</span>
+            <span className="ctc-hero-title-accent">
+              {heroHeadline.firstLine}
+              {heroHeadline.firstLineRest && (
+                <> <span className="ctc-hero-title-rest">{heroHeadline.firstLineRest}</span></>
+              )}
+            </span>
             {heroHeadline.secondLine && <span>{heroHeadline.secondLine}</span>}
           </h1>
           <p className="ctc-hero-lede">
