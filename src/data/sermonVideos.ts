@@ -30,7 +30,8 @@ export const sermonPlaylists = [
 export type SermonPlaylistId = (typeof sermonPlaylists)[number]["id"];
 
 export const sermonVideos: SermonVideo[] = [
-  // Praise & Worship (26)
+  // Praise & Worship (27)
+  { title: "Christ Tamil Church Chicago – Praise & Worship | October 18, 2026", youtubeId: "TVMf9JQuGrg", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 4, 2026", youtubeId: "lEyO3fX2mo8", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | September 27, 2026", youtubeId: "AGplFtSlcWw", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | September 13, 2026", youtubeId: "G6Ls5-vWcfQ", playlistId: "praise-worship" },
@@ -91,7 +92,8 @@ export const sermonVideos: SermonVideo[] = [
   { title: "CaveQuest VBS2016 Experience Flavor in the Song He is the Light Christ Tamil Church Chicago", youtubeId: "n8Cyo4MnuEA", playlistId: "vbs" },
   { title: "Rev Doc Newcomb: Message to VBS Kids AUG 8 2015 - GOD's LOVE", youtubeId: "rOrfmmNO7-g", playlistId: "vbs" },
   { title: "2015 Christ Tamil Church Chicago VBS: EVEREST - Powerful, August 8", youtubeId: "bEd-FDK-Pu0", playlistId: "vbs" },
-  // Kids @ CTC / Sunday School (9)
+  // Kids @ CTC / Sunday School (10)
+  { title: "Heroes of Faith 2026 | October 25, 2026 | CTC Kids", youtubeId: "Frg2xRCqQBQ", playlistId: "kids-at-ctc" },
   { title: "BLAST Kids Creative Bible Projects Celebration | August 30, 2026", youtubeId: "pkObrUn5748", playlistId: "kids-at-ctc" },
   { title: "BLAST Kids Creative Bible Project Display #shorts", youtubeId: "8J-QycsZDrQ", playlistId: "kids-at-ctc" },
   { title: "Christ Tamil Church – VBS 2026 | Day 1 | Zoomerang | Team Portraits", youtubeId: "tH0lx9JhNW0", playlistId: "kids-at-ctc" },
