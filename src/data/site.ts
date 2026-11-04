@@ -34,10 +34,18 @@ export const churchInfo = {
 // the first line, so a much longer first line makes the whole headline
 // smaller there; keep each line to roughly 30 characters. Leave
 // `firstLineRest` or `secondLine` empty ("") when a week doesn't need it.
-export const heroHeadline: { firstLine: string; firstLineRest: string; secondLine: string } = {
+// `greenLine: "second"` swaps the colours: the first line grey, the second
+// in green italic.
+export const heroHeadline: {
+  firstLine: string;
+  firstLineRest: string;
+  secondLine: string;
+  greenLine: "first" | "second";
+} = {
   firstLine: "நீ ஆயத்தமாகு, ஆயத்தப்படுத்து;",
   firstLineRest: "",
-  secondLine: "வருகை மிக சமீபம்."
+  secondLine: "வருகை மிக சமீபம்.",
+  greenLine: "second"
 };
 
 // Update this single object when the featured weekly scripture changes.
@@ -76,14 +84,14 @@ export type FeaturedEvent = {
 // instead). When the flyer arrives, run the script above, then set
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  title: "All Saints’ Sunday",
-  startsOn: "2026-11-01",
-  endsOn: "2026-11-01",
+  title: "Being vigilant",
+  startsOn: "2026-11-08",
+  endsOn: "2026-11-08",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Join us as we give thanks for the saints who have gone before us, the great cloud of witnesses who ran the race with faith.",
+    "Join us for Sunday worship as we hear the call to watch, to be ready, and to prepare for the Lord’s return.",
   flyer: null,
   flyerAlt: ""
 };

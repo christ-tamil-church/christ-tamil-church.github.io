@@ -235,7 +235,15 @@ export default function Home() {
         </picture>
         <div className="ctc-hero-bg-wash" aria-hidden="true" />
         <div className="ctc-hero-copy">
-          <h1 className="ctc-hero-title" id="home-title" lang="ta">
+          <h1
+            className={
+              heroHeadline.greenLine === "second"
+                ? "ctc-hero-title ctc-hero-title--green-second"
+                : "ctc-hero-title"
+            }
+            id="home-title"
+            lang="ta"
+          >
             <span className="ctc-hero-title-accent">
               {heroHeadline.firstLine}
               {heroHeadline.firstLineRest && (

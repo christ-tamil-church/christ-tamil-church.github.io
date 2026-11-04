@@ -1001,6 +1001,20 @@
   font-weight: 300;
 }
 
+/* `greenLine: "second"`: the first line keeps its spacing but turns grey,
+   and the second line takes the green italic. */
+.ctc-hero-title--green-second > .ctc-hero-title-accent {
+  color: var(--muted);
+  font-style: normal;
+  font-weight: 300;
+}
+
+.ctc-hero-title--green-second > span:not(.ctc-hero-title-accent) {
+  color: var(--green-deep);
+  font-style: italic;
+  font-weight: 400;
+}
+
 /* Tablets and phones: a long first line can't sit on one line, so the green
    line may wrap and a grey ending drops beneath the green words. */
 @media (max-width: 1120px) {
