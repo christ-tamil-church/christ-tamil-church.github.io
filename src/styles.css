@@ -117,6 +117,14 @@ h3 em,
   color: var(--leaf);
 }
 
+/* A featured event's theme after its lead-in ("Worship Theme: *Being
+   vigilant*"): italic only, in the title's own colour and weight. */
+.featured-event-title-theme {
+  font-style: italic;
+  font-weight: inherit;
+  color: inherit;
+}
+
 @keyframes fade-up {
   from {
     opacity: 0;

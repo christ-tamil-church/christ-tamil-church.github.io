@@ -302,6 +302,13 @@
     white-space: nowrap;
   }
 
+  /* A long event title ("Worship Theme: Being vigilant") wraps to a second
+     line rather than losing its end to an ellipsis. */
+  .ctc-home .ctc-hero .ctc-hero-card-event-title {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
   /* Trailing round actions: the map pin and the event arrow. */
   .ctc-home .ctc-hero .ctc-hero-card-event-go {
     display: grid;
@@ -1466,7 +1473,7 @@
   white-space: nowrap;
 }
 
-/* Tablet and desktop: "Weekly Focus Verse" is the ribbon's heading, centred
+/* Tablet and desktop: "Focus Verse for the Week" is the ribbon's heading, centred
    on its own line above the verse (phones already stack it this way). */
 @media (min-width: 621px) {
   .ctc-hero-weekly-verse-ribbon {
@@ -1510,7 +1517,7 @@
 }
 
 /* The heading's underline: a short gold-to-green rule centred just under
-   "Weekly Focus Verse". The heading reserves room for it below. */
+   "Focus Verse for the Week". The heading reserves room for it below. */
 .ctc-hero-weekly-verse-ribbon > span {
   position: relative;
   padding-bottom: 9px;

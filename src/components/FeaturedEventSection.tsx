@@ -1,6 +1,7 @@
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { churchInfo, type FeaturedEvent } from "../data/site";
 import { eventDateParts, formatEventDateLong } from "../utils/featuredEvent";
+import FeaturedEventTitle, { featuredEventTitleText } from "./FeaturedEventTitle";
 import "./FeaturedEventSection.css";
 
 // Flyers arrive in any shape. Wide banners (like a 3:1 header graphic) run
@@ -17,7 +18,7 @@ function Flyer({ event }: { event: FeaturedEvent }) {
         href={flyer.src}
         target="_blank"
         rel="noreferrer"
-        aria-label={`Open the full-size flyer for ${event.title} in a new tab`}
+        aria-label={`Open the full-size flyer for ${featuredEventTitleText(event)} in a new tab`}
       >
         <img
           src={flyer.src}
@@ -51,7 +52,7 @@ function PlaceholderPoster({ event }: { event: FeaturedEvent }) {
         <span>{weekday}</span>
       </div>
       <div className="ctc-featured-poster-copy">
-        <p>{event.title}</p>
+        <p><FeaturedEventTitle event={event} /></p>
         <span>{event.time} · Christ Tamil Church</span>
       </div>
     </div>
@@ -79,7 +80,7 @@ export default function FeaturedEventSection({ event }: { event: FeaturedEvent }
 
         <div className="ctc-featured-details">
           <div className="ctc-featured-heading">
-            <h2 id="featured-title">{event.title}</h2>
+            <h2 id="featured-title"><FeaturedEventTitle event={event} /></h2>
             <ul className="ctc-featured-facts">
               <li>
                 <CalendarDays size={17} aria-hidden="true" />

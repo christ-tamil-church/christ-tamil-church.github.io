@@ -2,6 +2,7 @@ import { render, renderHook, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import FeaturedEventSection from "../../src/components/FeaturedEventSection";
+import { featuredEventTitleText } from "../../src/components/FeaturedEventTitle";
 import { siteImages } from "../../src/data/images";
 import { churchInfo, featuredEvent, type FeaturedEvent } from "../../src/data/site";
 import { useFeaturedEvent } from "../../src/hooks/useFeaturedEvent";
@@ -138,7 +139,7 @@ describe.runIf(featuredEvent)("featured event on the site", () => {
   it("features the event at the top of the Events page", () => {
     setToday(event.startsOn);
     renderApp("/events");
-    expect(screen.getByRole("region", { name: event.title })).toHaveAttribute("id", "featured");
+    expect(screen.getByRole("region", { name: featuredEventTitleText(event) })).toHaveAttribute("id", "featured");
   });
 
   it("disappears from both pages the day after it ends", () => {

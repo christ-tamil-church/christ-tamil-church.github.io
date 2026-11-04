@@ -7,6 +7,7 @@ import {
 import { type RefObject, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import FeaturedEventTitle from "../components/FeaturedEventTitle";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
 import { churchInfo, heroHeadline, verseOfTheWeek } from "../data/site";
@@ -66,7 +67,7 @@ function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
         <span className="ctc-hero-notice-label">
           {formatEventDateMedium(event)} <i aria-hidden="true">·</i> {event.time}
         </span>
-        <span className="ctc-hero-notice-title">{event.title}</span>
+        <span className="ctc-hero-notice-title"><FeaturedEventTitle event={event} /></span>
       </span>
       <span className="sr-only"> (event details)</span>
       <ArrowRight className="ctc-hero-notice-arrow" size={16} aria-hidden="true" />
@@ -88,7 +89,7 @@ function FeaturedEventCardRow({ event }: { event: FeaturedEvent }) {
         <span className="ctc-hero-card-event-label" aria-hidden="true">
           {weekday} <i>·</i> {event.time}
         </span>
-        <span className="ctc-hero-card-event-title">{event.title}</span>
+        <span className="ctc-hero-card-event-title"><FeaturedEventTitle event={event} /></span>
       </span>
       <span className="sr-only">, {formatEventDateLong(event)}, {event.time} (event details)</span>
       <span className="ctc-hero-card-event-go" aria-hidden="true">
