@@ -120,6 +120,12 @@
   text-wrap: balance;
 }
 
+/* With a lead-in ("Worship Theme:") the lead stands upright so the italic
+   theme after it still reads as the emphasis. */
+.ctc-featured-poster-copy p:has(> .featured-event-title-theme) {
+  font-style: normal;
+}
+
 .ctc-featured-poster-copy span {
   display: block;
   margin-top: 18px;

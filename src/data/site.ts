@@ -53,13 +53,15 @@ export const heroHeadline: {
 // from memory. Verses over ~100 characters are set a little smaller on
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
-  label: "Weekly Focus Verse",
+  label: "Focus Verse for the Week",
   // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/matthew/25/
   text: "மனுஷகுமாரன் வரும் நாளையாவது நாழிகையையாவது நீங்கள் அறியாதிருக்கிறபடியால் விழித்திருங்கள்.",
   reference: "Matthew 25:13"
 } as const;
 
 export type FeaturedEvent = {
+  /** Optional plain lead-in shown before an italic title, e.g. "Worship Theme:". */
+  titleLead?: string;
   title: string;
   /** Calendar dates in Chicago time, YYYY-MM-DD. Same day for a one-day event. */
   startsOn: string;
@@ -84,7 +86,8 @@ export type FeaturedEvent = {
 // instead). When the flyer arrives, run the script above, then set
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  title: "Being vigilant",
+  titleLead: "Worship Theme:",
+  title: "Be vigilant",
   startsOn: "2026-11-08",
   endsOn: "2026-11-08",
   time: churchInfo.worship.time,
