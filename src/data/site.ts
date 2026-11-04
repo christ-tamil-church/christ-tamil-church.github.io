@@ -35,9 +35,9 @@ export const churchInfo = {
 // smaller there; keep each line to roughly 30 characters. Leave
 // `firstLineRest` or `secondLine` empty ("") when a week doesn't need it.
 export const heroHeadline: { firstLine: string; firstLineRest: string; secondLine: string } = {
-  firstLine: "சேனைத் தலைவராம் இயேசுவின் பொற்றளத்தில்,",
+  firstLine: "நீ ஆயத்தமாகு, ஆயத்தப்படுத்து;",
   firstLineRest: "",
-  secondLine: "அழகாய் நிற்கும் யார் இவர்கள்?"
+  secondLine: "வருகை மிக சமீபம்."
 };
 
 // Update this single object when the featured weekly scripture changes.
@@ -46,9 +46,9 @@ export const heroHeadline: { firstLine: string; firstLineRest: string; secondLin
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Weekly Focus Verse",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/hebrews/12/
-  text: "ஆகையால், மேகம்போன்ற இத்தனை திரளான சாட்சிகள் நம்மைச் சூழ்ந்துகொண்டிருக்க, பாரமான யாவற்றையும், நம்மைச் சுற்றி நெருங்கி நிற்கிற பாவத்தையும் தள்ளிவிட்டு, விசுவாசத்தைத் துவக்குகிறவரும் முடிக்கிறவருமாயிருக்கிற இயேசுவை நோக்கி, நமக்கு நியமித்திருக்கிற ஓட்டத்தில் பொறுமையோடே ஓடக்கடவோம்.",
-  reference: "Hebrews 12:1"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/matthew/25/
+  text: "மனுஷகுமாரன் வரும் நாளையாவது நாழிகையையாவது நீங்கள் அறியாதிருக்கிறபடியால் விழித்திருங்கள்.",
+  reference: "Matthew 25:13"
 } as const;
 
 export type FeaturedEvent = {
