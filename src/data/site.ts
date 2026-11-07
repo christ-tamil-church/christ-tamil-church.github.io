@@ -95,8 +95,9 @@ export const featuredEvent: FeaturedEvent | null = {
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
     "Join us for Sunday worship as we hear the call to watch, to be ready, and to prepare for the Lord’s return.",
-  flyer: null,
-  flyerAlt: ""
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "\"Being Vigilant\" flyer: women holding lamps walk toward an open, lit doorway where Jesus welcomes them, with Matthew 25:13, \"Therefore keep watch, for you do not know the day nor the hour.\" Stay awake, stay ready, stay faithful. November 8, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
 };
 
 export type ChurchEvent = {
