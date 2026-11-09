@@ -7,7 +7,7 @@ import {
 import { type RefObject, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
-import FeaturedEventTitle from "../components/FeaturedEventTitle";
+import FeaturedEventTitle, { featuredEventLeadLabel } from "../components/FeaturedEventTitle";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
 import { churchInfo, heroHeadline, verseOfTheWeek } from "../data/site";
@@ -57,7 +57,11 @@ function SundayCard() {
 // the hero as its own card, separate from the "This Sunday" card: this one in
 // the copy column on tablets and desktops, and FeaturedEventCardRow under the
 // Sunday card on phones. CSS shows one at a time.
+// An event with a lead-in ("Worship Theme:") puts it in the small label in
+// place of the time, so the italic title keeps its size on one line; the
+// time is still beside it on the "Every Sunday" card.
 function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
+  const lead = featuredEventLeadLabel(event);
   return (
     <Link className="ctc-hero-notice" to="/events#featured">
       <span className="ctc-hero-notice-icon" aria-hidden="true">
@@ -65,9 +69,9 @@ function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
       </span>
       <span className="ctc-hero-notice-text">
         <span className="ctc-hero-notice-label">
-          {formatEventDateMedium(event)} <i aria-hidden="true">·</i> {event.time}
+          {formatEventDateMedium(event)} <i aria-hidden="true">·</i> {lead ?? event.time}
         </span>
-        <span className="ctc-hero-notice-title"><FeaturedEventTitle event={event} /></span>
+        <span className="ctc-hero-notice-title"><FeaturedEventTitle event={event} showLead={false} /></span>
       </span>
       <span className="sr-only"> (event details)</span>
       <ArrowRight className="ctc-hero-notice-arrow" size={16} aria-hidden="true" />
@@ -79,6 +83,7 @@ function FeaturedEventNotice({ event }: { event: FeaturedEvent }) {
 // "SUNDAY · 10:30 AM" over the title, and a round arrow.
 function FeaturedEventCardRow({ event }: { event: FeaturedEvent }) {
   const { weekday, month, day } = eventDateParts(event);
+  const lead = featuredEventLeadLabel(event);
   return (
     <Link className="ctc-hero-card-event" to="/events#featured">
       <span className="ctc-hero-card-event-leaf" aria-hidden="true">
@@ -87,9 +92,12 @@ function FeaturedEventCardRow({ event }: { event: FeaturedEvent }) {
       </span>
       <span className="ctc-hero-card-event-text">
         <span className="ctc-hero-card-event-label" aria-hidden="true">
-          {weekday} <i>·</i> {event.time}
+          {weekday} <i>·</i> {lead ?? event.time}
         </span>
-        <span className="ctc-hero-card-event-title"><FeaturedEventTitle event={event} /></span>
+        <span className="ctc-hero-card-event-title">
+          {lead && <span className="sr-only">{lead}: </span>}
+          <FeaturedEventTitle event={event} showLead={false} />
+        </span>
       </span>
       <span className="sr-only">, {formatEventDateLong(event)}, {event.time} (event details)</span>
       <span className="ctc-hero-card-event-go" aria-hidden="true">
