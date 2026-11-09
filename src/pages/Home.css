@@ -1181,8 +1181,9 @@
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.2;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* A long title ("Worship Theme: The Blueprint of a Humble Prayer") wraps
+     to a second line rather than losing its end to an ellipsis. */
+  text-wrap: balance;
 }
 
 .ctc-hero-notice-arrow {

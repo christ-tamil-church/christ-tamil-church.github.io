@@ -42,10 +42,10 @@ export const heroHeadline: {
   secondLine: string;
   greenLine: "first" | "second";
 } = {
-  firstLine: "நீ ஆயத்தமாகு, ஆயத்தப்படுத்து;",
+  firstLine: "எந்தன் கோட்டை, எந்தன் தஞ்சம், நீரே",
   firstLineRest: "",
-  secondLine: "வருகை மிக சமீபம்.",
-  greenLine: "second"
+  secondLine: "உம்மை நான் நாடி வந்தேன்;",
+  greenLine: "first"
 };
 
 // Update this single object when the featured weekly scripture changes.
@@ -54,9 +54,9 @@ export const heroHeadline: {
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Focus Verse for the Week",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/matthew/25/
-  text: "மனுஷகுமாரன் வரும் நாளையாவது நாழிகையையாவது நீங்கள் அறியாதிருக்கிறபடியால் விழித்திருங்கள்.",
-  reference: "Matthew 25:13"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/psalm/90/
+  text: "ஆண்டவரே, தேவரீர் தலைமுறை தலைமுறையாக எங்களுக்கு அடைக்கலமானவர்.",
+  reference: "Psalm 90:1"
 } as const;
 
 export type FeaturedEvent = {
@@ -87,17 +87,16 @@ export type FeaturedEvent = {
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
   titleLead: "Worship Theme:",
-  title: "Be vigilant",
-  startsOn: "2026-11-08",
-  endsOn: "2026-11-08",
+  title: "The Blueprint of a Humble Prayer",
+  startsOn: "2026-11-15",
+  endsOn: "2026-11-15",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Join us for Sunday worship as we hear the call to watch, to be ready, and to prepare for the Lord’s return.",
-  flyer: siteImages.featuredEventFlyer,
-  flyerAlt:
-    "\"Being Vigilant\" flyer: women holding lamps walk toward an open, lit doorway where Jesus welcomes them, with Matthew 25:13, \"Therefore keep watch, for you do not know the day nor the hour.\" Stay awake, stay ready, stay faithful. November 8, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
+    "Join us for Sunday worship as we learn to pray with humble hearts and find our refuge in the Lord, our dwelling place in every generation.",
+  flyer: null,
+  flyerAlt: ""
 };
 
 export type ChurchEvent = {

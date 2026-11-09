@@ -2,7 +2,7 @@ import { render, renderHook, screen, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import FeaturedEventSection from "../../src/components/FeaturedEventSection";
-import { featuredEventTitleText } from "../../src/components/FeaturedEventTitle";
+import { featuredEventLeadLabel, featuredEventTitleText } from "../../src/components/FeaturedEventTitle";
 import { siteImages } from "../../src/data/images";
 import { churchInfo, featuredEvent, type FeaturedEvent } from "../../src/data/site";
 import { useFeaturedEvent } from "../../src/hooks/useFeaturedEvent";
@@ -127,7 +127,10 @@ describe.runIf(featuredEvent)("featured event on the site", () => {
     // Label: "Sunday, Oct 11 · 10:30 AM", no "Featured Event".
     const notice = container.querySelector(".ctc-hero-notice") as HTMLElement;
     expect(notice).not.toHaveTextContent(/featured/i);
-    expect(notice).toHaveTextContent(`${formatEventDateMedium(event)} · ${event.time}`);
+    // An event with a lead-in ("Worship Theme") shows it there in place of the time.
+    expect(notice).toHaveTextContent(
+      `${formatEventDateMedium(event)} · ${featuredEventLeadLabel(event) ?? event.time}`
+    );
     // The phone event card is its own card (not inside the Sunday card), shows
     // the date as a calendar leaf and says it in full to screen readers.
     const cardRow = container.querySelector(".ctc-hero-visual > .ctc-hero-card-event") as HTMLElement;
