@@ -95,8 +95,9 @@ export const featuredEvent: FeaturedEvent | null = {
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
     "Join us for Sunday worship as we learn to pray with humble hearts and find our refuge in the Lord, our dwelling place in every generation.",
-  flyer: null,
-  flyerAlt: ""
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "\"A humble prayer\" flyer, Psalm 90:1-12: an old man kneels in prayer in a moonlit garden beside an open, lit doorway where Jesus stands. November 15, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
 };
 
 export type ChurchEvent = {
