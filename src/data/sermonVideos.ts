@@ -30,15 +30,18 @@ export const sermonPlaylists = [
 export type SermonPlaylistId = (typeof sermonPlaylists)[number]["id"];
 
 export const sermonVideos: SermonVideo[] = [
-  // Praise & Worship (28)
+  // Praise & Worship (31)
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 25, 2026", youtubeId: "jG8MO-Mnb_c", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 18, 2026", youtubeId: "TVMf9JQuGrg", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | October 11, 2026", youtubeId: "BUilA1Xvdpg", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 4, 2026", youtubeId: "lEyO3fX2mo8", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | September 27, 2026", youtubeId: "AGplFtSlcWw", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | September 13, 2026", youtubeId: "G6Ls5-vWcfQ", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | September 6, 2026 (Family Camp)", youtubeId: "wJJxyEfME-A", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | August 30, 2026 (Blast Kids Sunday)", youtubeId: "WP1g24J6rO4", playlistId: "praise-worship" },
   { title: "CTC Praise & Worship Moments #shorts", youtubeId: "ZbYmNR0krDM", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | August 23, 2026", youtubeId: "GfVTVld-Kr8", playlistId: "praise-worship" },
+  { title: "Christ Tamil Church Chicago – Praise & Worship | August 16, 2026", youtubeId: "hgWSXSQpoHQ", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | August 9, 2026", youtubeId: "BP9Q3F7LlOM", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | August 2, 2026", youtubeId: "-dG-zVos9Is", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | July 26, 2026", youtubeId: "OxXHMUvbbhA", playlistId: "praise-worship" },

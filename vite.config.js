@@ -13,8 +13,8 @@ const buildDate = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit"
 }).format(new Date());
 
-// Newest regular upload (not a Short) on the church's YouTube channel, read at
-// build time from YouTube's public feed, which needs no API key. The Sermons
+// The church's most recent service video (a regular upload, not a Short),
+// read at build time from YouTube's public feed, which needs no API key. The Sermons
 // page features it, and the daily deploy rebuild keeps it current. When the
 // feed can't be reached the page falls back to the first video in
 // src/data/sermonVideos.ts (src/data/latestVideo.ts). Tests never fetch.
@@ -29,6 +29,16 @@ const decodeXml = (text) =>
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
+
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+/** YYYY-MM-DD of the service a video is from: the date in its title ("| October 25, 2026"), else its upload date. */
+function serviceDate(video) {
+  const match = video.title.match(new RegExp(`\\b(${MONTHS.join("|")})\\s+(\\d{1,2}),\\s+(\\d{4})\\b`, "i"));
+  if (!match) return (video.publishedAt ?? "").slice(0, 10);
+  const month = String(MONTHS.indexOf(match[1].toLowerCase()) + 1).padStart(2, "0");
+  return `${match[3]}-${month}-${match[2].padStart(2, "0")}`;
+}
 
 async function fetchLatestVideo() {
   if (process.env.VITEST || process.env.LATEST_VIDEO === "off") return null;
@@ -49,6 +59,7 @@ async function fetchLatestVideo() {
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const xml = await response.text();
+    const videos = [];
     for (const entry of xml.split("<entry>").slice(1)) {
       const field = (tag) => entry.match(new RegExp(`<${tag}>([^<]*)</${tag}>`))?.[1];
       const link = entry.match(/<link rel="alternate" href="([^"]+)"/)?.[1] ?? "";
@@ -56,17 +67,31 @@ async function fetchLatestVideo() {
       const youtubeId = field("yt:videoId");
       const title = field("title");
       if (!youtubeId || !title) continue;
-      const video = {
+      videos.push({
         youtubeId,
         title: decodeXml(title),
         publishedAt: field("published") ?? "",
         description: decodeXml(field("media:description") ?? "").slice(0, 2000)
-      };
-      mkdirSync("node_modules/.cache", { recursive: true });
-      writeFileSync(latestVideoCache, JSON.stringify(video));
-      return video;
+      });
     }
-    throw new Error("no regular uploads in the feed");
+    if (!videos.length) throw new Error("no regular uploads in the feed");
+
+    // The church sometimes uploads past Sundays late, so feature the video for
+    // the latest service date (from its title) rather than the latest upload.
+    // The feed holds only the last 15 uploads, Shorts included, so the newest
+    // Sunday can drop out of it: the first video in sermonVideos.ts counts too.
+    const curated = readFileSync("src/data/sermonVideos.ts", "utf8").match(
+      /\{ title: "((?:[^"\\]|\\.)*)", youtubeId: "([^"]+)"/
+    );
+    if (curated && !videos.some((video) => video.youtubeId === curated[2])) {
+      videos.unshift({ youtubeId: curated[2], title: JSON.parse(`"${curated[1]}"`) });
+    }
+    // On a tie the earlier entry wins: the curated video, then the later upload
+    // (the feed lists newest uploads first).
+    const video = videos.reduce((best, next) => (serviceDate(next) > serviceDate(best) ? next : best));
+    mkdirSync("node_modules/.cache", { recursive: true });
+    writeFileSync(latestVideoCache, JSON.stringify(video));
+    return video;
   } catch (error) {
     console.warn(`Latest YouTube video unavailable (${error.message}); using src/data/sermonVideos.ts.`);
     return null;
