@@ -1,0 +1,25 @@
+# Page design: Events (`/events`)
+
+Events is a standalone discovery page built from the shared `churchEvents` data. It combines the leader-approved homepage hero language with the event-discovery reference: a light split hero with bilingual kicker, large hospitality-led headline, and Sunday information card; then a centered “Upcoming at CTC” introduction and one spacious vertical list of horizontal image-and-copy event rows.
+
+The page follows the CTC design template: green-led editorial typography, restrained brass labels, a bronze primary action, generous white space, warm photography, and page-scoped reveal motion. Event rows use a 16:9 image beside title, schedule, location, description, and action. At 620px the rows become intentionally stacked image-first stories, matching the reference’s mobile reading order.
+
+The current data describes recurring schedules rather than dated calendar instances. For that reason, the page says “gatherings” and displays the supplied cadence/date language without implying chronological order. When church leadership adds exact dates, registration URLs, or event-specific alt text to the shared data model, the cards can surface them without changing the page structure.
+
+## Featured event
+
+One current event can be featured at a time: a quiet notice line under "I'm New" in the homepage hero links to a cream band at the top of this page (`/events#featured`) that shows the whole flyer.
+
+**Changing it each week** (all names are generic; only values change):
+
+1. `powershell -ExecutionPolicy Bypass -File scripts/featured-flyer.ps1 "path\to\flyer.jpg"` writes the flyer into its fixed slot (`src/assets/images/featured-event-flyer.jpg`, an 800px copy for phones, and its pixel size).
+2. Edit `featuredEvent` in `src/data/site.ts`: title, `startsOn`/`endsOn` (YYYY-MM-DD, Chicago dates), time, location, summary, and `flyerAlt` (what the flyer says, for screen readers).
+3. No event this week: set `featuredEvent = null`. The hero and this page then look exactly as they do without the feature.
+
+**Rules**
+
+- The flyer is never cropped. Wide banners (3:1 and similar) span the band with the details below; portrait or square flyers sit beside the details.
+- The flyer's text is unreadable on phones, so every fact (date, time, place, summary) is repeated as real text, and the flyer links to its full-size file.
+- `flyer: null` shows a lettered poster (deep green, date block, Fraunces title) in the flyer's place; it is `aria-hidden` because the same facts follow as text.
+- Homepage placement: the event is always its own card, separate from the "Every Sunday" card. Desktop (≥1121px): the event card sits alone under the welcome text, and the "Every Sunday" card and the bronze "I'm New" button sit together in the photo's lower-right corner (card above, button below at the same width, 12px apart). Tablets: the event card sits under "I'm New" and the Sunday card floats over the photo. Phones: under the welcome text the order is the event card, then the "Every Sunday" card, then the bronze "I'm New" button (8–10px apart); the event card and the "Every Sunday" card are matched twins: same height, padding, radius and shadow, each with a 44px sage tile on the left (calendar leaf for the event, clock for Sunday), a small-caps label over a Newsreader value ("SUNDAY · 10:30 AM" over the title; "EVERY SUNDAY" over "10:30 AM"), and a 44px round sage action on the right (arrow; map pin). "I'm New" matches their width. The event card label is the date and time ("SUNDAY, OCT 11 · 10:30 AM"), with no "Featured Event" text, and is never a bronze button. On short phones (≤700px tall, e.g. iPhone SE) both cards condense to one slim line each: "Every Sunday 10:30 AM", and an "OCT | 11" chip with a one-line title. The Sunday card reads "EVERY SUNDAY · 10:30 AM" with a round sage map-pin button for directions (named "Get directions" for screen readers) at every size.
+- Expiry: an event disappears the day after `endsOn`. Prerendered pages judge this from the build date (`__BUILD_DATE__`), the browser re-checks the real date after load, and a daily scheduled deploy refreshes the static HTML.
