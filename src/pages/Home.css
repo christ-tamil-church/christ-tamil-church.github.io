@@ -1030,7 +1030,8 @@
     max-width: 100%;
   }
 
-  .ctc-hero-title > .ctc-hero-title-accent {
+  .ctc-hero-title > .ctc-hero-title-accent,
+  .ctc-home .ctc-hero-title > span {
     white-space: normal;
   }
 

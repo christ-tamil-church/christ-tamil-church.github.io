@@ -42,9 +42,9 @@ export const heroHeadline: {
   secondLine: string;
   greenLine: "first" | "second";
 } = {
-  firstLine: "எந்தன் கோட்டை, எந்தன் தஞ்சம், நீரே",
+  firstLine: "அந்தரம் புவியும் தந்து, சொந்த ஜீவனையும் ஈந்து,",
   firstLineRest: "",
-  secondLine: "உம்மை நான் நாடி வந்தேன்;",
+  secondLine: "ஆற்றினார், நமை ஒன்றாய்க் கூட்டினார்;",
   greenLine: "first"
 };
 
@@ -54,9 +54,9 @@ export const heroHeadline: {
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Focus Verse for the Week",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/psalm/90/
-  text: "ஆண்டவரே, தேவரீர் தலைமுறை தலைமுறையாக எங்களுக்கு அடைக்கலமானவர்.",
-  reference: "Psalm 90:1"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/ezekiel/34/
+  text: "கர்த்தராகிய நான் அவர்களுக்குத் தேவனாக இருப்பேன், என் தாசனாகிய தாவீது அவர்கள் நடுவில் அதிபதியாயிருப்பார்; கர்த்தராகிய நான் இதைச் சொன்னேன்.",
+  reference: "Ezekiel 34:24"
 } as const;
 
 export type FeaturedEvent = {
@@ -87,17 +87,16 @@ export type FeaturedEvent = {
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
   titleLead: "Worship Theme:",
-  title: "The Blueprint of a Humble Prayer",
-  startsOn: "2026-11-15",
-  endsOn: "2026-11-15",
+  title: "Christ, the King",
+  startsOn: "2026-11-22",
+  endsOn: "2026-11-22",
   time: churchInfo.worship.time,
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Join us for Sunday worship as we learn to pray with humble hearts and find our refuge in the Lord, our dwelling place in every generation.",
-  flyer: siteImages.featuredEventFlyer,
-  flyerAlt:
-    "\"A humble prayer\" flyer, Psalm 90:1-12: an old man kneels in prayer in a moonlit garden beside an open, lit doorway where Jesus stands. November 15, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
+    "Join us for Sunday worship as we honour Christ our King, who gave His own life to gather us together as one.",
+  flyer: null,
+  flyerAlt: ""
 };
 
 export type ChurchEvent = {
