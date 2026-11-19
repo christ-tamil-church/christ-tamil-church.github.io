@@ -95,8 +95,9 @@ export const featuredEvent: FeaturedEvent | null = {
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
     "Join us for Sunday worship as we honour Christ our King, who gave His own life to gather us together as one.",
-  flyer: null,
-  flyerAlt: ""
+  flyer: siteImages.featuredEventFlyer,
+  flyerAlt:
+    "\"Christ the King\" flyer, Ezekiel 34:11-24: Jesus, crowned and holding a shepherd's staff, stands among His sheep in a sunlit valley before a stone throne. Sunday, November 22, 2026, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
 };
 
 export type ChurchEvent = {
