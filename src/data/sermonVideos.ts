@@ -30,7 +30,8 @@ export const sermonPlaylists = [
 export type SermonPlaylistId = (typeof sermonPlaylists)[number]["id"];
 
 export const sermonVideos: SermonVideo[] = [
-  // Praise & Worship (31)
+  // Praise & Worship (32)
+  { title: "Christ Tamil Church Chicago – Praise & Worship | November 1, 2026", youtubeId: "a4jQYDki4ZE", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 25, 2026", youtubeId: "jG8MO-Mnb_c", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 18, 2026", youtubeId: "TVMf9JQuGrg", playlistId: "praise-worship" },
   { title: "Christ Tamil Church Chicago – Praise & Worship | October 11, 2026", youtubeId: "BUilA1Xvdpg", playlistId: "praise-worship" },
