@@ -80,32 +80,3 @@ export function useBrowserContext(): BrowserContext {
   }, []);
   return context;
 }
-
-/** Page navigation, kept on an object so tests can observe it. */
-export const navigation = {
-  go(url: string) {
-    window.location.href = url;
-  }
-};
-
-/**
- * Opens a native app through its link (`fb://…`, `instagram://…`), then, if
- * the page is still in front after `waitMs` (app not installed, or the host
- * app refused the hand-off), loads the web page instead.
- */
-export function openAppOrFallback(appUrl: string, webUrl: string, waitMs = 1500) {
-  let left = false;
-  const markLeft = (event: Event) => {
-    if (event.type !== "visibilitychange" || document.visibilityState === "hidden") left = true;
-  };
-  document.addEventListener("visibilitychange", markLeft);
-  window.addEventListener("pagehide", markLeft);
-  window.addEventListener("blur", markLeft);
-  navigation.go(appUrl);
-  window.setTimeout(() => {
-    document.removeEventListener("visibilitychange", markLeft);
-    window.removeEventListener("pagehide", markLeft);
-    window.removeEventListener("blur", markLeft);
-    if (!left) navigation.go(webUrl);
-  }, waitMs);
-}

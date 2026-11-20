@@ -32,17 +32,17 @@ export default function Contact() {
 
       <section className="contact-band contact-closing contact-reveal" aria-labelledby="contact-closing-title">
         <div className="contact-shell contact-closing-grid">
-          <ExternalLink className="contact-social-card" href={churchInfo.social.facebookUrl} appHref={churchInfo.social.apps.facebook}>
+          <ExternalLink className="contact-social-card" href={churchInfo.social.facebookUrl}>
             <span className="contact-icon"><Facebook size={22} aria-hidden="true" /></span>
             <span><strong>Follow along on Facebook</strong>Updates, photos, and announcements from church life.</span>
             <span className="contact-social-link">Open Facebook page <ArrowRight size={17} aria-hidden="true" /></span>
           </ExternalLink>
-          <ExternalLink className="contact-social-card" href={churchInfo.social.instagramUrl} appHref={churchInfo.social.apps.instagram}>
+          <ExternalLink className="contact-social-card" href={churchInfo.social.instagramUrl}>
             <span className="contact-icon"><Instagram size={22} aria-hidden="true" /></span>
             <span><strong>See us on Instagram</strong>Snapshots of Sundays, fellowship, and family life together.</span>
             <span className="contact-social-link">Open Instagram <ArrowRight size={17} aria-hidden="true" /></span>
           </ExternalLink>
-          <ExternalLink className="contact-social-card" href={churchInfo.social.youtubeUrl} appHref={churchInfo.social.apps.youtube}>
+          <ExternalLink className="contact-social-card" href={churchInfo.social.youtubeUrl}>
             <span className="contact-icon"><Youtube size={22} aria-hidden="true" /></span>
             <span><strong id="contact-closing-title">Watch on YouTube</strong>Worship, messages, and moments from Christ Tamil Church.</span>
             <span className="contact-social-link">Open YouTube channel <ArrowRight size={17} aria-hidden="true" /></span>

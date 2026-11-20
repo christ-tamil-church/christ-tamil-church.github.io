@@ -23,13 +23,8 @@ describe("churchInfo", () => {
   });
 
   it("links to the church's social accounts over https", () => {
-    const { facebookUrl, instagramUrl, youtubeUrl, apps } = churchInfo.social;
-    for (const url of [facebookUrl, instagramUrl, youtubeUrl]) expect(url).toMatch(/^https:\/\//);
-    expect(youtubeUrl).toBe(churchYoutubeChannelUrl);
-    // The iPhone app links point at the same accounts.
-    expect(decodeURIComponent(apps.facebook)).toContain(facebookUrl);
-    expect(apps.instagram).toBe(`instagram://user?username=${instagramUrl.split("/").filter(Boolean).pop()}`);
-    expect(apps.youtube).toMatch(/^youtube:\/\/www\.youtube\.com\/channel\/UC[\w-]{22}$/);
+    for (const url of Object.values(churchInfo.social)) expect(url).toMatch(/^https:\/\//);
+    expect(churchInfo.social.youtubeUrl).toBe(churchYoutubeChannelUrl);
   });
 });
 

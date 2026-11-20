@@ -3,7 +3,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { churchInfo } from "../../src/data/site";
-import { detectBrowserContext, navigation } from "../../src/utils/inAppBrowser";
+import { detectBrowserContext } from "../../src/utils/inAppBrowser";
 import { renderApp } from "./renderApp";
 
 // Representative user-agent strings, one per app family.
@@ -82,49 +82,6 @@ describe("links inside an in-app browser", () => {
     expect(facebook).toHaveAttribute("href", churchInfo.social.facebookUrl);
     expect(facebook).not.toHaveAttribute("target");
     expect(document.querySelectorAll('a[target="_blank"]')).toHaveLength(0);
-  });
-
-  it("opens the Instagram, Facebook and YouTube apps on iPhone, falling back to the web page", () => {
-    asFacebook();
-    vi.useFakeTimers();
-    const go = vi.spyOn(navigation, "go").mockImplementation(() => {});
-    renderApp("/");
-    const footer = within(screen.getByRole("contentinfo"));
-    for (const [name, app, web] of [
-      ["Christ Tamil Church on Instagram", churchInfo.social.apps.instagram, churchInfo.social.instagramUrl],
-      ["Christ Tamil Church on Facebook", churchInfo.social.apps.facebook, churchInfo.social.facebookUrl],
-      ["Christ Tamil Church on YouTube", churchInfo.social.apps.youtube, churchInfo.social.youtubeUrl]
-    ]) {
-      go.mockClear();
-      expect(fireEvent.click(footer.getByRole("link", { name }))).toBe(false);
-      expect(go).toHaveBeenLastCalledWith(app);
-      vi.advanceTimersByTime(1600);
-      expect(go).toHaveBeenLastCalledWith(web);
-    }
-    vi.useRealTimers();
-  });
-
-  it("does not fall back once the app has opened", () => {
-    asFacebook();
-    vi.useFakeTimers();
-    const go = vi.spyOn(navigation, "go").mockImplementation(() => {});
-    renderApp("/");
-    fireEvent.click(within(screen.getByRole("contentinfo")).getByRole("link", { name: "Christ Tamil Church on Instagram" }));
-    window.dispatchEvent(new Event("pagehide"));
-    vi.advanceTimersByTime(1600);
-    expect(go).toHaveBeenCalledTimes(1);
-    vi.useRealTimers();
-  });
-
-  it("leaves social links as plain same-window links on Android in-app browsers", () => {
-    vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue(UA.facebookAndroid);
-    const go = vi.spyOn(navigation, "go");
-    renderApp("/");
-    const instagram = within(screen.getByRole("contentinfo")).getByRole("link", { name: "Christ Tamil Church on Instagram" });
-    expect(instagram).not.toHaveAttribute("target");
-    instagram.addEventListener("click", (event) => event.preventDefault());
-    fireEvent.click(instagram);
-    expect(go).not.toHaveBeenCalled();
   });
 
   it("keeps Call and Email as plain phone and email links", () => {
