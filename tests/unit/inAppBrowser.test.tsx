@@ -73,6 +73,7 @@ describe("links inside an in-app browser", () => {
   });
 
   const asFacebook = () => vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue(UA.facebookIos);
+  const asFacebookAndroid = () => vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue(UA.facebookAndroid);
 
   it("offers reliable choices for external links instead of relying on the webview", () => {
     asFacebook();
@@ -92,7 +93,7 @@ describe("links inside an in-app browser", () => {
     expect(within(dialog).getByRole("button", { name: "Copy link" })).toBeInTheDocument();
   });
 
-  it("offers retry, copy and browser fallbacks for Call and Email", () => {
+  it("offers copy and browser guidance without non-working Call or Email actions", () => {
     asFacebook();
     renderApp("/");
     const footer = within(screen.getByRole("contentinfo"));
@@ -100,11 +101,23 @@ describe("links inside an in-app browser", () => {
     expect(call).toHaveAttribute("href", churchInfo.contact.phoneHref);
     expect(call).not.toHaveAttribute("target");
     expect(fireEvent.click(call)).toBe(false);
-    const dialog = screen.getByRole("dialog", { name: "Call the church" });
-    expect(within(dialog).getByRole("link", { name: `Call ${churchInfo.contact.phone}` })).toHaveAttribute("href", churchInfo.contact.phoneHref);
-    expect(within(dialog).getByRole("button", { name: "Copy number" })).toBeInTheDocument();
+    const dialog = screen.getByRole("dialog", { name: "Church phone number" });
+    expect(within(dialog).queryByRole("link")).not.toBeInTheDocument();
+    expect(within(dialog).getByRole("button", { name: "Copy phone number" })).toHaveClass("iab-button--primary");
     expect(within(dialog).getByRole("button", { name: "How to open in Safari" })).toBeInTheDocument();
     expect(footer.getByRole("link", { name: churchInfo.contact.email })).toHaveAttribute("href", churchInfo.contact.emailHref);
+  });
+
+  it("keeps direct Call and Email links on Android where the native handoff works", () => {
+    asFacebookAndroid();
+    renderApp("/");
+    const footer = within(screen.getByRole("contentinfo"));
+    const call = footer.getByRole("link", { name: churchInfo.contact.phone });
+    const email = footer.getByRole("link", { name: churchInfo.contact.email });
+    expect(call).toHaveAttribute("href", churchInfo.contact.phoneHref);
+    expect(email).toHaveAttribute("href", churchInfo.contact.emailHref);
+    expect(fireEvent.click(call)).toBe(true);
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("changes nothing in a normal browser", () => {
