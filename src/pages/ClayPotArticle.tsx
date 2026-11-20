@@ -11,6 +11,7 @@ import {
   type ClayPotWriting
 } from "../data/clayPot";
 import { ClayPotClosing, IssueNumber, LanguagePill } from "./ClayPot";
+import ExternalLink from "../components/ExternalLink";
 import "./ClayPot.css";
 
 const writings: readonly ClayPotWriting[] = clayPotWritings;
@@ -23,9 +24,9 @@ function Inline({ parts, seen }: { parts: readonly ClayPotInline[]; seen?: Set<n
     if ("em" in part) return <em key={index}>{part.em}</em>;
     if ("link" in part) {
       return (
-        <a key={index} href={part.href} target="_blank" rel="noreferrer">
-          {part.link}<span className="sr-only"> (opens in a new tab)</span>
-        </a>
+        <ExternalLink key={index} href={part.href} newTabNote>
+          {part.link}
+        </ExternalLink>
       );
     }
     const first = seen ? !seen.has(part.note) : false;

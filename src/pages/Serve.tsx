@@ -5,6 +5,7 @@ import {
   Utensils
 } from "lucide-react";
 import InnerHero from "../components/InnerHero";
+import ExternalLink from "../components/ExternalLink";
 import { siteImages } from "../data/images";
 import { pathwayLabels } from "../data/ministryPathways";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
@@ -80,13 +81,13 @@ export default function Serve() {
             </p>
             <p className="ctc-serve-partner">
               Our outreach has included serving with{" "}
-              <a href="https://www.fmsc.org/" target="_blank" rel="noreferrer">
+              <ExternalLink href="https://www.fmsc.org/">
                 Feed My Starving Children
-              </a>
+              </ExternalLink>
               , packing nutritious meals for children in need, and volunteering with{" "}
-              <a href="https://www.samaritanspurse.org/" target="_blank" rel="noreferrer">
+              <ExternalLink href="https://www.samaritanspurse.org/">
                 Samaritan&apos;s Purse
-              </a>
+              </ExternalLink>
               .
             </p>
             <blockquote>

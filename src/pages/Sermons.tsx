@@ -1,7 +1,8 @@
-import { ArrowRight, ArrowUpRight, ChevronDown, ChevronUp, ExternalLink, Headphones, Play, Search, VideoOff } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, ChevronUp, ExternalLink as ExternalLinkIcon, Headphones, Play, Search, VideoOff } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import SectionHeader from "../components/SectionHeader";
+import ExternalLink from "../components/ExternalLink";
 import { audioArchiveFirstYear, audioArchiveLastYear, audioArchivePath, preservedSermons } from "../data/audioArchive";
 import { latestVideo, splitVideoTitle, videoSummary, videoUploadDate, type LatestVideo } from "../data/latestVideo";
 import {
@@ -41,11 +42,9 @@ function VideoCard({ video, playlistName }: { video: SermonVideo; playlistName: 
   const dateLabel = getDateLabel(video.title);
 
   return (
-    <a
+    <ExternalLink
       className="sermons-video-card"
       href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-      target="_blank"
-      rel="noreferrer"
       aria-label={`Watch ${video.title} on YouTube`}
       data-reveal-child
     >
@@ -60,7 +59,7 @@ function VideoCard({ video, playlistName }: { video: SermonVideo; playlistName: 
         </span>
         <span className="sermons-video-title">{video.title}</span>
       </span>
-    </a>
+    </ExternalLink>
   );
 }
 
@@ -113,9 +112,9 @@ function LatestVideoBand({ video }: { video: LatestVideo }) {
             {dateText ? <time dateTime={uploadDate}><span className="sr-only">, </span>{dateText}</time> : null}
           </h2>
           {summary ? <p>{summary}</p> : null}
-          <a className="sermons-latest-link" href={`https://www.youtube.com/watch?v=${video.youtubeId}`} target="_blank" rel="noreferrer">
+          <ExternalLink className="sermons-latest-link" href={`https://www.youtube.com/watch?v=${video.youtubeId}`}>
             Open on YouTube <ArrowUpRight size={17} aria-hidden="true" />
-          </a>
+          </ExternalLink>
         </div>
       </div>
     </section>
@@ -156,9 +155,9 @@ export default function Sermons() {
           </span>
           <h1 id="messages-moments-title">Faith shared. <em>Moments remembered.</em></h1>
           <p>Watch worship, teaching, celebrations, and stories from our Tamil church family in Chicago.</p>
-          <a className="sermons-channel-link" href={churchYoutubeChannelUrl} target="_blank" rel="noreferrer">
-            Browse our YouTube channel <ExternalLink size={16} aria-hidden="true" />
-          </a>
+          <ExternalLink className="sermons-channel-link" href={churchYoutubeChannelUrl}>
+            Browse our YouTube channel <ExternalLinkIcon size={16} aria-hidden="true" />
+          </ExternalLink>
         </div>
       </section>
 
@@ -190,7 +189,7 @@ export default function Sermons() {
                 <VideoOff size={30} aria-hidden="true" />
                 <h3>No videos match your search.</h3>
                 <p>Try another title or category, or browse every playlist on our YouTube channel.</p>
-                <a href={churchYoutubeChannelUrl} target="_blank" rel="noreferrer">Browse YouTube <ExternalLink size={15} aria-hidden="true" /></a>
+                <ExternalLink href={churchYoutubeChannelUrl}>Browse YouTube <ExternalLinkIcon size={15} aria-hidden="true" /></ExternalLink>
               </div>
             )}
           </div>

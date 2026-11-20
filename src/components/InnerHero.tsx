@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, type LucideIcon } from "lucide-react";
+import { churchInfo } from "../data/site";
+import ContactLink from "./ContactLink";
+import ExternalLink from "./ExternalLink";
 import "../pages/PageHeroTypography.css";
 import "./InnerHero.css";
 
@@ -8,7 +11,7 @@ type HeroLink = {
   label: string;
   /** Internal route or in-page hash (rendered as a router Link / plain anchor). */
   to?: string;
-  /** External URL, opened in a new tab (mailto:/tel: links stay in place). */
+  /** External URL (ExternalLink), or the church's phoneHref / emailHref (ContactLink). */
   href?: string;
 };
 
@@ -33,12 +36,13 @@ type InnerHeroProps = {
 
 function HeroAnchor({ link, className, size }: { link: HeroLink; className: string; size: number }) {
   const content = <>{link.label} <ArrowRight size={size} aria-hidden="true" /></>;
-  if (link.href && /^(mailto|tel):/.test(link.href)) return <a className={className} href={link.href}>{content}</a>;
+  if (link.href === churchInfo.contact.phoneHref) return <ContactLink kind="phone" className={className}>{content}</ContactLink>;
+  if (link.href === churchInfo.contact.emailHref) return <ContactLink kind="email" className={className}>{content}</ContactLink>;
   if (link.href) {
     return (
-      <a className={className} href={link.href} target="_blank" rel="noreferrer">
-        {content}<span className="sr-only"> (opens in a new tab)</span>
-      </a>
+      <ExternalLink className={className} href={link.href} newTabNote>
+        {content}
+      </ExternalLink>
     );
   }
   if (link.to?.startsWith("#")) return <a className={className} href={link.to}>{content}</a>;

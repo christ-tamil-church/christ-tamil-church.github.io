@@ -4,6 +4,9 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { siteImages } from "../data/images";
 import { churchInfo } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+import ContactLink from "./ContactLink";
+import ExternalLink from "./ExternalLink";
+import InAppBrowserBanner from "./InAppBrowserBanner";
 import { canonicalUrl, getPageMeta } from "../seo";
 import { prefersReducedMotion } from "../utils/motion";
 
@@ -281,33 +284,15 @@ export default function Layout({ children }: LayoutProps) {
               A Tamil church family worshiping Christ, growing together, and serving Chicagoland.
             </p>
             <div className="footer-social">
-              <a
-                href={churchInfo.social.facebookUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Christ Tamil Church on Facebook"
-              >
+              <ExternalLink href={churchInfo.social.facebookUrl} aria-label="Christ Tamil Church on Facebook">
                 <Facebook size={18} aria-hidden="true" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a
-                href={churchInfo.social.instagramUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Christ Tamil Church on Instagram"
-              >
+              </ExternalLink>
+              <ExternalLink href={churchInfo.social.instagramUrl} aria-label="Christ Tamil Church on Instagram">
                 <Instagram size={18} aria-hidden="true" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a
-                href={churchInfo.social.youtubeUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Christ Tamil Church on YouTube"
-              >
+              </ExternalLink>
+              <ExternalLink href={churchInfo.social.youtubeUrl} aria-label="Christ Tamil Church on YouTube">
                 <Youtube size={18} aria-hidden="true" />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
+              </ExternalLink>
             </div>
           </div>
 
@@ -315,10 +300,9 @@ export default function Layout({ children }: LayoutProps) {
             <h3 id="footer-visit-heading">Visit Us</h3>
             <p>
               <MapPin size={15} aria-hidden="true" />
-              <a href={churchInfo.address.directionsUrl} target="_blank" rel="noreferrer">
+              <ExternalLink href={churchInfo.address.directionsUrl} newTabNote>
                 {churchInfo.address.short}
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+              </ExternalLink>
             </p>
             <p>
               <Clock size={15} aria-hidden="true" />
@@ -326,11 +310,11 @@ export default function Layout({ children }: LayoutProps) {
             </p>
             <p>
               <Phone size={15} aria-hidden="true" />
-              <a href={churchInfo.contact.phoneHref}>{churchInfo.contact.phone}</a>
+              <ContactLink kind="phone">{churchInfo.contact.phone}</ContactLink>
             </p>
             <p>
               <Mail size={15} aria-hidden="true" />
-              <a href={churchInfo.contact.emailHref}>{churchInfo.contact.email}</a>
+              <ContactLink kind="email">{churchInfo.contact.email}</ContactLink>
             </p>
           </section>
 
@@ -357,6 +341,8 @@ export default function Layout({ children }: LayoutProps) {
           <span>&copy; 2026 Christ Tamil Church Chicago. All rights reserved.</span>
         </div>
       </footer>
+
+      <InAppBrowserBanner />
     </div>
   );
 }

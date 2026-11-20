@@ -7,6 +7,7 @@ import {
 import { type RefObject, useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
+import ExternalLink from "../components/ExternalLink";
 import FeaturedEventTitle, { featuredEventLeadLabel } from "../components/FeaturedEventTitle";
 import FollowTheLight from "../components/FollowTheLight/FollowTheLight";
 import { siteImages } from "../data/images";
@@ -39,16 +40,14 @@ function SundayCard() {
         <span>Every Sunday</span>
         <strong>{churchInfo.worship.time}</strong>
       </div>
-      <a
+      <ExternalLink
         className="ctc-hero-card-directions"
         href={churchInfo.address.directionsUrl}
-        target="_blank"
-        rel="noreferrer"
         title="Get directions"
       >
         <MapPin size={18} aria-hidden="true" />
         <span className="sr-only">Get directions</span>
-      </a>
+      </ExternalLink>
     </aside>
   );
 }
@@ -143,15 +142,13 @@ function StickySundayBar({ fabRef }: { fabRef: RefObject<HTMLDivElement> }) {
         <span>Sun</span>
         <strong>{churchInfo.worship.time}</strong>
       </div>
-      <a
+      <ExternalLink
         className="ctc-sunday-fab-directions"
         href={churchInfo.address.directionsUrl}
-        target="_blank"
-        rel="noreferrer"
         aria-label={`Get directions — Sunday service at ${churchInfo.worship.time}`}
       >
         <MapPin size={18} aria-hidden="true" />
-      </a>
+      </ExternalLink>
     </div>,
     document.body
   );

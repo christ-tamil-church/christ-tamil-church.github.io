@@ -29,6 +29,9 @@ import {
 } from "../data/audioArchive";
 import { audioSermons, type AudioSermon } from "../data/audioSermons";
 import { churchInfo } from "../data/site";
+import ContactLink from "../components/ContactLink";
+import ExternalLink from "../components/ExternalLink";
+import { useBrowserContext } from "../utils/inAppBrowser";
 import "./AudioSermons.css";
 
 type SpeakerFilter = "all" | SpeakerGroup;
@@ -213,6 +216,7 @@ function useAudioPlayer() {
 
 function Player({ player }: { player: ReturnType<typeof useAudioPlayer> }) {
   const { state, toggle, seek, cycleSpeed, close } = player;
+  const { inApp } = useBrowserContext();
   const { sermon } = state;
   if (!sermon) return null;
   const duration = state.duration || sermon.durationSec || 0;
@@ -269,9 +273,17 @@ function Player({ player }: { player: ReturnType<typeof useAudioPlayer> }) {
           <button type="button" className="as-player-speed" onClick={cycleSpeed} aria-label={`Playback speed ${state.speed}×. Change speed`} title="Playback speed">
             {state.speed}×
           </button>
-          <a href={audioSermonUrl(sermon)} download aria-label={`Download ${title} (MP3)`} title="Download MP3">
-            <Download size={18} aria-hidden="true" />
-          </a>
+          {/* In-app browsers (Facebook, Instagram, …) can't save files, so there
+              the button opens the MP3 itself; saving needs the real browser. */}
+          {inApp ? (
+            <a href={audioSermonUrl(sermon)} aria-label={`Open ${title} (MP3). To save it, open this page in your browser`} title="Open MP3">
+              <Download size={18} aria-hidden="true" />
+            </a>
+          ) : (
+            <a href={audioSermonUrl(sermon)} download aria-label={`Download ${title} (MP3)`} title="Download MP3">
+              <Download size={18} aria-hidden="true" />
+            </a>
+          )}
           <button type="button" onClick={close} aria-label="Close player" title="Close player">
             <X size={18} aria-hidden="true" />
           </button>
@@ -441,7 +453,7 @@ export default function AudioSermons() {
             From 2020 our services moved online. Newer worship and sermons are in{" "}
             <Link to="/sermons">Messages &amp; Moments <ArrowRight size={15} aria-hidden="true" /></Link>
             <span className="as-onward-sep" aria-hidden="true"> · </span>
-            <a href={audioArchiveItemUrl} target="_blank" rel="noreferrer">The full collection on archive.org</a>
+            <ExternalLink href={audioArchiveItemUrl}>The full collection on archive.org</ExternalLink>
           </p>
         </div>
       </section>
@@ -455,8 +467,8 @@ export default function AudioSermons() {
           </div>
           <ul className="as-closing-facts">
             <li><MapPin size={18} aria-hidden="true" /><span>Sunday worship, {churchInfo.worship.time}<br />{churchInfo.address.short}</span></li>
-            <li><Phone size={18} aria-hidden="true" /><a href={churchInfo.contact.phoneHref}>{churchInfo.contact.phone}</a></li>
-            <li><Mail size={18} aria-hidden="true" /><a href={churchInfo.contact.emailHref}>{churchInfo.contact.email}</a></li>
+            <li><Phone size={18} aria-hidden="true" /><ContactLink kind="phone">{churchInfo.contact.phone}</ContactLink></li>
+            <li><Mail size={18} aria-hidden="true" /><ContactLink kind="email">{churchInfo.contact.email}</ContactLink></li>
           </ul>
         </div>
       </section>

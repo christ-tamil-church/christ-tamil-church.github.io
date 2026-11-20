@@ -12,6 +12,7 @@ import {
 import { siteImages } from "../data/images";
 import { churchInfo } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
+import ContactLink from "../components/ContactLink";
 import "./ClayPot.css";
 
 const writings: readonly ClayPotWriting[] = clayPotWritings;
@@ -46,8 +47,8 @@ export function ClayPotClosing() {
           <Link className="cp-primary" to="/contact">Contact us <ArrowRight size={17} aria-hidden="true" /></Link>
         </div>
         <ul className="cp-closing-facts">
-          <li><Phone size={18} aria-hidden="true" /><a href={churchInfo.contact.phoneHref}>{churchInfo.contact.phone}</a></li>
-          <li><Mail size={18} aria-hidden="true" /><a href={churchInfo.contact.emailHref}>{churchInfo.contact.email}</a></li>
+          <li><Phone size={18} aria-hidden="true" /><ContactLink kind="phone">{churchInfo.contact.phone}</ContactLink></li>
+          <li><Mail size={18} aria-hidden="true" /><ContactLink kind="email">{churchInfo.contact.email}</ContactLink></li>
           <li><MapPin size={18} aria-hidden="true" /><span>Sunday worship, {churchInfo.worship.time}<br />{churchInfo.address.short}</span></li>
         </ul>
       </div>

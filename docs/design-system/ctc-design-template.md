@@ -365,6 +365,13 @@ Rules:
   `aria-labelledby`, landmarks intact. Keyboard focus visible.
 - Sunday worship time, address, and a path to "I'm New"/Contact reachable
   from every page (hero CTA or closing band).
+- Off-site links use `ExternalLink` and call/email links use `ContactLink`
+  (`src/components/`), never a raw `target="_blank"` or `tel:`/`mailto:`
+  anchor. Visitors arriving from a Facebook, Instagram or TikTok post land in
+  that app's built-in browser, which often drops new tabs and won't open the
+  dialer or mail app. These components detect that and offer copy and
+  "Open in your browser" fallbacks. `tests/unit/inAppBrowser.test.tsx`
+  enforces this.
 - Verify at desktop (1900), tablet (~900), and phone (487/380 wide) before
   calling a page done. Use browser screenshots and production builds; no
   Playwright test suite is currently configured in the repository.

@@ -1,6 +1,8 @@
 import { ArrowRight, ArrowUpRight, CalendarDays, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { churchInfo, type FeaturedEvent } from "../data/site";
 import { eventDateParts, formatEventDateLong } from "../utils/featuredEvent";
+import ContactLink from "./ContactLink";
+import ExternalLink from "./ExternalLink";
 import FeaturedEventTitle, { featuredEventTitleText } from "./FeaturedEventTitle";
 import "./FeaturedEventSection.css";
 
@@ -13,12 +15,10 @@ function Flyer({ event }: { event: FeaturedEvent }) {
   const flyer = event.flyer!;
   return (
     <figure className="ctc-featured-flyer">
-      <a
+      <ExternalLink
         className="ctc-featured-flyer-frame"
         href={flyer.src}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`Open the full-size flyer for ${featuredEventTitleText(event)} in a new tab`}
+        aria-label={`Open the full-size flyer for ${featuredEventTitleText(event)}`}
       >
         <img
           src={flyer.src}
@@ -29,12 +29,12 @@ function Flyer({ event }: { event: FeaturedEvent }) {
           alt={event.flyerAlt}
           decoding="async"
         />
-      </a>
+      </ExternalLink>
       <figcaption>
-        <a href={flyer.src} target="_blank" rel="noreferrer">
+        <ExternalLink href={flyer.src} newTabNote>
           View full-size flyer
           <ArrowUpRight size={15} aria-hidden="true" />
-        </a>
+        </ExternalLink>
       </figcaption>
     </figure>
   );
@@ -99,20 +99,20 @@ export default function FeaturedEventSection({ event }: { event: FeaturedEvent }
 
           <div className="ctc-featured-body">
             <p>{event.summary}</p>
-            <a className="ctc-featured-directions" href={event.directionsUrl} target="_blank" rel="noreferrer">
+            <ExternalLink className="ctc-featured-directions" href={event.directionsUrl} newTabNote>
               Get directions
               <ArrowRight size={16} aria-hidden="true" />
-            </a>
+            </ExternalLink>
             <p className="ctc-featured-ask">
               <span>Questions? We’d love to hear from you.</span>
-              <a href={churchInfo.contact.phoneHref}>
+              <ContactLink kind="phone">
                 <Phone size={15} aria-hidden="true" />
                 {churchInfo.contact.phone}
-              </a>
-              <a href={churchInfo.contact.emailHref}>
+              </ContactLink>
+              <ContactLink kind="email">
                 <Mail size={15} aria-hidden="true" />
                 Email us
-              </a>
+              </ContactLink>
             </p>
           </div>
         </div>

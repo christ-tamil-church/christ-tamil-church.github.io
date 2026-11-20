@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import InnerHero from "../components/InnerHero";
+import ExternalLink from "../components/ExternalLink";
 import { beliefs, churchInfo } from "../data/site";
 import { useRevealGroup } from "../hooks/useRevealGroup";
 import "./Visit.css";
@@ -48,11 +49,11 @@ export default function Visit() {
 
       <section className="visit-band visit-welcome visit-reveal" aria-labelledby="welcome-title">
         <div className="visit-shell visit-split">
-          <a className="visit-map" href={churchInfo.address.directionsUrl} target="_blank" rel="noreferrer">
+          <ExternalLink className="visit-map" href={churchInfo.address.directionsUrl}>
             <span className="visit-map-pin"><MapPin size={28} aria-hidden="true" /></span>
             <span><strong>{churchInfo.address.street}</strong>{churchInfo.address.city}, {churchInfo.address.state} {churchInfo.address.zip}</span>
             <span className="visit-map-link">Open in Google Maps <ArrowRight size={17} aria-hidden="true" /></span>
-          </a>
+          </ExternalLink>
           <div>
             <p className="visit-eyebrow">What to expect</p>
             <h2 id="welcome-title">Join us for worship, children’s ministry, and fellowship.</h2>
