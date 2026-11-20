@@ -80,3 +80,30 @@ export function useBrowserContext(): BrowserContext {
   }, []);
   return context;
 }
+
+export async function copyText(text: string): Promise<boolean> {
+  try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); return true; } } catch { /* fallback */ }
+  try {
+    const area = document.createElement("textarea"); area.value = text; area.setAttribute("readonly", ""); area.style.position = "fixed"; area.style.opacity = "0";
+    document.body.appendChild(area); area.select(); const copied = document.execCommand("copy"); area.remove(); return copied;
+  } catch { return false; }
+}
+
+export function systemBrowserUrl(url: string, context: BrowserContext): string | null {
+  let parsed: URL; try { parsed = new URL(url); } catch { return null; }
+  const rest = `${parsed.host}${parsed.pathname}${parsed.search}${parsed.hash}`;
+  if (context.os === "android") return `intent://${rest}#Intent;scheme=${parsed.protocol.replace(":", "")};package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+  if (context.os === "ios" && context.app === "instagram") return `instagram://extbrowser/?url=${encodeURIComponent(url)}`;
+  return null;
+}
+
+export function openInSystemBrowser(url: string, context: BrowserContext, waitMs = 1200): Promise<boolean> {
+  const target = systemBrowserUrl(url, context);
+  if (!target) return Promise.resolve(false);
+  return new Promise((resolve) => {
+    let left = false;
+    const onHide = () => { if (document.visibilityState === "hidden") left = true; };
+    document.addEventListener("visibilitychange", onHide); window.addEventListener("pagehide", onHide); window.location.href = target;
+    window.setTimeout(() => { document.removeEventListener("visibilitychange", onHide); window.removeEventListener("pagehide", onHide); resolve(left); }, waitMs);
+  });
+}

@@ -74,7 +74,7 @@ describe("links inside an in-app browser", () => {
 
   const asFacebook = () => vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue(UA.facebookIos);
 
-  it("opens external links in place instead of a new tab", () => {
+  it("offers reliable choices for external links instead of relying on the webview", () => {
     asFacebook();
     renderApp("/contact");
     const footer = within(screen.getByRole("contentinfo"));
@@ -82,18 +82,26 @@ describe("links inside an in-app browser", () => {
     expect(facebook).toHaveAttribute("href", churchInfo.social.facebookUrl);
     expect(facebook).not.toHaveAttribute("target");
     expect(document.querySelectorAll('a[target="_blank"]')).toHaveLength(0);
+    expect(fireEvent.click(facebook)).toBe(false);
+    const dialog = screen.getByRole("dialog", { name: "Open external link" });
+    expect(within(dialog).getByRole("link", { name: "Continue in Facebook" })).toHaveAttribute("href", churchInfo.social.facebookUrl);
+    expect(within(dialog).getByRole("button", { name: "Open in your browser" })).toBeInTheDocument();
+    expect(within(dialog).getByRole("button", { name: "Copy link" })).toBeInTheDocument();
   });
 
-  it("keeps Call and Email as plain phone and email links", () => {
+  it("offers retry, copy and browser fallbacks for Call and Email", () => {
     asFacebook();
     renderApp("/");
     const footer = within(screen.getByRole("contentinfo"));
     const call = footer.getByRole("link", { name: churchInfo.contact.phone });
     expect(call).toHaveAttribute("href", churchInfo.contact.phoneHref);
     expect(call).not.toHaveAttribute("target");
-    expect(fireEvent.click(call)).toBe(true);
+    expect(fireEvent.click(call)).toBe(false);
+    const dialog = screen.getByRole("dialog", { name: "Call the church" });
+    expect(within(dialog).getByRole("link", { name: `Call ${churchInfo.contact.phone}` })).toHaveAttribute("href", churchInfo.contact.phoneHref);
+    expect(within(dialog).getByRole("button", { name: "Copy number" })).toBeInTheDocument();
+    expect(within(dialog).getByRole("button", { name: "Open in your browser" })).toBeInTheDocument();
     expect(footer.getByRole("link", { name: churchInfo.contact.email })).toHaveAttribute("href", churchInfo.contact.emailHref);
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("changes nothing in a normal browser", () => {
