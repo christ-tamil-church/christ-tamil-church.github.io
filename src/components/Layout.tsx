@@ -283,13 +283,13 @@ export default function Layout({ children }: LayoutProps) {
               A Tamil church family worshiping Christ, growing together, and serving Chicagoland.
             </p>
             <div className="footer-social">
-              <ExternalLink href={churchInfo.social.facebookUrl} aria-label="Christ Tamil Church on Facebook">
+              <ExternalLink href={churchInfo.social.facebookUrl} appHref={churchInfo.social.apps.facebook} aria-label="Christ Tamil Church on Facebook">
                 <Facebook size={18} aria-hidden="true" />
               </ExternalLink>
-              <ExternalLink href={churchInfo.social.instagramUrl} aria-label="Christ Tamil Church on Instagram">
+              <ExternalLink href={churchInfo.social.instagramUrl} appHref={churchInfo.social.apps.instagram} aria-label="Christ Tamil Church on Instagram">
                 <Instagram size={18} aria-hidden="true" />
               </ExternalLink>
-              <ExternalLink href={churchInfo.social.youtubeUrl} aria-label="Christ Tamil Church on YouTube">
+              <ExternalLink href={churchInfo.social.youtubeUrl} appHref={churchInfo.social.apps.youtube} aria-label="Christ Tamil Church on YouTube">
                 <Youtube size={18} aria-hidden="true" />
               </ExternalLink>
             </div>

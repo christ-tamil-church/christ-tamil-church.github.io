@@ -24,7 +24,16 @@ export const churchInfo = {
   social: {
     facebookUrl: "https://www.facebook.com/ChristTamilChurchChicago",
     instagramUrl: "https://www.instagram.com/christtamilchurchchicago/",
-    youtubeUrl: churchYoutubeChannelUrl
+    youtubeUrl: churchYoutubeChannelUrl,
+    // Native-app links, used only inside iPhone in-app browsers (Facebook,
+    // Instagram, …): there the web pages above load without the visitor's
+    // app login (blank page or login wall), so ExternalLink opens the app
+    // instead and falls back to the web page if the app doesn't open.
+    apps: {
+      facebook: "fb://facewebmodal/f?href=https%3A%2F%2Fwww.facebook.com%2FChristTamilChurchChicago",
+      instagram: "instagram://user?username=christtamilchurchchicago",
+      youtube: "youtube://www.youtube.com/channel/UC3X9JlecBpz9w2njytsGEEw"
+    }
   }
 } as const;
 
