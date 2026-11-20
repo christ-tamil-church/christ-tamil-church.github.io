@@ -1,9 +1,9 @@
-import { act, fireEvent, screen, within } from "@testing-library/react";
+import { fireEvent, screen, within } from "@testing-library/react";
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { churchInfo } from "../../src/data/site";
-import { detectBrowserContext, systemBrowserUrl } from "../../src/utils/inAppBrowser";
+import { detectBrowserContext } from "../../src/utils/inAppBrowser";
 import { renderApp } from "./renderApp";
 
 // Representative user-agent strings, one per app family.
@@ -67,29 +67,9 @@ describe("detectBrowserContext", () => {
   });
 });
 
-describe("systemBrowserUrl", () => {
-  const url = "https://christtamilchurch.org/contact?x=1";
-
-  it("uses a Chrome intent on Android", () => {
-    expect(systemBrowserUrl(url, { inApp: true, app: "facebook", os: "android" })).toBe(
-      `intent://christtamilchurch.org/contact?x=1#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`
-    );
-  });
-
-  it("uses the Safari scheme on iOS, and Instagram's own escape there", () => {
-    expect(systemBrowserUrl(url, { inApp: true, app: "facebook", os: "ios" })).toBe(
-      "x-safari-https://christtamilchurch.org/contact?x=1"
-    );
-    expect(systemBrowserUrl(url, { inApp: true, app: "instagram", os: "ios" })).toBe(
-      `instagram://extbrowser/?url=${encodeURIComponent(url)}`
-    );
-  });
-});
-
 describe("links inside an in-app browser", () => {
   afterEach(() => {
     vi.restoreAllMocks();
-    window.sessionStorage.clear();
   });
 
   const asFacebook = () => vi.spyOn(window.navigator, "userAgent", "get").mockReturnValue(UA.facebookIos);
@@ -104,49 +84,22 @@ describe("links inside an in-app browser", () => {
     expect(document.querySelectorAll('a[target="_blank"]')).toHaveLength(0);
   });
 
-  it("turns a tap on Call into a sheet that can call, copy or open the browser", async () => {
+  it("keeps Call and Email as plain phone and email links", () => {
     asFacebook();
-    const writeText = vi.fn().mockResolvedValue(undefined);
-    Object.defineProperty(window.navigator, "clipboard", { value: { writeText }, configurable: true });
     renderApp("/");
     const footer = within(screen.getByRole("contentinfo"));
-    fireEvent.click(footer.getByRole("link", { name: churchInfo.contact.phone }));
-
-    const sheet = within(screen.getByRole("dialog", { name: "Call the church" }));
-    expect(sheet.getByRole("link", { name: `Call ${churchInfo.contact.phone}` })).toHaveAttribute(
-      "href",
-      churchInfo.contact.phoneHref
-    );
-    await act(async () => {
-      fireEvent.click(sheet.getByRole("button", { name: "Copy number" }));
-    });
-    expect(writeText).toHaveBeenCalledWith(churchInfo.contact.phone);
-    expect(sheet.getByRole("button", { name: "Copied" })).toBeInTheDocument();
-    expect(sheet.getByRole("button", { name: "Open in your browser" })).toBeInTheDocument();
-
-    fireEvent.keyDown(document, { key: "Escape" });
+    const call = footer.getByRole("link", { name: churchInfo.contact.phone });
+    expect(call).toHaveAttribute("href", churchInfo.contact.phoneHref);
+    expect(call).not.toHaveAttribute("target");
+    expect(fireEvent.click(call)).toBe(true);
+    expect(footer.getByRole("link", { name: churchInfo.contact.email })).toHaveAttribute("href", churchInfo.contact.emailHref);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-  });
-
-  it("offers the open-in-browser bar, and remembers when it is dismissed", () => {
-    asFacebook();
-    const { unmount } = renderApp("/");
-    const bar = within(screen.getByRole("complementary", { name: "Open in your browser" }));
-    expect(bar.getByText(/Viewing in Facebook/)).toBeInTheDocument();
-    fireEvent.click(bar.getByRole("button", { name: "Dismiss" }));
-    expect(screen.queryByRole("complementary", { name: "Open in your browser" })).not.toBeInTheDocument();
-    unmount();
-    renderApp("/");
-    expect(screen.queryByRole("complementary", { name: "Open in your browser" })).not.toBeInTheDocument();
   });
 
   it("changes nothing in a normal browser", () => {
     renderApp("/");
     const footer = within(screen.getByRole("contentinfo"));
     expect(footer.getByRole("link", { name: "Christ Tamil Church on Facebook" })).toHaveAttribute("target", "_blank");
-    fireEvent.click(footer.getByRole("link", { name: churchInfo.contact.phone }));
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(screen.queryByRole("complementary", { name: "Open in your browser" })).not.toBeInTheDocument();
   });
 });
 

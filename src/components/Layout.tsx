@@ -6,7 +6,6 @@ import { churchInfo } from "../data/site";
 import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
 import ContactLink from "./ContactLink";
 import ExternalLink from "./ExternalLink";
-import InAppBrowserBanner from "./InAppBrowserBanner";
 import { canonicalUrl, getPageMeta } from "../seo";
 import { prefersReducedMotion } from "../utils/motion";
 
@@ -341,8 +340,6 @@ export default function Layout({ children }: LayoutProps) {
           <span>&copy; 2026 Christ Tamil Church Chicago. All rights reserved.</span>
         </div>
       </footer>
-
-      <InAppBrowserBanner />
     </div>
   );
 }

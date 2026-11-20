@@ -8,7 +8,7 @@ type ExternalLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "target" 
   newTabNote?: boolean;
 };
 
-/* Every off-site link goes through here (enforced by tests/unit/linkPolicy.test.ts).
+/* Every off-site link goes through here (enforced by tests/unit/inAppBrowser.test.tsx).
    In a normal browser it opens a new tab. Inside an in-app browser (Facebook,
    Instagram, TikTok, …) it navigates in place instead: those web views have no
    tabs and often drop new-window requests, and a same-window visit is what
