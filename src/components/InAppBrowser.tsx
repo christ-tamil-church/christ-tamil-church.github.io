@@ -35,10 +35,18 @@ export function CopyButton({ text, label, className = "iab-button" }: { text: st
   );
 }
 
-export function OpenInBrowserButton({ context, url, className = "iab-button" }: { context: BrowserContext; url?: string; className?: string }) {
+export function OpenInBrowserButton({ context, url, className = "iab-button", showCopyFallback = true }: { context: BrowserContext; url?: string; className?: string; showCopyFallback?: boolean }) {
   const [showSteps, setShowSteps] = useState(false);
   const targetUrl = url ?? (typeof window === "undefined" ? "" : window.location.href);
+  const canAttemptHandoff = context.os === "android" || (context.os === "ios" && context.app === "instagram");
+  const label = canAttemptHandoff
+    ? context.os === "android" ? "Open in Chrome" : "Open in Safari"
+    : context.os === "ios" ? "How to open in Safari" : "How to open in your browser";
   const handleClick = async () => {
+    if (!canAttemptHandoff) {
+      setShowSteps(true);
+      return;
+    }
     const left = await openInSystemBrowser(targetUrl, context);
     if (!left) setShowSteps(true);
   };
@@ -46,12 +54,12 @@ export function OpenInBrowserButton({ context, url, className = "iab-button" }: 
     <>
       <button type="button" className={className} onClick={handleClick}>
         <ExternalLinkIcon size={17} aria-hidden="true" />
-        <span>Open in your browser</span>
+        <span>{label}</span>
       </button>
       {showSteps && (
         <div className="iab-steps" role="status">
           <p>{manualBrowserSteps(context)}</p>
-          <CopyButton text={targetUrl} label="Copy link" className="iab-text-button" />
+          {showCopyFallback && <CopyButton text={targetUrl} label="Copy link" className="iab-text-button" />}
         </div>
       )}
     </>

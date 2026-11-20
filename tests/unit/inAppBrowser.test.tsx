@@ -85,7 +85,10 @@ describe("links inside an in-app browser", () => {
     expect(fireEvent.click(facebook)).toBe(false);
     const dialog = screen.getByRole("dialog", { name: "Open external link" });
     expect(within(dialog).getByRole("link", { name: "Continue in Facebook" })).toHaveAttribute("href", churchInfo.social.facebookUrl);
-    expect(within(dialog).getByRole("button", { name: "Open in your browser" })).toBeInTheDocument();
+    const browserHelp = within(dialog).getByRole("button", { name: "How to open in Safari" });
+    expect(browserHelp).toBeInTheDocument();
+    fireEvent.click(browserHelp);
+    expect(within(dialog).getByText(/Open in Safari/)).toBeInTheDocument();
     expect(within(dialog).getByRole("button", { name: "Copy link" })).toBeInTheDocument();
   });
 
@@ -100,7 +103,7 @@ describe("links inside an in-app browser", () => {
     const dialog = screen.getByRole("dialog", { name: "Call the church" });
     expect(within(dialog).getByRole("link", { name: `Call ${churchInfo.contact.phone}` })).toHaveAttribute("href", churchInfo.contact.phoneHref);
     expect(within(dialog).getByRole("button", { name: "Copy number" })).toBeInTheDocument();
-    expect(within(dialog).getByRole("button", { name: "Open in your browser" })).toBeInTheDocument();
+    expect(within(dialog).getByRole("button", { name: "How to open in Safari" })).toBeInTheDocument();
     expect(footer.getByRole("link", { name: churchInfo.contact.email })).toHaveAttribute("href", churchInfo.contact.emailHref);
   });
 

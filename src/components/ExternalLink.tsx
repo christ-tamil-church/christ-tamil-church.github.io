@@ -20,7 +20,7 @@ export default function ExternalLink({ href, children, newTabNote = false, ...re
   const close = useCallback(() => setOpen(false), []);
   const suppliedClick = rest.onClick;
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => { suppliedClick?.(event); if (!event.defaultPrevented) { event.preventDefault(); setOpen(true); } };
-  if (context.inApp) return <><a href={href} {...rest} onClick={handleClick}>{children}</a>{open && <InAppSheet title="Open external link" onClose={close}><p className="iab-sheet-note">{appLabel(context)} may block this link. Continue inside the app, open it in your browser, or copy it.</p><div className="iab-sheet-actions"><a className="iab-button iab-button--primary" href={href}>Continue in {appLabel(context)}</a><OpenInBrowserButton context={context} url={href}/><CopyButton text={href} label="Copy link"/></div></InAppSheet>}</>;
+  if (context.inApp) return <><a href={href} {...rest} onClick={handleClick}>{children}</a>{open && <InAppSheet title="Open external link" onClose={close}><p className="iab-sheet-note">{appLabel(context)} may block this link. Continue inside the app, open it in your browser, or copy it.</p><div className="iab-sheet-actions"><a className="iab-button iab-button--primary" href={href}>Continue in {appLabel(context)}</a><OpenInBrowserButton context={context} url={href} showCopyFallback={false}/><CopyButton text={href} label="Copy link"/></div></InAppSheet>}</>;
   return (
     <a href={href} target="_blank" rel="noreferrer" {...rest}>
       {children}
