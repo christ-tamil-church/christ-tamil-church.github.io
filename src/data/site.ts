@@ -42,9 +42,9 @@ export const heroHeadline: {
   secondLine: string;
   greenLine: "first" | "second";
 } = {
-  firstLine: "அந்தரம் புவியும் தந்து, சொந்த ஜீவனையும் ஈந்து,",
+  firstLine: "இல்லான் எந்தனுக்கு என்றும் நிறைவாய்,",
   firstLineRest: "",
-  secondLine: "ஆற்றினார், நமை ஒன்றாய்க் கூட்டினார்;",
+  secondLine: "எல்லாம் தந்த உன்னை என்றும் துதிப்பேன்.",
   greenLine: "first"
 };
 
@@ -54,9 +54,9 @@ export const heroHeadline: {
 // tablets and phones automatically; shorter verses read best in the hero.
 export const verseOfTheWeek = {
   label: "Focus Verse for the Week",
-  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/ezekiel/34/
-  text: "கர்த்தராகிய நான் அவர்களுக்குத் தேவனாக இருப்பேன், என் தாசனாகிய தாவீது அவர்கள் நடுவில் அதிபதியாயிருப்பார்; கர்த்தராகிய நான் இதைச் சொன்னேன்.",
-  reference: "Ezekiel 34:24"
+  // Tamil O.V. wording copied from tamilbiblesearch.com/tamil-bible-online/2corinthians/9/
+  text: "மேலும், நீங்கள் எல்லாவற்றிலும் எப்பொழுதும் சம்பூரணமுடையவர்களாயும், சகலவித நற்கிரியைகளிலும் பெருகுகிறவர்களாயுமிருக்கும்படியாக, தேவன் உங்களிடத்தில் சகலவித கிருபையையும் பெருகச்செய்ய வல்லவராயிருக்கிறார்.",
+  reference: "2 Corinthians 9:8"
 } as const;
 
 export type FeaturedEvent = {
@@ -86,18 +86,17 @@ export type FeaturedEvent = {
 // instead). When the flyer arrives, run the script above, then set
 // `flyer: siteImages.featuredEventFlyer` and describe it in `flyerAlt`.
 export const featuredEvent: FeaturedEvent | null = {
-  titleLead: "Worship Theme:",
-  title: "Christ, the King",
-  startsOn: "2026-11-22",
-  endsOn: "2026-11-22",
-  time: churchInfo.worship.time,
+  title: "Thanksgiving Day Special Service",
+  startsOn: "2026-11-26",
+  endsOn: "2026-11-26",
+  time: "11:30 AM",
   location: churchInfo.address.short,
   directionsUrl: churchInfo.address.directionsUrl,
   summary:
-    "Join us for Sunday worship as we honour Christ our King, who gave His own life to gather us together as one.",
+    "Join us on Thanksgiving morning as we give thanks to God, who supplies all we need and gives us more than enough.",
   flyer: siteImages.featuredEventFlyer,
   flyerAlt:
-    "\"Christ the King\" flyer, Ezekiel 34:11-24: Jesus, crowned and holding a shepherd's staff, stands among His sheep in a sunlit valley before a stone throne. Sunday, November 22, 2026, 10:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
+    "\"In Everything, Give Thanks\" Thanksgiving Service flyer: God's Assurance, His Abundance and Our Acceptance. A cornucopia of autumn fruit and pumpkins beneath church arches, with a glowing cross over an open Bible. Thursday, November 26, 2026, 11:30 AM CST, Christ Tamil Church, 1330 63rd St, Downers Grove, IL 60516."
 };
 
 export type ChurchEvent = {
